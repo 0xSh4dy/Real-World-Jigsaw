@@ -1,11 +1,20 @@
 package com.example.jigsaw_puzzle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -13,34 +22,22 @@ import com.android.volley.RequestQueue;
 public class HomeActivity extends AppCompatActivity {
     private TextView nameTextView;
     SharedPreferences preferences;
-    private Intent realModeIntent;
-    private Intent selfieModeIntent;
-    private Intent customModeIntent;
+    private Intent GameActivity;
+    private Button cameraButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        cameraButton = findViewById(R.id.cameraMode);
+        GameActivity = new Intent(this,GameActivity.class);
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GameActivity.putExtra("mode","CameraMode");
+                startActivity(GameActivity);
+            }
+        });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        nameTextView = findViewById(R.id.nameTextView);
-        preferences = getSharedPreferences("userData",MODE_PRIVATE);
-        String username = preferences.getString("username"," user");
-        username = "Hello " + username;
-        nameTextView.setText(username);
-        realModeIntent = new Intent(getApplicationContext(),RealWorld.class);
-        selfieModeIntent = new Intent(getApplicationContext(),SelfieMode.class);
-        customModeIntent = new Intent(getApplicationContext(),CustomMode.class);
-    }
-    public void StartRealMode(View view){
-        startActivity(realModeIntent);
-    }
-    public void StartSelfieMode(View view){
-        startActivity(selfieModeIntent);
-    }
-    public void StartCustomMode(View view){
-        startActivity(customModeIntent);
-    }
+
 }
