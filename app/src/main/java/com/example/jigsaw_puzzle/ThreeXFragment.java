@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -124,20 +125,180 @@ public class ThreeXFragment extends Fragment {
         final int imageWidth = imageCapture.getWidth();
         final int targetImageHeight = img1.getHeight();
         final int targetImageWidth = img1.getWidth();
-        img1.setOnTouchListener(new OnSwipeTouchListener(context){
-            public void onSwipeTop() {
-                Log.i("name","top");
-            }
-            public void onSwipeRight() {
-                Log.i("name","right");
-            }
-            public void onSwipeLeft() {
-                Log.i("name","left");
-            }
-            public void onSwipeBottom() {
-                Log.i("name","bottom");
-            }
-        });
+//        img1.setOnTouchListener(new OnSwipeTouchListener(context){
+//            @Override
+//            public void onSwipeRight() {
+//                super.onSwipeRight();
+//                Bitmap bm = ((BitmapDrawable)img2.getDrawable()).getBitmap();
+//                Bitmap bm2 = ((BitmapDrawable)img1.getDrawable()).getBitmap();
+//                img1.setImageBitmap(bm);
+//                img2.setImageBitmap(bm2);
+//            }
+//        });
+        for(ImageView img:imageViews){
+            img.setOnTouchListener(new OnSwipeTouchListener(context){
+                String tag = img.getTag().toString() ;
+                int tagInt = Integer.parseInt(tag) ;
+                Bitmap bmNew;
+                int exchangeTag;
+                Bitmap bm;
+
+                public void  onSwipeTop(){
+                        exchangeTag = tagInt-3;
+                    bm= ((BitmapDrawable)img.getDrawable()).getBitmap();
+                    if(tag.equals("4") || tag.equals("5") || tag.equals("6")){
+
+                            if(exchangeTag==1){
+                                bmNew = ((BitmapDrawable)img1.getDrawable()).getBitmap();
+                                img1.setImageBitmap(bm);
+                                img4.setImageBitmap(bmNew);
+                            }
+                            else if(exchangeTag==2){
+                                bmNew = ((BitmapDrawable)img2.getDrawable()).getBitmap();
+                                img2.setImageBitmap(bm);
+                                img5.setImageBitmap(bmNew);
+                            }
+                            else if(exchangeTag==3){
+                                bmNew = ((BitmapDrawable)img3.getDrawable()).getBitmap();
+                                img3.setImageBitmap(bm);
+                                img6.setImageBitmap(bmNew);
+                            }
+
+                        }
+                        else if(tag.equals("7") || tag.equals("8") || tag.equals("9")){
+                            if(exchangeTag==4){
+                                bmNew = ((BitmapDrawable)img4.getDrawable()).getBitmap();
+                                img7.setImageBitmap(bmNew);
+                                img4.setImageBitmap(bm);
+                            }
+                            else if(exchangeTag==5){
+                                bmNew = ((BitmapDrawable)img5.getDrawable()).getBitmap();
+                                img8.setImageBitmap(bmNew);
+                                img5.setImageBitmap(bm);
+                            }
+                            else if(exchangeTag==6){
+                                bmNew = ((BitmapDrawable)img6.getDrawable()).getBitmap();
+                                img9.setImageBitmap(bmNew);
+                                img6.setImageBitmap(bm);
+                            }
+                        }
+                    }
+//                    public void onSwipeBottom(){
+//                        exchangeTag = tagInt+3;
+//                        if(tag.equals("1") || tag.equals("2") ||tag.equals("3")){
+//                            if(exchangeTag==4){
+//                                bmNew = ((BitmapDrawable)img4.getDrawable()).getBitmap();
+//                                img1.setImageBitmap(bmNew);
+//                                img4.setImageBitmap(bm);
+//                            }
+//                            else if(exchangeTag==5){
+//                                bmNew = ((BitmapDrawable)img5.getDrawable()).getBitmap();
+//                                img2.setImageBitmap(bmNew);
+//                                img5.setImageBitmap(bm);
+//                            }
+//                            else if(exchangeTag==6){
+//                                bmNew = ((BitmapDrawable)img6.getDrawable()).getBitmap();
+//                                img3.setImageBitmap(bmNew);
+//                                img6.setImageBitmap(bm);
+//                            }
+//                        }
+//                        else if(tag.equals("4")|| tag.equals("5")|| tag.equals("6")){
+//                            if(exchangeTag==7){
+//                                bmNew = ((BitmapDrawable)img7.getDrawable()).getBitmap();
+//                                img4.setImageBitmap(bmNew);
+//                                img7.setImageBitmap(bm);
+//                            }
+//                            else if(exchangeTag==8){
+//                                bmNew = ((BitmapDrawable)img8.getDrawable()).getBitmap();
+//                                img5.setImageBitmap(bmNew);
+//                                img8.setImageBitmap(bm);
+//                            }
+//                            else if(exchangeTag==9){
+//                                bmNew = ((BitmapDrawable)img9.getDrawable()).getBitmap();
+//                                img6.setImageBitmap(bmNew);
+//                                img9.setImageBitmap(bm);
+//                            }
+//                        }
+//                    }
+//                    public void onSwipeLeft(){
+//                        exchangeTag = tagInt-1;
+//                        if(tag.equals("2")||tag.equals("5")||tag.equals("8")){
+//                            if(exchangeTag==1){
+//                                bmNew = ((BitmapDrawable)img1.getDrawable()).getBitmap();
+//                                img1.setImageBitmap(bm);
+//                                img2.setImageBitmap(bmNew);
+//                            }
+//                            else if(exchangeTag==4){
+//                                bmNew = ((BitmapDrawable)img4.getDrawable()).getBitmap();
+//                                img4.setImageBitmap(bm);
+//                                img5.setImageBitmap(bmNew);
+//                            }
+//                            else if(exchangeTag==7){
+//                                bmNew = ((BitmapDrawable)img7.getDrawable()).getBitmap();
+//                                img7.setImageBitmap(bm);
+//                                img8.setImageBitmap(bmNew);
+//                            }
+//                        }
+//                        else if(tag.equals("3")||tag.equals("6")||tag.equals("9")){
+//                            if(exchangeTag==2){
+//                                bmNew = ((BitmapDrawable)img2.getDrawable()).getBitmap();
+//                                img2.setImageBitmap(bm);
+//                                img3.setImageBitmap(bmNew);
+//                            }
+//                            else if(exchangeTag==5){
+//                                bmNew = ((BitmapDrawable)img5.getDrawable()).getBitmap();
+//                                img5.setImageBitmap(bm);
+//                                img6.setImageBitmap(bmNew);
+//                            }
+//                            else if(exchangeTag==8){
+//                                bmNew = ((BitmapDrawable)img8.getDrawable()).getBitmap();
+//                                img8.setImageBitmap(bm);
+//                                img9.setImageBitmap(bmNew);
+//                            }
+//                        }
+//                    }
+//                    public void onSwipeRight(){
+//                        exchangeTag = tagInt+1;
+//                        if(tag.equals("1")||tag.equals("4") ||tag.equals("7") ){
+//                            if(exchangeTag==2){
+//                                bmNew = ((BitmapDrawable)img2.getDrawable()).getBitmap();
+//                                img2.setImageBitmap(bm);
+//                                img1.setImageBitmap(bmNew);
+//                            }
+//                            else if(exchangeTag==5){
+//                                bmNew = ((BitmapDrawable)img5.getDrawable()).getBitmap();
+//                                img5.setImageBitmap(bm);
+//                                img4.setImageBitmap(bmNew);
+//                            }
+//                            else if(exchangeTag==8){
+//                                bmNew = ((BitmapDrawable)img8.getDrawable()).getBitmap();
+//                                img8.setImageBitmap(bm);
+//                                img7.setImageBitmap(bmNew);
+//                            }
+//                        }
+//                        else if(tag.equals("2") ||tag.equals("5") ||tag.equals("8") ){
+//                            if(exchangeTag==3){
+//                                bmNew = ((BitmapDrawable)img3.getDrawable()).getBitmap();
+//                                img3.setImageBitmap(bm);
+//                                img2.setImageBitmap(bmNew);
+//                            }
+//                            else if(exchangeTag==6){
+//                                bmNew = ((BitmapDrawable)img6.getDrawable()).getBitmap();
+//                                img6.setImageBitmap(bm);
+//                                img5.setImageBitmap(bmNew);
+//                            }
+//                            else if(exchangeTag==9){
+//                                bmNew = ((BitmapDrawable)img9.getDrawable()).getBitmap();
+//                                img9.setImageBitmap(bm);
+//                                img8.setImageBitmap(bmNew);
+//                            }
+//
+//                        }
+//                    }
+
+            });
+        }
+
         ImpFunctions impFunctions = new ImpFunctions();
 //        img1.setImageBitmap(bitmap);
         ArrayList<Bitmap> dividedBitmaps = impFunctions.splitBitmap(imageCapture,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
