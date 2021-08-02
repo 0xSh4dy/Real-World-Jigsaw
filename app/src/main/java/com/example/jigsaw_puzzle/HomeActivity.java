@@ -4,40 +4,65 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView nameTextView;
     SharedPreferences preferences;
     private Intent GameActivity;
     private Button cameraButton;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+            Toast.makeText(this, "You need to give access to camera in order to access this mode", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Activity thisActivity = this;
         cameraButton = findViewById(R.id.cameraMode);
-        GameActivity = new Intent(this,GameActivity.class);
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GameActivity.putExtra("mode","CameraMode");
-                startActivity(GameActivity);
-            }
-        });
+        GameActivity = new Intent(this, GameActivity.class);
+
+
     }
 
+    public void checkCameraPermission(View view) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+        } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            GameActivity.putExtra("mode", "CameraMode");
+            startActivity(GameActivity);
+        }
 
+
+    }
 }

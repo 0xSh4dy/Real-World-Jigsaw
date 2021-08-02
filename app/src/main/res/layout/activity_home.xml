@@ -24,6 +24,7 @@
         android:id="@+id/cameraMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="checkCameraPermission"
         android:text="World Mode"
         android:textColor="#08176C"
         app:backgroundTint="#EFB506"
