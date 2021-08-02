@@ -86,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 if (response.equals("Success")) {
-                                    validCredentials = true;
-                                    preferences.edit().putString("username",username).apply();
                                     startActivity(homeIntent);
                                     finish();
                                 } else {

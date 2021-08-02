@@ -104,7 +104,6 @@ public class RegisterActivity extends AppCompatActivity {
                             passwordEditText.setText("");
                             unameEditText.setText("");
                             if(response.equals("Successfully registered")){
-                                redirectToHome = true;
                                 startActivity(intent);
                                 finish();
                             }

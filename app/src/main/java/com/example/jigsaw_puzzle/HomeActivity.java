@@ -12,10 +12,12 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -23,7 +25,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,7 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     SharedPreferences preferences;
     private Intent GameActivity;
     private Button cameraButton;
-
+    public String uname="";
+    ConnectivityManager cm;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -49,10 +57,34 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Activity thisActivity = this;
+        final String loginUrl = "https://jigsaw-real.herokuapp.com/login";
+        nameTextView = findViewById(R.id.nameTextView);
         cameraButton = findViewById(R.id.cameraMode);
         GameActivity = new Intent(this, GameActivity.class);
+        cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(cm.getActiveNetworkInfo()!=null){
+            RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest request = new StringRequest(Request.Method.GET, loginUrl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            uname = response;
+                            String greeting = "Welcome, " + uname;
+                            nameTextView.setText(greeting);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
-
+                        }
+                    }
+            );
+            queue.add(request);
+        }
+        else{
+            nameTextView.setText("No internet! Cannot find username");
+        }
     }
 
     public void checkCameraPermission(View view) {
@@ -60,6 +92,7 @@ public class HomeActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
         } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             GameActivity.putExtra("mode", "CameraMode");
+            GameActivity.putExtra("username",uname);
             startActivity(GameActivity);
         }
 

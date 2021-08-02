@@ -16,21 +16,28 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     private Intent cameraCapture;
     private String buttonClicked;
     private FragmentManager fragmentManager;
+    private TextView timeTextView;
+    int timeElapsed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,16 +47,23 @@ public class GameActivity extends AppCompatActivity {
         Button fourXButton = findViewById(R.id.fourX);
         Button fiveXButton = findViewById(R.id.fiveX);
         fragmentManager= getSupportFragmentManager();
+        timeTextView = findViewById(R.id.timeTextView);
+        timeTextView.setVisibility(View.GONE);
         CardView cardView;
 
         String mode = getIntent().getStringExtra("mode");
-
+        timeElapsed=0;
         threeXButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buttonClicked = "threeXButton";
                 if(mode.equals("CameraMode")){
-                OpenCamera();
+                    threeXButton.setVisibility(View.GONE);
+                    fourXButton.setVisibility(View.GONE);
+                    fiveXButton.setVisibility(View.GONE);
+                    OpenCamera();
+                    timeTextView.setVisibility(View.VISIBLE);
+
                 }
             }
         });
@@ -96,13 +110,15 @@ public class GameActivity extends AppCompatActivity {
                         fragmentTransaction.add(R.id.fragmentCont1,threeXFragment,null);
                         threeXFragment.setArguments(bundle);
                         fragmentTransaction.commit();
+
                         }
-                        Toast.makeText(GameActivity.this, "done", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GameActivity.this, "3x3 world mode started!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
     public void OpenCamera() {
             resultLauncher.launch(cameraCapture);
     }
+
 
 }
