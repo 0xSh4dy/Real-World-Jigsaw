@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.zomato.photofilters.SampleFilters;
 import com.zomato.photofilters.imageprocessors.Filter;
@@ -48,6 +49,8 @@ public class FilterMode extends AppCompatActivity {
     ImageView[]imageViews;
     ImageView[]imageViewsAlt;
     ArrayList<Bitmap>smallBitmaps;
+    Bitmap bmp;
+
     int timeElapsed=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,264 +176,274 @@ public class FilterMode extends AppCompatActivity {
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startTheGame(){
-//        new Timer().scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                timeElapsed++;
-//            }
-//        },0,1000);
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                timeElapsed++;
+            }
+        },0,1000);
 
         for(Button btn:filters){
             btn.setVisibility(View.GONE);
         }
         ImpFunctions imp = new ImpFunctions();
-        Bitmap bm = finalImage;
-        final int imageWidth = bm.getWidth();
-        final int imageHeight = bm.getHeight();
-        smallBitmaps = imp.splitBitmap(bm,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
+        Bitmap bmx = finalImage;
+        final int imageWidth = bmx.getWidth();
+        final int imageHeight = bmx.getHeight();
+        smallBitmaps = imp.splitBitmap(bmx,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
         int[]modifiedPositions =  imp.shuffleImages(imageViews,smallBitmaps);
-//        for(ImageView img:imageViews){
+        ArrayList<Bitmap> finalDividedBitmaps = smallBitmaps;
+        for(ImageView img:imageViews){
 //
-//            ArrayList<Bitmap> finalDividedBitmaps = smallBitmaps;
-//            img.setOnTouchListener(new OnSwipeTouchListener(this){
-//
-//                                       String tag = img.getTag().toString() ;
-//                                       int tagInt = Integer.parseInt(tag) ;
-//                                       Bitmap bmNew;
-//                                       int exchangeTag;
-//                                       Bitmap bm;
-//                public void  onSwipeTop(){
-//
-//                    exchangeTag = tagInt-3;
-//                    bm= ((BitmapDrawable)img.getDrawable()).getBitmap();
-//                    if(tag.equals("4") || tag.equals("5") || tag.equals("6")){
-//
-//                        if(exchangeTag==1){
-//                            bmNew = ((BitmapDrawable)imageViews[0].getDrawable()).getBitmap();
-//                            imageViews[0].setImageBitmap(bm);
-//                            imageViews[3].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==2){
-//                            bmNew = ((BitmapDrawable)imageViews[1].getDrawable()).getBitmap();
-//                            imageViews[1].setImageBitmap(bm);
-//                            imageViews[4].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==3){
-//                            bmNew = ((BitmapDrawable)imageViews[2].getDrawable()).getBitmap();
-//                            imageViews[2].setImageBitmap(bm);
-//                            imageViews[5].setImageBitmap(bmNew);
-//                        }
-//
-//                    }
-//                    else if(tag.equals("7") || tag.equals("8") || tag.equals("9")){
-//                        if(exchangeTag==4){
-//                            bmNew = ((BitmapDrawable)imageViews[3].getDrawable()).getBitmap();
-//                            imageViews[6].setImageBitmap(bmNew);
-//                            imageViews[3].setImageBitmap(bm);
-//                        }
-//                        else if(exchangeTag==5){
-//                            bmNew = ((BitmapDrawable)imageViews[4].getDrawable()).getBitmap();
-//                            imageViews[7].setImageBitmap(bmNew);
-//                            imageViews[4].setImageBitmap(bm);
-//                        }
-//                        else if(exchangeTag==6){
-//                            bmNew = ((BitmapDrawable)imageViews[5].getDrawable()).getBitmap();
-//                            imageViews[8].setImageBitmap(bmNew);
-//                            imageViews[5].setImageBitmap(bm);
-//                        }
-//                    }
-//                    int victory = 0;
-//                    for(int j=0;j<9;j++){
-//                        Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-//                        if(bms == finalDividedBitmaps.get(j)){
-//                            victory++;
-//                        }
-//                        if(victory==9){
-//                            double score = 10000/(timeElapsed*0.9);
-//                            String uname = getIntent().getStringExtra("username");
-//                            winIntent.putExtra("score",score);
-//                            winIntent.putExtra("username",uname);
-//                            startActivity(winIntent);
-//                            finish();
-//                        }
-//
-//                    }
-//                }
-//                public void onSwipeBottom(){
-//
-//
-//                    bm= ((BitmapDrawable)img.getDrawable()).getBitmap();
-//                    exchangeTag = tagInt+3;
-//                    if(tag.equals("1") || tag.equals("2") ||tag.equals("3")){
-//                        if(exchangeTag==4){
-//                            bmNew = ((BitmapDrawable)imageViews[3].getDrawable()).getBitmap();
-//                            imageViews[0].setImageBitmap(bmNew);
-//                            imageViews[3].setImageBitmap(bm);
-//                        }
-//                        else if(exchangeTag==5){
-//                            bmNew = ((BitmapDrawable)imageViews[4].getDrawable()).getBitmap();
-//                            imageViews[1].setImageBitmap(bmNew);
-//                            imageViews[4].setImageBitmap(bm);
-//                        }
-//                        else if(exchangeTag==6){
-//                            bmNew = ((BitmapDrawable)imageViews[5].getDrawable()).getBitmap();
-//                            imageViews[2].setImageBitmap(bmNew);
-//                            imageViews[5].setImageBitmap(bm);
-//                        }
-//                    }
-//                    else if(tag.equals("4")|| tag.equals("5")|| tag.equals("6")){
-//                        if(exchangeTag==7){
-//                            bmNew = ((BitmapDrawable)imageViews[6].getDrawable()).getBitmap();
-//                            imageViews[3].setImageBitmap(bmNew);
-//                            imageViews[6].setImageBitmap(bm);
-//                        }
-//                        else if(exchangeTag==8){
-//                            bmNew = ((BitmapDrawable)imageViews[7].getDrawable()).getBitmap();
-//                            imageViews[4].setImageBitmap(bmNew);
-//                            imageViews[7].setImageBitmap(bm);
-//                        }
-//                        else if(exchangeTag==9){
-//                            bmNew = ((BitmapDrawable)imageViews[8].getDrawable()).getBitmap();
-//                            imageViews[5].setImageBitmap(bmNew);
-//                            imageViews[8].setImageBitmap(bm);
-//                        }
-//                    }int victory = 0;
-//                    for(int j=0;j<9;j++){
-//                        Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-//                        if(bms == finalDividedBitmaps.get(j)){
-//                            victory++;
-//
-//                        }
-//                        if(victory==9) {
-//                            double score = 3*10000/(timeElapsed*0.9*2.85);
-//                            String uname = getIntent().getStringExtra("username");
-//                            winIntent.putExtra("score",score);
-//                            winIntent.putExtra("username",uname);
-//                            startActivity(winIntent);
-//                            finish();
-//                        }
-//                    }
-//                }
-//                public void onSwipeLeft(){
-//
-//
-//                    bm= ((BitmapDrawable)img.getDrawable()).getBitmap();
-//                    exchangeTag = tagInt-1;
-//                    if(tag.equals("2")||tag.equals("5")||tag.equals("8")){
-//                        if(exchangeTag==1){
-//                            bmNew = ((BitmapDrawable)imageViews[0].getDrawable()).getBitmap();
-//                            imageViews[0].setImageBitmap(bm);
-//                            imageViews[1].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==4){
-//                            bmNew = ((BitmapDrawable)imageViews[3].getDrawable()).getBitmap();
-//                            imageViews[3].setImageBitmap(bm);
-//                            imageViews[4].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==7){
-//                            bmNew = ((BitmapDrawable)imageViews[6].getDrawable()).getBitmap();
-//                            imageViews[6].setImageBitmap(bm);
-//                            imageViews[7].setImageBitmap(bmNew);
-//                        }
-//                    }
-//                    else if(tag.equals("3")||tag.equals("6")||tag.equals("9")){
-//                        if(exchangeTag==2){
-//                            bmNew = ((BitmapDrawable)imageViews[1].getDrawable()).getBitmap();
-//                            imageViews[1].setImageBitmap(bm);
-//                            imageViews[2].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==5){
-//                            bmNew = ((BitmapDrawable)imageViews[4].getDrawable()).getBitmap();
-//                            imageViews[4].setImageBitmap(bm);
-//                            imageViews[5].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==8){
-//                            bmNew = ((BitmapDrawable)imageViews[7].getDrawable()).getBitmap();
-//                            imageViews[7].setImageBitmap(bm);
-//                            imageViews[8].setImageBitmap(bmNew);
-//                        }
-//                    }
-//                    int victory = 0;
-//                    for(int j=0;j<9;j++){
-//                        Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-//                        if(bms == finalDividedBitmaps.get(j)){
-//                            victory++;
-//                        }
-//                        if(victory==9){
-//                            double score = 3*10000/(timeElapsed*0.9*2.85);
-//                            String uname = getIntent().getStringExtra("username");
-//                            winIntent.putExtra("score",score);
-//                            winIntent.putExtra("username",uname);
-//                            startActivity(winIntent);
-//                            finish();
-//                        }
-//
-//                    }
-//                }
-//                public void onSwipeRight(){
-//
-//
-//                    bm= ((BitmapDrawable)img.getDrawable()).getBitmap();
-//                    exchangeTag = tagInt+1;
-//                    if(tag.equals("1")||tag.equals("4") ||tag.equals("7") ){
-//                        if(exchangeTag==2){
-//                            bmNew = ((BitmapDrawable)imageViews[1].getDrawable()).getBitmap();
-//                            imageViews[1].setImageBitmap(bm);
-//                            imageViews[0].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==5){
-//                            bmNew = ((BitmapDrawable)imageViews[4].getDrawable()).getBitmap();
-//                            imageViews[4].setImageBitmap(bm);
-//                            imageViews[3].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==8){
-//                            bmNew = ((BitmapDrawable)imageViews[7].getDrawable()).getBitmap();
-//                            imageViews[7].setImageBitmap(bm);
-//                            imageViews[6].setImageBitmap(bmNew);
-//                        }
-//                    }
-//                    else if(tag.equals("2") ||tag.equals("5") ||tag.equals("8") ){
-//                        if(exchangeTag==3){
-//                            bmNew = ((BitmapDrawable)imageViews[2].getDrawable()).getBitmap();
-//                            imageViews[2].setImageBitmap(bm);
-//                            imageViews[1].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==6){
-//                            bmNew = ((BitmapDrawable)imageViews[5].getDrawable()).getBitmap();
-//                            imageViews[5].setImageBitmap(bm);
-//                            imageViews[4].setImageBitmap(bmNew);
-//                        }
-//                        else if(exchangeTag==9){
-//                            bmNew = ((BitmapDrawable)imageViews[8].getDrawable()).getBitmap();
-//                            imageViews[8].setImageBitmap(bm);
-//                            imageViews[7].setImageBitmap(bmNew);
-//                        }
-//
-//                    }
-//                    int victory = 0;
-//                    for(int j=0;j<9;j++){
-//                        Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-//                        if(bms == finalDividedBitmaps.get(j)){
-//                            victory++;
-//                        }
-//                        if(victory==9){
-//                            double score = 3*10000/(timeElapsed*0.9*2.85);
-//                            String uname = getIntent().getStringExtra("username");
-//                            winIntent.putExtra("score",score);
-//                            winIntent.putExtra("username",uname);
-//                            startActivity(winIntent);
-//                            finish();
-//                        }
-//
-//                    }
-//                }
+            img.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()){
+                String tag  = img.getTag().toString();
+                int tagInt = Integer.parseInt(tag);
+                Bitmap bm1;
+                                       @Override
+                                       public void onSwipeTop() {
+                                           super.onSwipeTop();
+                                           if(tagInt>=4 && tagInt<=9){
+                                               switch(tagInt){
+                                                   case 4:
+                                                       bmp = ((BitmapDrawable)im1.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       im1.setImageBitmap(bm1);
+                                                       img.setImageBitmap(bmp);
+                                                       break;
+                                                   case 5:
+                                                       bmp = ((BitmapDrawable)im2.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im2.setImageBitmap(bm1);
+                                                       break;
+                                                   case 6:
+                                                       bmp = ((BitmapDrawable)im3.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im3.setImageBitmap(bm1);
+                                                       break;
+                                                   case 7:
+                                                       bmp = ((BitmapDrawable)im4.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im4.setImageBitmap(bm1);
+                                                       break;
+                                                   case 8:
+                                                       bmp = ((BitmapDrawable)im5.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im5.setImageBitmap(bm1);
+                                                       break;
+                                                   case 9:
+                                                       bmp = ((BitmapDrawable)im6.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im6.setImageBitmap(bm1);
+                                                       break;
+                                               }
+                                           }
+                                           int victory = 0;
+                                           for(int j=0;j<9;j++){
+                                               Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                                               if(bms == finalDividedBitmaps.get(j)){
+                                                   victory++;
+                                               }
+                                               if(victory==9){
+                                                   double score = 10000/(timeElapsed*0.9);
+                                                   String uname = getIntent().getStringExtra("username");
+                                                   winIntent.putExtra("score",score);
+                                                   winIntent.putExtra("username",uname);
+                                                   startActivity(winIntent);
+                                                   finish();
+                                               }
+
+                                           }
+                                       }
+
+                                       @Override
+                                       public void onSwipeBottom() {
+                                           super.onSwipeBottom();
+                                           if(tagInt>=1 && tagInt<=6){
+                                               switch(tagInt){
+                                                   case 1:
+                                                       bmp = ((BitmapDrawable)im4.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im4.setImageBitmap(bm1);
+                                                       break;
+                                                   case 2:
+                                                       bmp = ((BitmapDrawable)im5.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im5.setImageBitmap(bm1);
+                                                       break;
+                                                   case 3:
+                                                       bmp = ((BitmapDrawable)im6.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im6.setImageBitmap(bm1);
+                                                       break;
+                                                   case 4:
+                                                       bmp = ((BitmapDrawable)im7.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im7.setImageBitmap(bm1);
+                                                       break;
+                                                   case 5:
+                                                       bmp = ((BitmapDrawable)im8.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im8.setImageBitmap(bm1);
+                                                       break;
+                                                   case 6:
+                                                       bmp = ((BitmapDrawable)im9.getDrawable()).getBitmap();
+                                                       bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                       img.setImageBitmap(bmp);
+                                                       im9.setImageBitmap(bm1);
+                                                       break;
+                                               }
+                                           }
+                                           int victory = 0;
+                                           for(int j=0;j<9;j++){
+                                               Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                                               if(bms == finalDividedBitmaps.get(j)){
+                                                   victory++;
+                                               }
+                                               if(victory==9){
+                                                   double score = 10000/(timeElapsed*0.9);
+                                                   String uname = getIntent().getStringExtra("username");
+                                                   winIntent.putExtra("score",score);
+                                                   winIntent.putExtra("username",uname);
+                                                   startActivity(winIntent);
+                                                   finish();
+                                               }
+
+                                           }
+                                       }
+
+                                       @Override
+                                       public void onSwipeRight() {
+                                           super.onSwipeRight();
+                                           switch(tagInt){
+                                               case 1:
+                                                   bmp = ((BitmapDrawable)im2.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im2.setImageBitmap(bm1);
+                                                   break;
+                                               case 2:
+                                                   bmp = ((BitmapDrawable)im3.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im3.setImageBitmap(bm1);
+                                                   break;
+                                               case 4:
+                                                   bmp = ((BitmapDrawable)im5.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im5.setImageBitmap(bm1);
+                                                   break;
+                                               case 5:
+                                                   bmp = ((BitmapDrawable)im6.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im6.setImageBitmap(bm1);
+                                                   break;
+                                               case 7:
+                                                   bmp = ((BitmapDrawable)im8.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im8.setImageBitmap(bm1);
+                                                   break;
+                                               case 8:
+                                                   bmp = ((BitmapDrawable)im9.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im9.setImageBitmap(bm1);
+                                                   break;
+                                           }
+                                           int victory = 0;
+                                           for(int j=0;j<9;j++){
+                                               Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                                               if(bms == finalDividedBitmaps.get(j)){
+                                                   victory++;
+                                               }
+                                               if(victory==9){
+                                                   double score = 10000/(timeElapsed*0.9);
+                                                   String uname = getIntent().getStringExtra("username");
+                                                   winIntent.putExtra("score",score);
+                                                   winIntent.putExtra("username",uname);
+                                                   startActivity(winIntent);
+                                                   finish();
+                                               }
+
+                                           }
+                                       }
+
+                                       @Override
+                                       public void onSwipeLeft() {
+                                           super.onSwipeLeft();
+                                           switch(tagInt){
+                                               case 2:
+                                                   bmp = ((BitmapDrawable)im1.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im1.setImageBitmap(bm1);
+                                                   break;
+                                               case 3:
+                                                   bmp = ((BitmapDrawable)im2.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im2.setImageBitmap(bm1);
+                                                   break;
+                                               case 5:
+                                                   bmp = ((BitmapDrawable)im4.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im4.setImageBitmap(bm1);
+                                                   break;
+                                               case 6:
+                                                   bmp = ((BitmapDrawable)im5.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im5.setImageBitmap(bm1);
+                                                   break;
+                                               case 8:
+                                                   bmp = ((BitmapDrawable)im7.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im7.setImageBitmap(bm1);
+                                                   break;
+                                               case 9:
+                                                   bmp = ((BitmapDrawable)im8.getDrawable()).getBitmap();
+                                                   bm1 = ((BitmapDrawable)img.getDrawable()).getBitmap();
+                                                   img.setImageBitmap(bmp);
+                                                   im8.setImageBitmap(bm1);
+                                                   break;
+                                           }
+                                           int victory = 0;
+                                           for(int j=0;j<9;j++){
+                                               Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                                               if(bms == finalDividedBitmaps.get(j)){
+                                                   victory++;
+                                               }
+                                               if(victory==9){
+                                                   double score = 10000/(timeElapsed*0.9);
+                                                   String uname = getIntent().getStringExtra("username");
+                                                   winIntent.putExtra("score",score);
+                                                   winIntent.putExtra("username",uname);
+                                                   startActivity(winIntent);
+                                                   finish();
+                                               }
+
+                                           }
+                                       }
+
+                                   }
+
+            );
 
 
-//                                   }
-
-//            );
-
-
-//        }
+        }
     }
 }

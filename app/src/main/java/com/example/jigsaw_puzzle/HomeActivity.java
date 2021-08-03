@@ -43,8 +43,10 @@ public class HomeActivity extends AppCompatActivity {
     private Button cameraButton;
     Intent specialMode;
     public String uname="";
-    Button specialBtn;
+    Button specialBtn,logout1;
     ConnectivityManager cm;
+    Intent leaderboard,logout;
+    Button lead;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -60,12 +62,30 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Activity thisActivity = this;
         final String loginUrl = "https://jigsaw-real.herokuapp.com/login";
+        leaderboard = new Intent(this,Leaderboard.class);
+        lead = findViewById(R.id.lead);
         nameTextView = findViewById(R.id.nameTextView);
         cameraButton = findViewById(R.id.cameraMode);
         GameActivity = new Intent(this, GameActivity.class);
         specialMode = new Intent(this,FilterMode.class);
         specialBtn = findViewById(R.id.special);
+        logout1 = findViewById(R.id.logout1);
+        logout = new Intent(this,MainActivity.class);
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        lead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(leaderboard);
+                finish();
+            }
+        });
+        logout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(logout);
+                finish();
+            }
+        });
         if(cm.getActiveNetworkInfo()!=null){
             RequestQueue queue = Volley.newRequestQueue(this);
             StringRequest request = new StringRequest(Request.Method.GET, loginUrl,
@@ -92,6 +112,7 @@ public class HomeActivity extends AppCompatActivity {
         specialBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                specialMode.putExtra("username",uname);
                 startActivity(specialMode);
             }
         });
