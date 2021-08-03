@@ -38,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private TextView ResponseTextView;
     private boolean validCredentials;
+    TextView registerTextView;
     private final String loginUrl = "https://jigsaw-real.herokuapp.com/login";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         registerIntent= new Intent(getApplicationContext(),RegisterActivity.class);
-        TextView registerTextView = findViewById(R.id.registerTextView);
+        registerTextView = findViewById(R.id.registerTextView);
         gifImageViewMain = findViewById(R.id.gifImageView3);
         gifImageViewMain.setVisibility(View.GONE);
         cm =(ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             else{
                 gifImageViewMain.setVisibility(View.VISIBLE);
                 loginButton.setVisibility(View.GONE);
+                registerTextView.setVisibility(View.GONE);
                 StringRequest newStringRequest = new StringRequest(Request.Method.POST, loginUrl,
                         new Response.Listener<String>() {
                             @Override
@@ -98,8 +100,46 @@ public class MainActivity extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
+//                                Toast.makeText(MainActivity.this, "Network error,please try again", Toast.LENGTH_LONG).show();
+//                                gifImageViewMain.setVisibility(View.GONE);
+//                                loginButton.setVisibility(View.VISIBLE);
+                                gifImageViewMain.setVisibility(View.VISIBLE);
+                                loginButton.setVisibility(View.GONE);
+                                registerTextView.setVisibility(View.GONE);
+                                StringRequest newStringRequest1 = new StringRequest(Request.Method.POST, loginUrl,
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                if (response.equals("Success")) {
+                                                    startActivity(homeIntent);
+                                                    finish();
+                                                } else {
+                                                    ResponseTextView.setText(response);
+                                                    gifImageViewMain.setVisibility(View.GONE);
+                                                    loginButton.setVisibility(View.VISIBLE);
+                                                }
+                                            }
+                                        },
+                                        new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this, "Network error,please try again", Toast.LENGTH_LONG).show();
+                                gifImageViewMain.setVisibility(View.GONE);
+                                loginButton.setVisibility(View.VISIBLE);
+                                            }
+                                        }){
+                                    @Override
+                                    protected Map<String,String> getParams(){
+                                        Map<String,String> loginParams = new HashMap<String,String>();
+                                        loginParams.put("username",username);
+                                        loginParams.put("password",password);
+                                        loginParams.put("email",email);
+                                        return loginParams;
+                                    }
+                                };
+                                myQueue.add(newStringRequest1);
                             }
+
                         }){
                   @Override
                   protected Map<String,String> getParams(){
