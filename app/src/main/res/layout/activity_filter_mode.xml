@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Filter">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/mainbg2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="73dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.895">
+
+        <Button
+            android:id="@+id/vigenette"
+            android:layout_width="91dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2sp"
+            android:layout_weight="1"
+            android:tag="1"
+            android:text="Vignette"
+            android:textColor="#051467"
+            app:backgroundTint="#F3B705" />
+
+        <Button
+            android:id="@+id/red"
+            android:layout_width="71dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2sp"
+            android:layout_weight="1"
+            android:tag="2"
+            android:text="Red"
+            android:textColor="#051467"
+            app:backgroundTint="#F3B705" />
+
+        <Button
+            android:id="@+id/green"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="2sp"
+            android:layout_weight="1"
+            android:tag="3"
+            android:text="Green"
+            android:textColor="#051467"
+            app:backgroundTint="#F3B705" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/Brightness"
+            android:layout_width="95dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2sp"
+            android:layout_weight="1"
+            android:tag="5"
+            android:text="Brightness"
+            android:textColor="#051467"
+            android:textSize="12sp"
+            app:backgroundTint="#F3B705" />
+
+        <Button
+            android:id="@+id/blue"
+            android:layout_width="89dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2sp"
+            android:layout_weight="1"
+            android:tag="4"
+            android:text="Blue"
+            android:textColor="#051467"
+            app:backgroundTint="#F3B705" />
+
+        <Button
+            android:id="@+id/Starlit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="2sp"
+            android:layout_weight="1"
+            android:tag="6"
+            android:text="Starlit"
+            android:textColor="#051467"
+            app:backgroundTint="#F3B705" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/startFilterGame"
+        android:layout_width="113dp"
+        android:layout_height="50dp"
+        android:text="Camera"
+        android:textColor="#1C0D37"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gifImageView8"
+        app:layout_constraintVertical_bias="0.012" />
+
+    <Button
+        android:id="@+id/startGame"
+        android:layout_width="121dp"
+        android:layout_height="51dp"
+        android:text="Start Game!"
+        android:textColor="#010F59"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gifImageView8"
+        app:layout_constraintVertical_bias="0.008" />
+
+    <ImageView
+        android:id="@+id/im8"
+        android:layout_width="138dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/gifImageView8"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/im5"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/im8"
+        app:layout_constraintTop_toBottomOf="@+id/im5"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/im8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/im4"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im5"
+        android:layout_width="136dp"
+        android:layout_height="215dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im4"
+        android:layout_width="0dp"
+        android:layout_height="223dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/im5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im6"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/im9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/im5"
+        app:layout_constraintTop_toTopOf="@+id/startFilterGame"
+        app:layout_constraintVertical_bias="0.503"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im1"
+        android:layout_width="141dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/im4"
+        app:layout_constraintEnd_toStartOf="@+id/im2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startGame"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im2"
+        android:layout_width="136dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/im5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startFilterGame"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/im6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/im2"
+        app:layout_constraintTop_toBottomOf="@+id/startFilterGame"
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

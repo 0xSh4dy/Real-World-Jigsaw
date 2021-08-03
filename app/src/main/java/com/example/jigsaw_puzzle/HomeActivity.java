@@ -41,7 +41,9 @@ public class HomeActivity extends AppCompatActivity {
     SharedPreferences preferences;
     private Intent GameActivity;
     private Button cameraButton;
+    Intent specialMode;
     public String uname="";
+    Button specialBtn;
     ConnectivityManager cm;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
@@ -61,6 +63,8 @@ public class HomeActivity extends AppCompatActivity {
         nameTextView = findViewById(R.id.nameTextView);
         cameraButton = findViewById(R.id.cameraMode);
         GameActivity = new Intent(this, GameActivity.class);
+        specialMode = new Intent(this,FilterMode.class);
+        specialBtn = findViewById(R.id.special);
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if(cm.getActiveNetworkInfo()!=null){
             RequestQueue queue = Volley.newRequestQueue(this);
@@ -85,6 +89,12 @@ public class HomeActivity extends AppCompatActivity {
         else{
             nameTextView.setText("No internet! Cannot find username");
         }
+        specialBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(specialMode);
+            }
+        });
     }
 
     public void checkCameraPermission(View view) {

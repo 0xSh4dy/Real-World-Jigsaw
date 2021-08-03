@@ -106,15 +106,8 @@ public class ThreeXFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Intent winIntent = new Intent(getActivity(),WinningActivity.class);
-        ImageView img1;
-        ImageView img2;
-        ImageView img3;
-        ImageView img4;
-        ImageView img5;
-        ImageView img6;
-        ImageView img7;
-        ImageView img8;
-        ImageView img9;
+        ImageView img1,img2,img3,img4,img5,img6,img7,img8,img9;
+
         Chronometer chronometer = getActivity().findViewById(R.id.simpleChronometer);
         int score;
         timeElapsed=0;
@@ -164,43 +157,42 @@ public class ThreeXFragment extends Fragment {
 
                                        public void  onSwipeTop(){
 
-
                                            exchangeTag = tagInt-3;
                                            bm= ((BitmapDrawable)img.getDrawable()).getBitmap();
                                            if(tag.equals("4") || tag.equals("5") || tag.equals("6")){
 
                                                if(exchangeTag==1){
-                                                   bmNew = ((BitmapDrawable)img1.getDrawable()).getBitmap();
-                                                   img1.setImageBitmap(bm);
-                                                   img4.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[0].getDrawable()).getBitmap();
+                                                   imageViews[0].setImageBitmap(bm);
+                                                   imageViews[3].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==2){
-                                                   bmNew = ((BitmapDrawable)img2.getDrawable()).getBitmap();
-                                                   img2.setImageBitmap(bm);
-                                                   img5.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[1].getDrawable()).getBitmap();
+                                                   imageViews[1].setImageBitmap(bm);
+                                                   imageViews[4].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==3){
-                                                   bmNew = ((BitmapDrawable)img3.getDrawable()).getBitmap();
-                                                   img3.setImageBitmap(bm);
-                                                   img6.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[2].getDrawable()).getBitmap();
+                                                   imageViews[2].setImageBitmap(bm);
+                                                   imageViews[5].setImageBitmap(bmNew);
                                                }
 
                                            }
                                            else if(tag.equals("7") || tag.equals("8") || tag.equals("9")){
                                                if(exchangeTag==4){
-                                                   bmNew = ((BitmapDrawable)img4.getDrawable()).getBitmap();
-                                                   img7.setImageBitmap(bmNew);
-                                                   img4.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[3].getDrawable()).getBitmap();
+                                                   imageViews[6].setImageBitmap(bmNew);
+                                                   imageViews[3].setImageBitmap(bm);
                                                }
                                                else if(exchangeTag==5){
-                                                   bmNew = ((BitmapDrawable)img5.getDrawable()).getBitmap();
-                                                   img8.setImageBitmap(bmNew);
-                                                   img5.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[4].getDrawable()).getBitmap();
+                                                   imageViews[7].setImageBitmap(bmNew);
+                                                   imageViews[4].setImageBitmap(bm);
                                                }
                                                else if(exchangeTag==6){
-                                                   bmNew = ((BitmapDrawable)img6.getDrawable()).getBitmap();
-                                                   img9.setImageBitmap(bmNew);
-                                                   img6.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[5].getDrawable()).getBitmap();
+                                                   imageViews[8].setImageBitmap(bmNew);
+                                                   imageViews[5].setImageBitmap(bm);
                                                }
                                            }
                                            int victory = 0;
@@ -227,36 +219,36 @@ public class ThreeXFragment extends Fragment {
                                            exchangeTag = tagInt+3;
                                            if(tag.equals("1") || tag.equals("2") ||tag.equals("3")){
                                                if(exchangeTag==4){
-                                                   bmNew = ((BitmapDrawable)img4.getDrawable()).getBitmap();
-                                                   img1.setImageBitmap(bmNew);
-                                                   img4.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[3].getDrawable()).getBitmap();
+                                                   imageViews[0].setImageBitmap(bmNew);
+                                                   imageViews[3].setImageBitmap(bm);
                                                }
                                                else if(exchangeTag==5){
-                                                   bmNew = ((BitmapDrawable)img5.getDrawable()).getBitmap();
-                                                   img2.setImageBitmap(bmNew);
-                                                   img5.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[4].getDrawable()).getBitmap();
+                                                   imageViews[1].setImageBitmap(bmNew);
+                                                   imageViews[4].setImageBitmap(bm);
                                                }
                                                else if(exchangeTag==6){
-                                                   bmNew = ((BitmapDrawable)img6.getDrawable()).getBitmap();
-                                                   img3.setImageBitmap(bmNew);
-                                                   img6.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[5].getDrawable()).getBitmap();
+                                                   imageViews[2].setImageBitmap(bmNew);
+                                                   imageViews[5].setImageBitmap(bm);
                                                }
                                            }
                                            else if(tag.equals("4")|| tag.equals("5")|| tag.equals("6")){
                                                if(exchangeTag==7){
-                                                   bmNew = ((BitmapDrawable)img7.getDrawable()).getBitmap();
-                                                   img4.setImageBitmap(bmNew);
-                                                   img7.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[6].getDrawable()).getBitmap();
+                                                   imageViews[3].setImageBitmap(bmNew);
+                                                   imageViews[6].setImageBitmap(bm);
                                                }
                                                else if(exchangeTag==8){
-                                                   bmNew = ((BitmapDrawable)img8.getDrawable()).getBitmap();
-                                                   img5.setImageBitmap(bmNew);
-                                                   img8.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[7].getDrawable()).getBitmap();
+                                                   imageViews[4].setImageBitmap(bmNew);
+                                                   imageViews[7].setImageBitmap(bm);
                                                }
                                                else if(exchangeTag==9){
-                                                   bmNew = ((BitmapDrawable)img9.getDrawable()).getBitmap();
-                                                   img6.setImageBitmap(bmNew);
-                                                   img9.setImageBitmap(bm);
+                                                   bmNew = ((BitmapDrawable)imageViews[8].getDrawable()).getBitmap();
+                                                   imageViews[5].setImageBitmap(bmNew);
+                                                   imageViews[8].setImageBitmap(bm);
                                                }
                                            }int victory = 0;
                                            for(int j=0;j<9;j++){
@@ -282,36 +274,36 @@ public class ThreeXFragment extends Fragment {
                                            exchangeTag = tagInt-1;
                                            if(tag.equals("2")||tag.equals("5")||tag.equals("8")){
                                                if(exchangeTag==1){
-                                                   bmNew = ((BitmapDrawable)img1.getDrawable()).getBitmap();
-                                                   img1.setImageBitmap(bm);
-                                                   img2.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[0].getDrawable()).getBitmap();
+                                                   imageViews[0].setImageBitmap(bm);
+                                                   imageViews[1].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==4){
-                                                   bmNew = ((BitmapDrawable)img4.getDrawable()).getBitmap();
-                                                   img4.setImageBitmap(bm);
-                                                   img5.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[3].getDrawable()).getBitmap();
+                                                   imageViews[3].setImageBitmap(bm);
+                                                   imageViews[4].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==7){
-                                                   bmNew = ((BitmapDrawable)img7.getDrawable()).getBitmap();
-                                                   img7.setImageBitmap(bm);
-                                                   img8.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[6].getDrawable()).getBitmap();
+                                                   imageViews[6].setImageBitmap(bm);
+                                                   imageViews[7].setImageBitmap(bmNew);
                                                }
                                            }
                                            else if(tag.equals("3")||tag.equals("6")||tag.equals("9")){
                                                if(exchangeTag==2){
-                                                   bmNew = ((BitmapDrawable)img2.getDrawable()).getBitmap();
-                                                   img2.setImageBitmap(bm);
-                                                   img3.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[1].getDrawable()).getBitmap();
+                                                   imageViews[1].setImageBitmap(bm);
+                                                   imageViews[2].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==5){
-                                                   bmNew = ((BitmapDrawable)img5.getDrawable()).getBitmap();
-                                                   img5.setImageBitmap(bm);
-                                                   img6.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[4].getDrawable()).getBitmap();
+                                                   imageViews[4].setImageBitmap(bm);
+                                                   imageViews[5].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==8){
-                                                   bmNew = ((BitmapDrawable)img8.getDrawable()).getBitmap();
-                                                   img8.setImageBitmap(bm);
-                                                   img9.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[7].getDrawable()).getBitmap();
+                                                   imageViews[7].setImageBitmap(bm);
+                                                   imageViews[8].setImageBitmap(bmNew);
                                                }
                                            }
                                            int victory = 0;
@@ -338,36 +330,36 @@ public class ThreeXFragment extends Fragment {
                                            exchangeTag = tagInt+1;
                                            if(tag.equals("1")||tag.equals("4") ||tag.equals("7") ){
                                                if(exchangeTag==2){
-                                                   bmNew = ((BitmapDrawable)img2.getDrawable()).getBitmap();
-                                                   img2.setImageBitmap(bm);
-                                                   img1.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[1].getDrawable()).getBitmap();
+                                                   imageViews[1].setImageBitmap(bm);
+                                                   imageViews[0].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==5){
-                                                   bmNew = ((BitmapDrawable)img5.getDrawable()).getBitmap();
-                                                   img5.setImageBitmap(bm);
-                                                   img4.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[4].getDrawable()).getBitmap();
+                                                   imageViews[4].setImageBitmap(bm);
+                                                   imageViews[3].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==8){
-                                                   bmNew = ((BitmapDrawable)img8.getDrawable()).getBitmap();
-                                                   img8.setImageBitmap(bm);
-                                                   img7.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[7].getDrawable()).getBitmap();
+                                                   imageViews[7].setImageBitmap(bm);
+                                                   imageViews[6].setImageBitmap(bmNew);
                                                }
                                            }
                                            else if(tag.equals("2") ||tag.equals("5") ||tag.equals("8") ){
                                                if(exchangeTag==3){
-                                                   bmNew = ((BitmapDrawable)img3.getDrawable()).getBitmap();
-                                                   img3.setImageBitmap(bm);
-                                                   img2.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[2].getDrawable()).getBitmap();
+                                                   imageViews[2].setImageBitmap(bm);
+                                                   imageViews[1].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==6){
-                                                   bmNew = ((BitmapDrawable)img6.getDrawable()).getBitmap();
-                                                   img6.setImageBitmap(bm);
-                                                   img5.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[5].getDrawable()).getBitmap();
+                                                   imageViews[5].setImageBitmap(bm);
+                                                   imageViews[4].setImageBitmap(bmNew);
                                                }
                                                else if(exchangeTag==9){
-                                                   bmNew = ((BitmapDrawable)img9.getDrawable()).getBitmap();
-                                                   img9.setImageBitmap(bm);
-                                                   img8.setImageBitmap(bmNew);
+                                                   bmNew = ((BitmapDrawable)imageViews[8].getDrawable()).getBitmap();
+                                                   imageViews[8].setImageBitmap(bm);
+                                                   imageViews[7].setImageBitmap(bmNew);
                                                }
 
                                            }

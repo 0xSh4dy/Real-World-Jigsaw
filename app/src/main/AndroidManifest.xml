@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JigsawPuzzle">
-        <activity android:name=".Leaderboard"></activity>
+        <activity android:name=".FilterMode"></activity>
+        <activity android:name=".Leaderboard" />
         <activity android:name=".WinningActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".CameraCapture" />

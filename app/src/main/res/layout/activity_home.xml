@@ -30,24 +30,24 @@
         app:backgroundTint="#EFB506"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248" />
+        app:layout_constraintVertical_bias="0.251" />
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="64dp"
         android:text="Custom Mode"
         android:textColor="#08176C"
         app:backgroundTint="#EFB506"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cameraMode"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.091" />
 
     <TextView
         android:id="@+id/textView3"
@@ -107,14 +107,29 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="108dp"
         android:text="Leaderboard"
         android:textColor="#060F3E"
         app:backgroundTint="#EFB506"
         app:layout_constraintBottom_toBottomOf="@+id/gifImageView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/special"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <Button
+        android:id="@+id/special"
+        android:layout_width="132dp"
+        android:layout_height="58dp"
+        android:text="Special Mode"
+        android:textColor="#060F3E"
+        app:backgroundTint="#EFB506"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:layout_constraintVertical_bias="0.21" />
+        app:layout_constraintVertical_bias="0.112" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
