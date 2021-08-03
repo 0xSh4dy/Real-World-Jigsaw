@@ -1,0 +1,27 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: rgb(17, 119, 202);
+}
+td{
+    border: 1px solid rgb(4, 186, 241);
+    padding: 5px;
+    text-align: center;
+    color: rgb(255, 166, 0);
+    font-weight:700;
+    font-family: 'Farsan';
+    font-size: 20px;
+}
+th{
+    font-size: 30px;
+    border: 2px solid white;
+    color: chartreuse;
+    font-weight: 500;
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+#leaderboard{
+    margin: auto;
+    width: 100vw;
+}

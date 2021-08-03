@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Farsan&family=Fira+Sans+Condensed:wght@300&family=Flavors&family=Risque&display=swap" rel="stylesheet">
+</head>
+<body>
+    <table id="leaderboard">
+        <thead>
+            <th>Username</th>
+            <th>High Score</th>
+        </thead>
+    </table>
+    <script>
+    var leaderboard = document.getElementById("leaderboard");
+    async function fetchData(){
+    const response = await fetch("/scoreboard");
+    const data = await response.json();
+    let len = data.length;
+    for(let i=1;i<=len;i++){
+        let row = leaderboard.insertRow(i);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        cell1.innerHTML = data[i-1].username;
+        cell2.innerHTML = data[i-1].highScore;
+    }
+}
+    fetchData();
+
+    </script>
+</body>
+</html>
