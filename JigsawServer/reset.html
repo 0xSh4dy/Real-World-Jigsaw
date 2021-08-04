@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Farsan&family=Fira+Sans+Condensed:wght@300&family=Flavors&family=Risque&display=swap" rel="stylesheet">
+    <title>Reset</title>
+    <style>
+        body{
+            background-color: rgb(10, 125, 219);
+            font-family: Fira Sans Condensed;
+        }
+        #head{
+            color: chartreuse;
+            text-align: center;
+            font-size: 30px;
+        }
+        input{
+            display: block;
+            margin: auto;
+        }
+        .inp{
+            background-color: cyan;
+            padding: 10px;
+            border: 2px solid white;
+            margin-top: 10vh;
+            width: 30vw;
+            border-radius: 5px;
+        }
+        #submit{
+            background-color: rgb(231, 209, 10);
+            border: 2px solid white;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 10vh;
+            color: blue;
+        }
+        #submit:hover{
+            cursor: pointer;
+        }
+        #text{
+            color: yellow;
+            text-align: center;
+            font-size: 20px;
+        }
+        @media only screen and (max-width:700px){
+            .inp{
+                width: 70vw;
+                margin-top: 5vh;
+            }
+            form{
+                margin-top: 10vh;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <p id="head">Reset Username/ Password</p>
+    <p id="text">If you only forgot the username, leave the password section empty. The same applies for password too</p>
+    <form action="/reset" method="POST">
+    <input class="inp" type="text" name="username" placeholder="New username">
+    <input class="inp" type="password" name="password" placeholder="Enter password">
+    <input type="submit" value="Submit" id="submit">
+    </form>
+</body>
+</html>
