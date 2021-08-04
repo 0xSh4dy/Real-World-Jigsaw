@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         forgotten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent changePass = new Intent(getApplicationContext(),ChangePassword.class);
+                startActivity(changePass);
             }
         });
         registerTextView.setOnClickListener(new View.OnClickListener() {
