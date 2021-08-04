@@ -42,6 +42,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        setTitle("The Real Jigsaw");
         cameraCapture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         Button threeXButton = findViewById(R.id.threeX);
         Button fourXButton = findViewById(R.id.fourX);

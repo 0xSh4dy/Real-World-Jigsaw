@@ -14,15 +14,10 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.zomato.photofilters.SampleFilters;
 import com.zomato.photofilters.imageprocessors.Filter;
 import com.zomato.photofilters.imageprocessors.subfilters.ColorOverlaySubFilter;
@@ -50,7 +45,7 @@ public class FilterMode extends AppCompatActivity {
     ImageView[]imageViewsAlt;
     ArrayList<Bitmap>smallBitmaps;
     Bitmap bmp;
-
+    int n_moves=0;
     int timeElapsed=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,13 +186,13 @@ public class FilterMode extends AppCompatActivity {
         final int imageWidth = bmx.getWidth();
         final int imageHeight = bmx.getHeight();
         smallBitmaps = imp.splitBitmap(bmx,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
-        int[]modifiedPositions =  imp.shuffleImages(imageViews,3,smallBitmaps);
+        imp.shuffleImages(imageViews,3,smallBitmaps);
         ArrayList<Bitmap> finalDividedBitmaps = smallBitmaps;
         for(ImageView img:imageViews){
 //
             img.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()){
-                String tag  = img.getTag().toString();
-                int tagInt = Integer.parseInt(tag);
+                final String tag  = img.getTag().toString();
+                final int tagInt = Integer.parseInt(tag);
                 Bitmap bm1;
                                        @Override
                                        public void onSwipeTop() {
@@ -242,6 +237,7 @@ public class FilterMode extends AppCompatActivity {
                                                        break;
                                                }
                                            }
+                                           n_moves++;
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -249,7 +245,7 @@ public class FilterMode extends AppCompatActivity {
                                                    victory++;
                                                }
                                                if(victory==9){
-                                                   double score = 10000/(timeElapsed*0.9);
+                                                   double score = 3*10000/((timeElapsed+n_moves) *2.5);
                                                    String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
@@ -303,6 +299,7 @@ public class FilterMode extends AppCompatActivity {
                                                        break;
                                                }
                                            }
+                                           n_moves++;
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -310,7 +307,7 @@ public class FilterMode extends AppCompatActivity {
                                                    victory++;
                                                }
                                                if(victory==9){
-                                                   double score = 10000/(timeElapsed*0.9);
+                                                   double score = 3*10000/((timeElapsed+n_moves) *2.5);
                                                    String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
@@ -362,6 +359,7 @@ public class FilterMode extends AppCompatActivity {
                                                    im9.setImageBitmap(bm1);
                                                    break;
                                            }
+                                           n_moves++;
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -369,7 +367,7 @@ public class FilterMode extends AppCompatActivity {
                                                    victory++;
                                                }
                                                if(victory==9){
-                                                   double score = 10000/(timeElapsed*0.9);
+                                                   double score = 3*10000/((timeElapsed+n_moves) *2.5);
                                                    String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
@@ -421,6 +419,7 @@ public class FilterMode extends AppCompatActivity {
                                                    im8.setImageBitmap(bm1);
                                                    break;
                                            }
+                                           n_moves++;
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -428,7 +427,7 @@ public class FilterMode extends AppCompatActivity {
                                                    victory++;
                                                }
                                                if(victory==9){
-                                                   double score = 10000/(timeElapsed*0.9);
+                                                   double score = 3*10000/((timeElapsed+n_moves) *2.5);
                                                    String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);

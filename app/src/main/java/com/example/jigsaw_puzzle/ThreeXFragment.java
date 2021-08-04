@@ -44,7 +44,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ThreeXFragment extends Fragment {
         Context context;
         int timeElapsed;
-
+        int n_moves=0;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -142,7 +142,7 @@ public class ThreeXFragment extends Fragment {
         ImpFunctions impFunctions = new ImpFunctions();
 //        img1.setImageBitmap(bitmap);
         dividedBitmaps = impFunctions.splitBitmap(imageCapture,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
-        int[]modifiedPositions =  impFunctions.shuffleImages(imageViews,3,dividedBitmaps);
+        impFunctions.shuffleImages(imageViews,3,dividedBitmaps);
         chronometer.start();
         for(ImageView img:imageViews){
 
@@ -195,6 +195,7 @@ public class ThreeXFragment extends Fragment {
                                                    imageViews[5].setImageBitmap(bm);
                                                }
                                            }
+                                           n_moves++;
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -202,7 +203,7 @@ public class ThreeXFragment extends Fragment {
                                                    victory++;
                                                }
                                                if(victory==9){
-                                                   double score = 10000/(timeElapsed*0.9);
+                                                   double score = 3*10000/((timeElapsed+n_moves) *2.5);
                                                    String uname = getActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
@@ -250,7 +251,9 @@ public class ThreeXFragment extends Fragment {
                                                    imageViews[5].setImageBitmap(bmNew);
                                                    imageViews[8].setImageBitmap(bm);
                                                }
-                                           }int victory = 0;
+                                           }
+                                           n_moves++;
+                                           int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
                                                if(bms == finalDividedBitmaps.get(j)){
@@ -258,7 +261,8 @@ public class ThreeXFragment extends Fragment {
 
                                                }
                                                if(victory==9) {
-                                                   double score = 3*10000/(timeElapsed*0.9*2.85);
+                                                   double score = 3*10000/((timeElapsed+n_moves) *2.5);
+
                                                    String uname = getActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
@@ -306,6 +310,7 @@ public class ThreeXFragment extends Fragment {
                                                    imageViews[8].setImageBitmap(bmNew);
                                                }
                                            }
+                                           n_moves++;
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -313,7 +318,7 @@ public class ThreeXFragment extends Fragment {
                                                    victory++;
                                                }
                                                if(victory==9){
-                                                   double score = 3*10000/(timeElapsed*0.9*2.85);
+                                                   double score = 3*10000/((timeElapsed+n_moves) *2.5);
                                                    String uname = getActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
@@ -363,6 +368,7 @@ public class ThreeXFragment extends Fragment {
                                                }
 
                                            }
+                                           n_moves++;
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -370,7 +376,7 @@ public class ThreeXFragment extends Fragment {
                                                    victory++;
                                                }
                                                if(victory==9){
-                                                   double score = 3*10000/(timeElapsed*0.9*2.85);
+                                                   double score = 3*10000/((timeElapsed+n_moves) *2.5);
                                                    String uname = getActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);

@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        setTitle("The Real Jigsaw");
         completeRegister =(Button)findViewById(R.id.completeRegister);
         emailEditText = findViewById(R.id.regEmail);
         unameEditText = findViewById(R.id.regUsername);

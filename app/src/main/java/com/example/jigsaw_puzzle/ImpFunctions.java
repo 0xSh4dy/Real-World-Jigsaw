@@ -51,7 +51,7 @@ public class ImpFunctions {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public int[] shuffleImages(ImageView []imgs, int gridSize,ArrayList<Bitmap> bitmaps){
+    public void shuffleImages(ImageView []imgs, int gridSize,ArrayList<Bitmap> bitmaps){
         int pointer;
         int []visited;
         int []finalPositions = new int[0];
@@ -109,7 +109,6 @@ public class ImpFunctions {
                 }
             }
         }
-        return finalPositions;
 
     }
 

@@ -33,6 +33,7 @@ public class WinningActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winning);
+        setTitle("The Real Jigsaw");
         playAgain = findViewById(R.id.playAgain);
         leaderboard = findViewById(R.id.leaderboard);
         logout = findViewById(R.id.logout);

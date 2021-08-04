@@ -34,9 +34,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText1" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText1"
+        app:layout_constraintVertical_bias="0.821" />
 
     <TextView
         android:id="@+id/textView2"
@@ -128,7 +128,22 @@
         app:backgroundTint="#FFC107"
         app:layout_constraintBottom_toTopOf="@+id/registerTextView"
         app:layout_constraintEnd_toEndOf="@+id/gifImageView2"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText1" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText1"
+        app:layout_constraintVertical_bias="0.513" />
+
+    <TextView
+        android:id="@+id/forgotten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgotten password? Click here to reset it"
+        android:textColor="#E8E1E1"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText1"
+        app:layout_constraintVertical_bias="0.427" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

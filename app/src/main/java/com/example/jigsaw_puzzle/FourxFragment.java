@@ -1,9 +1,11 @@
 package com.example.jigsaw_puzzle;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -20,12 +22,15 @@ import android.widget.ImageView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FourxFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@SuppressLint("ClickableViewAccessibility")
 public class FourxFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +41,9 @@ public class FourxFragment extends Fragment {
     private String mParam2;
     private Context ctx;
     private ImageView[]imageViewsAlt;
-
+    private Bitmap btm;
+    int timeElapsed=0;
+    int n_moves = 0;
     public FourxFragment() {
         // Required empty public constructor
     }
@@ -104,15 +111,420 @@ public class FourxFragment extends Fragment {
         i14 = (ImageView)getView().findViewById(R.id.i14);
         i15 = (ImageView)getView().findViewById(R.id.i15);
         i16 = (ImageView)getView().findViewById(R.id.i16);
-        ImageView[] imageViews = new ImageView[]{i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16};
-        imageViewsAlt = imageViews;
+        ImageView[] imageViews1 = new ImageView[]{i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16};
+        imageViewsAlt = imageViews1;
         byte[] byteArray = getArguments().getByteArray("image");
         Bitmap imageCapture = BitmapFactory.decodeByteArray(byteArray,0, byteArray.length);
         final int imageHeight = imageCapture.getHeight();
         final int imageWidth = imageCapture.getWidth();
         ImpFunctions imF = new ImpFunctions();
         dividedBitmaps = imF.splitBitmap(imageCapture,4,imageHeight/4,imageWidth/4,imageWidth,imageHeight);
-        int[]modifiedPositions =  imF.shuffleImages(imageViews,4,dividedBitmaps);
+        imF.shuffleImages(imageViews1,4,dividedBitmaps);
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                timeElapsed++;
+            }
+        },0,1000);
+        for(ImageView i:imageViews1){
+            ArrayList<Bitmap> finalDividedBitmaps = dividedBitmaps;
+            i.setOnTouchListener(new OnSwipeTouchListener(ctx){
+                String tag = i.getTag().toString() ;
+                int tagInt = Integer.parseInt(tag) ;
+                int exchangeTag;
+                Bitmap bm2;
 
+                @Override
+                public void onSwipeTop() {
+                    super.onSwipeTop();
+                    if(tagInt>=5 && tagInt<=16){
+                        switch(tagInt){
+                            case 5:
+                                btm = ((BitmapDrawable)i1.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i5.getDrawable()).getBitmap();
+                                i1.setImageBitmap(bm2);
+                                i5.setImageBitmap(btm);
+                                break;
+                            case 6:
+                                btm = ((BitmapDrawable)i2.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i6.getDrawable()).getBitmap();
+                                i2.setImageBitmap(bm2);
+                                i6.setImageBitmap(btm);
+                                break;
+                            case 7:
+                                btm = ((BitmapDrawable)i3.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i7.getDrawable()).getBitmap();
+                                i3.setImageBitmap(bm2);
+                                i7.setImageBitmap(btm);
+                                break;
+                            case 8:
+                                btm = ((BitmapDrawable)i4.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i8.getDrawable()).getBitmap();
+                                i4.setImageBitmap(bm2);
+                                i8.setImageBitmap(btm);
+                                break;
+                            case 9:
+                                btm = ((BitmapDrawable)i5.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i9.getDrawable()).getBitmap();
+                                i5.setImageBitmap(bm2);
+                                i9.setImageBitmap(btm);
+                                break;
+                            case 10:
+                                btm = ((BitmapDrawable)i6.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i10.getDrawable()).getBitmap();
+                                i6.setImageBitmap(bm2);
+                                i10.setImageBitmap(btm);
+                                break;
+                            case 11:
+                                btm = ((BitmapDrawable)i7.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i11.getDrawable()).getBitmap();
+                                i7.setImageBitmap(bm2);
+                                i11.setImageBitmap(btm);
+                                break;
+                            case 12:
+                                btm = ((BitmapDrawable)i8.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i12.getDrawable()).getBitmap();
+                                i8.setImageBitmap(bm2);
+                                i12.setImageBitmap(btm);
+                                break;
+                            case 13:
+                                btm = ((BitmapDrawable)i9.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i13.getDrawable()).getBitmap();
+                                i9.setImageBitmap(bm2);
+                                i13.setImageBitmap(btm);
+                                break;
+                            case 14:
+                                btm = ((BitmapDrawable)i10.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i14.getDrawable()).getBitmap();
+                                i10.setImageBitmap(bm2);
+                                i14.setImageBitmap(btm);
+                                break;
+                            case 15:
+                                btm = ((BitmapDrawable)i11.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i15.getDrawable()).getBitmap();
+                                i11.setImageBitmap(bm2);
+                                i15.setImageBitmap(btm);
+                                break;
+                            case 16:
+                                btm = ((BitmapDrawable)i12.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i16.getDrawable()).getBitmap();
+                                i12.setImageBitmap(bm2);
+                                i16.setImageBitmap(btm);
+                                break;
+                        }
+                        n_moves++;
+                        int victory = 0;
+                        for(int j=0;j<16;j++){
+                            Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                            if(bms == finalDividedBitmaps.get(j)){
+                                victory++;
+                            }
+                            if(victory==16){
+                                double score = 10*10000/((timeElapsed+n_moves) *2.5);
+                                String uname = getActivity().getIntent().getStringExtra("username");
+                                winIntent.putExtra("score",score);
+                                winIntent.putExtra("username",uname);
+                                startActivity(winIntent);
+                                getActivity().finish();
+                            }
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onSwipeBottom() {
+                    super.onSwipeBottom();
+                    if(tagInt>=1 && tagInt<=12){
+                        switch(tagInt){
+                            case 1:
+                                btm = ((BitmapDrawable)i1.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i5.getDrawable()).getBitmap();
+                                i1.setImageBitmap(bm2);
+                                i5.setImageBitmap(btm);
+                                break;
+                            case 2:
+                                btm = ((BitmapDrawable)i2.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i6.getDrawable()).getBitmap();
+                                i2.setImageBitmap(bm2);
+                                i6.setImageBitmap(btm);
+                                break;
+                            case 3:
+                                btm = ((BitmapDrawable)i3.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i7.getDrawable()).getBitmap();
+                                i3.setImageBitmap(bm2);
+                                i7.setImageBitmap(btm);
+                                break;
+                            case 4:
+                                btm = ((BitmapDrawable)i4.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i8.getDrawable()).getBitmap();
+                                i4.setImageBitmap(bm2);
+                                i8.setImageBitmap(btm);
+                                break;
+                            case 5:
+                                btm = ((BitmapDrawable)i5.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i9.getDrawable()).getBitmap();
+                                i5.setImageBitmap(bm2);
+                                i9.setImageBitmap(btm);
+                                break;
+                            case 6:
+                                btm = ((BitmapDrawable)i6.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i10.getDrawable()).getBitmap();
+                                i6.setImageBitmap(bm2);
+                                i10.setImageBitmap(btm);
+                                break;
+                            case 7:
+                                btm = ((BitmapDrawable)i7.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i11.getDrawable()).getBitmap();
+                                i7.setImageBitmap(bm2);
+                                i11.setImageBitmap(btm);
+                                break;
+                            case 8:
+                                btm = ((BitmapDrawable)i8.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i12.getDrawable()).getBitmap();
+                                i8.setImageBitmap(bm2);
+                                i12.setImageBitmap(btm);
+                                break;
+                            case 9:
+                                btm = ((BitmapDrawable)i9.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i13.getDrawable()).getBitmap();
+                                i9.setImageBitmap(bm2);
+                                i13.setImageBitmap(btm);
+                                break;
+                            case 10:
+                                btm = ((BitmapDrawable)i10.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i14.getDrawable()).getBitmap();
+                                i10.setImageBitmap(bm2);
+                                i14.setImageBitmap(btm);
+                                break;
+                            case 11:
+                                btm = ((BitmapDrawable)i11.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i15.getDrawable()).getBitmap();
+                                i11.setImageBitmap(bm2);
+                                i15.setImageBitmap(btm);
+                                break;
+                            case 12:
+                                btm = ((BitmapDrawable)i12.getDrawable()).getBitmap();
+                                bm2 = ((BitmapDrawable)i16.getDrawable()).getBitmap();
+                                i12.setImageBitmap(bm2);
+                                i16.setImageBitmap(btm);
+                                break;
+                        }
+                        n_moves++;
+                        int victory = 0;
+                        for(int j=0;j<16;j++){
+                            Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                            if(bms == finalDividedBitmaps.get(j)){
+                                victory++;
+                            }
+                            if(victory==16){
+                                double score = 10*10000/((timeElapsed+n_moves) *2.5);
+                                String uname = getActivity().getIntent().getStringExtra("username");
+                                winIntent.putExtra("score",score);
+                                winIntent.putExtra("username",uname);
+                                startActivity(winIntent);
+                                getActivity().finish();
+                            }
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onSwipeRight() {
+                    super.onSwipeRight();
+                    if(tagInt>=1&&tagInt<=3 || tagInt>=5&&tagInt<=7||tagInt>=9&&tagInt<=11||tagInt>=13&&tagInt<=15){
+                    switch(tagInt){
+                        case 1:
+                            btm = ((BitmapDrawable)i1.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i2.getDrawable()).getBitmap();
+                            i1.setImageBitmap(bm2);
+                            i2.setImageBitmap(btm);
+                            break;
+                        case 2:
+                            btm = ((BitmapDrawable)i2.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i3.getDrawable()).getBitmap();
+                            i2.setImageBitmap(bm2);
+                            i3.setImageBitmap(btm);
+                            break;
+                        case 3:
+                            btm = ((BitmapDrawable)i3.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i4.getDrawable()).getBitmap();
+                            i3.setImageBitmap(bm2);
+                            i4.setImageBitmap(btm);
+                            break;
+                        case 5:
+                            btm = ((BitmapDrawable)i5.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i6.getDrawable()).getBitmap();
+                            i5.setImageBitmap(bm2);
+                            i6.setImageBitmap(btm);
+                            break;
+                        case 6:
+                            btm = ((BitmapDrawable)i6.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i7.getDrawable()).getBitmap();
+                            i6.setImageBitmap(bm2);
+                            i7.setImageBitmap(btm);
+                            break;
+                        case 7:
+                            btm = ((BitmapDrawable)i7.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i8.getDrawable()).getBitmap();
+                            i7.setImageBitmap(bm2);
+                            i8.setImageBitmap(btm);
+                            break;
+                        case 9:
+                            btm = ((BitmapDrawable)i9.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i10.getDrawable()).getBitmap();
+                            i9.setImageBitmap(bm2);
+                            i10.setImageBitmap(btm);
+                            break;
+                        case 10:
+                            btm = ((BitmapDrawable)i10.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i11.getDrawable()).getBitmap();
+                            i10.setImageBitmap(bm2);
+                            i11.setImageBitmap(btm);
+                            break;
+                        case 11:
+                            btm = ((BitmapDrawable)i11.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i12.getDrawable()).getBitmap();
+                            i11.setImageBitmap(bm2);
+                            i12.setImageBitmap(btm);
+                            break;
+                        case 13:
+                            btm = ((BitmapDrawable)i13.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i14.getDrawable()).getBitmap();
+                            i13.setImageBitmap(bm2);
+                            i14.setImageBitmap(btm);
+                            break;
+                        case 14:
+                            btm = ((BitmapDrawable)i14.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i15.getDrawable()).getBitmap();
+                            i14.setImageBitmap(bm2);
+                            i15.setImageBitmap(btm);
+                            break;
+                        case 15:
+                            btm = ((BitmapDrawable)i15.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i16.getDrawable()).getBitmap();
+                            i15.setImageBitmap(bm2);
+                            i16.setImageBitmap(btm);
+                            break;
+
+                    }
+                    n_moves++;
+                    int victory = 0;
+                    for(int j=0;j<16;j++){
+                        Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                        if(bms == finalDividedBitmaps.get(j)){
+                            victory++;
+                        }
+                        if(victory==16){
+                            double score = 10*10000/((timeElapsed+n_moves) *2.5);
+                            String uname = getActivity().getIntent().getStringExtra("username");
+                            winIntent.putExtra("score",score);
+                            winIntent.putExtra("username",uname);
+                            startActivity(winIntent);
+                            getActivity().finish();
+                        }
+
+                    }
+                    }
+                }
+
+                @Override
+                public void onSwipeLeft() {
+                    super.onSwipeLeft();
+                    switch(tagInt){
+                        case 2:
+                            btm = ((BitmapDrawable)i2.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i1.getDrawable()).getBitmap();
+                            i2.setImageBitmap(bm2);
+                            i1.setImageBitmap(btm);
+                            break;
+                        case 3:
+                            btm = ((BitmapDrawable)i3.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i2.getDrawable()).getBitmap();
+                            i3.setImageBitmap(bm2);
+                            i2.setImageBitmap(btm);
+                            break;
+                        case 4:
+                            btm = ((BitmapDrawable)i4.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i3.getDrawable()).getBitmap();
+                            i4.setImageBitmap(bm2);
+                            i3.setImageBitmap(btm);
+                            break;
+                        case 6:
+                            btm = ((BitmapDrawable)i6.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i5.getDrawable()).getBitmap();
+                            i6.setImageBitmap(bm2);
+                            i5.setImageBitmap(btm);
+                            break;
+                        case 7:
+                            btm = ((BitmapDrawable)i7.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i6.getDrawable()).getBitmap();
+                            i7.setImageBitmap(bm2);
+                            i6.setImageBitmap(btm);
+                            break;
+                        case 8:
+                            btm = ((BitmapDrawable)i8.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i7.getDrawable()).getBitmap();
+                            i8.setImageBitmap(bm2);
+                            i7.setImageBitmap(btm);
+                            break;
+                        case 10:
+                            btm = ((BitmapDrawable)i10.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i9.getDrawable()).getBitmap();
+                            i10.setImageBitmap(bm2);
+                            i9.setImageBitmap(btm);
+                            break;
+                        case 11:
+                            btm = ((BitmapDrawable)i11.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i10.getDrawable()).getBitmap();
+                            i11.setImageBitmap(bm2);
+                            i10.setImageBitmap(btm);
+                            break;
+                        case 12:
+                            btm = ((BitmapDrawable)i12.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i11.getDrawable()).getBitmap();
+                            i12.setImageBitmap(bm2);
+                            i11.setImageBitmap(btm);
+                            break;
+                        case 14:
+                            btm = ((BitmapDrawable)i14.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i13.getDrawable()).getBitmap();
+                            i14.setImageBitmap(bm2);
+                            i13.setImageBitmap(btm);
+                            break;
+                        case 15:
+                            btm = ((BitmapDrawable)i15.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i14.getDrawable()).getBitmap();
+                            i15.setImageBitmap(bm2);
+                            i14.setImageBitmap(btm);
+                            break;
+                        case 16:
+                            btm = ((BitmapDrawable)i16.getDrawable()).getBitmap();
+                            bm2 = ((BitmapDrawable)i15.getDrawable()).getBitmap();
+                            i16.setImageBitmap(bm2);
+                            i15.setImageBitmap(btm);
+                            break;
+                    }
+                    n_moves++;
+                    int victory = 0;
+                    for(int j=0;j<16;j++){
+                        Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                        if(bms == finalDividedBitmaps.get(j)){
+                            victory++;
+                        }
+                        if(victory==16){
+                            double score = 10*10000/((timeElapsed+n_moves) *2.5);
+                            String uname = getActivity().getIntent().getStringExtra("username");
+                            winIntent.putExtra("score",score);
+                            winIntent.putExtra("username",uname);
+                            startActivity(winIntent);
+                            getActivity().finish();
+                        }
+
+                    }
+                }
+            });
+        }
     }
 }
