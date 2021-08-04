@@ -34,10 +34,10 @@ import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     private Intent cameraCapture;
-    private String buttonClicked;
     private FragmentManager fragmentManager;
     private TextView timeTextView;
     int timeElapsed;
+    int clickedBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +56,7 @@ public class GameActivity extends AppCompatActivity {
         threeXButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonClicked = "threeXButton";
+                clickedBtn=3;
                 if(mode.equals("CameraMode")){
                     threeXButton.setVisibility(View.GONE);
                     fourXButton.setVisibility(View.GONE);
@@ -70,8 +70,11 @@ public class GameActivity extends AppCompatActivity {
         fourXButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonClicked = "fourXButton";
+                clickedBtn=4;
                 if(mode.equals("CameraMode")){
+                    threeXButton.setVisibility(View.GONE);
+                    fourXButton.setVisibility(View.GONE);
+                    fiveXButton.setVisibility(View.GONE);
                 OpenCamera();
                 }
             }
@@ -79,8 +82,11 @@ public class GameActivity extends AppCompatActivity {
         fiveXButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonClicked = "fiveXButton";
+                clickedBtn=5;
                 if(mode.equals("CameraMode")){
+                    threeXButton.setVisibility(View.GONE);
+                    fourXButton.setVisibility(View.GONE);
+                    fiveXButton.setVisibility(View.GONE);
                 OpenCamera();
                 }
             }
@@ -106,13 +112,23 @@ public class GameActivity extends AppCompatActivity {
 
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         ThreeXFragment threeXFragment = new ThreeXFragment();
-                        if(buttonClicked.equals("threeXButton")){
+                        FourxFragment fourxFragment = new FourxFragment();
+
+                        if(clickedBtn==3){
                         fragmentTransaction.add(R.id.fragmentCont1,threeXFragment,null);
                         threeXFragment.setArguments(bundle);
-                        fragmentTransaction.commit();
+                        Toast.makeText(GameActivity.this, "3x3 world mode started!", Toast.LENGTH_SHORT).show();
 
                         }
-                        Toast.makeText(GameActivity.this, "3x3 world mode started!", Toast.LENGTH_SHORT).show();
+                        else if(clickedBtn==4){
+                            fragmentTransaction.add(R.id.fragmentCont1,fourxFragment,null);
+                            fourxFragment.setArguments(bundle);
+                            Toast.makeText(GameActivity.this, "4x4 world mode started!", Toast.LENGTH_SHORT).show();
+
+                        }
+                        fragmentTransaction.commit();
+
+
                     }
                 }
             });

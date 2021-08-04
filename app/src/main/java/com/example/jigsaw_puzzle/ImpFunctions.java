@@ -12,10 +12,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ImpFunctions {
     public ArrayList<Bitmap> splitBitmap(Bitmap bitmap, int gridSize, int targetImageHeight, int targetImageWidth, int imageWidth, int imageHeight ){
         ArrayList<Bitmap> smallBitmaps = new ArrayList<Bitmap>();
-        int x = 0;
-        int y=0;
+        int x;
+        int y;
         if(gridSize==3){
-            for(int i=0;i<gridSize*gridSize;i++){
+            x=0;
+            y=0;
+            for(int i=0;i<9;i++){
                 Bitmap modifiedBitmap = Bitmap.createBitmap(bitmap,x,y,targetImageWidth,targetImageHeight);
                 if(i==2 || i==5){
                     x=0;
@@ -27,9 +29,21 @@ public class ImpFunctions {
                 smallBitmaps.add(modifiedBitmap);
             }
         }
-//        else if(gridSize==4){
-//
-//        }
+        else if(gridSize==4){
+            x=0;
+            y=0;
+            for(int i=0;i<16;i++){
+                Bitmap modifiedBitmap = Bitmap.createBitmap(bitmap,x,y,targetImageWidth,targetImageHeight);
+                if(i==3 || i==7 || i==11){
+                    x=0;
+                    y+=imageHeight/4;
+                }
+                else{
+                    x+=imageWidth/4;
+                }
+                smallBitmaps.add(modifiedBitmap);
+            }
+        }
 //        else if(gridSize==5){
 //
 //        }
@@ -37,13 +51,18 @@ public class ImpFunctions {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public int[] shuffleImages(ImageView []imgs, ArrayList<Bitmap> bitmaps){
-        int pointer = 0;
-        int []visited = {0,0,0,0,0,0,0,0,0};
-        int []finalPositions = {0,0,0,0,0,0,0,0,0};
+    public int[] shuffleImages(ImageView []imgs, int gridSize,ArrayList<Bitmap> bitmaps){
+        int pointer;
+        int []visited;
+        int []finalPositions = new int[0];
         int len = imgs.length;
-        int low = 0;
-        int high = 8;
+        int low,high;
+        if(gridSize==3){
+            pointer=0;
+            low=0;
+            high=8;
+            finalPositions = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+            visited = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         while(true){
             int validate=0;
             for(int i=0;i<=8;i++){
@@ -61,6 +80,33 @@ public class ImpFunctions {
             }
             else{
                 break;
+            }
+        }
+        }
+        else if(gridSize==4){
+            pointer=0;
+            low=0;
+            high=15;
+            finalPositions = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            visited = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            while(true){
+                int validate=0;
+                for(int i=0;i<=15;i++){
+                    validate += visited[i];
+                }
+                if(validate!=16){
+                    int randomNum = ThreadLocalRandom.current().nextInt(low, high + 1);
+                    if(visited[randomNum]==0){
+                        visited[randomNum] =1;
+                        imgs[randomNum].setImageBitmap(bitmaps.get(pointer));
+                        finalPositions[pointer] = randomNum;
+                        pointer++;
+                    }
+
+                }
+                else{
+                    break;
+                }
             }
         }
         return finalPositions;

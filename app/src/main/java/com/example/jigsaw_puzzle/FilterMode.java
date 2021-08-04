@@ -191,7 +191,7 @@ public class FilterMode extends AppCompatActivity {
         final int imageWidth = bmx.getWidth();
         final int imageHeight = bmx.getHeight();
         smallBitmaps = imp.splitBitmap(bmx,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
-        int[]modifiedPositions =  imp.shuffleImages(imageViews,smallBitmaps);
+        int[]modifiedPositions =  imp.shuffleImages(imageViews,3,smallBitmaps);
         ArrayList<Bitmap> finalDividedBitmaps = smallBitmaps;
         for(ImageView img:imageViews){
 //

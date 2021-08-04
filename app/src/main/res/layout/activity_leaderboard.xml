@@ -21,13 +21,13 @@
     <WebView
         android:id="@+id/webView"
         android:layout_width="0dp"
-        android:layout_height="666dp"
+        android:layout_height="0dp"
         android:background="#0C27BD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/reload">
 
     </WebView>
 
@@ -54,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/gifImageView7"
         app:layout_constraintEnd_toEndOf="@+id/webView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/webView" />
+        app:layout_constraintTop_toBottomOf="@+id/reload" />
 
     <TextView
         android:id="@+id/textView4"

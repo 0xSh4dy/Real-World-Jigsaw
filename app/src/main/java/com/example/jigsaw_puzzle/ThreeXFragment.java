@@ -142,7 +142,7 @@ public class ThreeXFragment extends Fragment {
         ImpFunctions impFunctions = new ImpFunctions();
 //        img1.setImageBitmap(bitmap);
         dividedBitmaps = impFunctions.splitBitmap(imageCapture,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
-        int[]modifiedPositions =  impFunctions.shuffleImages(imageViews,dividedBitmaps);
+        int[]modifiedPositions =  impFunctions.shuffleImages(imageViews,3,dividedBitmaps);
         chronometer.start();
         for(ImageView img:imageViews){
 
