@@ -39,9 +39,11 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
     private TextView nameTextView;
     SharedPreferences preferences;
-    private Intent GameActivity;
-    private Button cameraButton;
+    Intent GameActivity;
+    Button cameraButton;
+    Button customMode;
     Intent specialMode;
+    Intent customIntent;
     public String uname="";
     Button specialBtn,logout1;
     ConnectivityManager cm;
@@ -64,6 +66,8 @@ public class HomeActivity extends AppCompatActivity {
         Activity thisActivity = this;
         final String loginUrl = "https://jigsaw-real.herokuapp.com/login";
         leaderboard = new Intent(this,Leaderboard.class);
+        customMode = findViewById(R.id.customMode);
+        customIntent = new Intent(this,CustomMode.class);
         lead = findViewById(R.id.lead);
         nameTextView = findViewById(R.id.nameTextView);
         cameraButton = findViewById(R.id.cameraMode);
@@ -85,6 +89,12 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(logout);
                 finish();
+            }
+        });
+        customMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(customIntent);
             }
         });
         if(cm.getActiveNetworkInfo()!=null){

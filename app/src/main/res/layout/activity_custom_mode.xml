@@ -6,4 +6,241 @@
     android:layout_height="match_parent"
     tools:context=".CustomMode">
 
+    <Chronometer
+        android:id="@+id/countUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#F8F1F1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageCustom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.301" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/mainbg2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageCustom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startCustom"
+        app:layout_constraintVertical_bias="1.0"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preview"
+        android:textColor="#FFFAFA"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/startCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Start"
+        android:textColor="#061C97"
+        app:backgroundTint="#FF9800"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <Button
+        android:id="@+id/Change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Change"
+        android:textColor="#081A7A"
+        app:backgroundTint="#FF9800"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintStart_toEndOf="@+id/startCustom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <ImageView
+        android:id="@+id/ic1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/divider11"
+        app:layout_constraintEnd_toStartOf="@+id/divider5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageCustom"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ic2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/divider11"
+        app:layout_constraintEnd_toStartOf="@+id/divider8"
+        app:layout_constraintStart_toEndOf="@+id/ic1"
+        app:layout_constraintTop_toTopOf="@+id/imageCustom"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ic3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/divider11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ic2"
+        app:layout_constraintTop_toTopOf="@+id/imageCustom"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ic4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/divider10"
+        app:layout_constraintEnd_toStartOf="@+id/divider5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider11"
+        app:layout_constraintVertical_bias="0.509"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ic5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/divider10"
+        app:layout_constraintEnd_toStartOf="@+id/divider8"
+        app:layout_constraintStart_toEndOf="@+id/divider5"
+        app:layout_constraintTop_toBottomOf="@+id/divider11"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ic6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/divider10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/divider8"
+        app:layout_constraintTop_toBottomOf="@+id/divider11"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ic7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider10"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ic8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider8"
+        app:layout_constraintStart_toEndOf="@+id/divider5"
+        app:layout_constraintTop_toTopOf="@+id/divider10"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ic9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/divider8"
+        app:layout_constraintTop_toTopOf="@+id/divider10"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider8"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/gifImageView10"
+        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <View
+        android:id="@+id/divider10"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider11"
+        app:layout_constraintVertical_bias="0.473" />
+
+    <View
+        android:id="@+id/divider11"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <TextView
+        android:id="@+id/countMoves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#FBEFEF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/ic1"
+        app:layout_constraintEnd_toStartOf="@+id/preview"
+        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
