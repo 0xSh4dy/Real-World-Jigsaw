@@ -189,7 +189,7 @@ public class FilterMode extends AppCompatActivity {
         imp.shuffleImages(imageViews,3,smallBitmaps);
         ArrayList<Bitmap> finalDividedBitmaps = smallBitmaps;
         for(ImageView img:imageViews){
-//
+
             img.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()){
                 final String tag  = img.getTag().toString();
                 final int tagInt = Integer.parseInt(tag);
