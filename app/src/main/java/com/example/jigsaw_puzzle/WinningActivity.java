@@ -63,7 +63,32 @@ public class WinningActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-//
+                        StringRequest newStringRequest1 = new StringRequest(Request.Method.POST, leaderBoardUrl,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        if (response.equals("Updated")) {
+                                            Toast.makeText(WinningActivity.this, "Successfully saved your score!", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(WinningActivity.this, "Oops, there was some error", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(WinningActivity.this, "Oops, there was some error saving your scores", Toast.LENGTH_SHORT).show();
+                                    }
+                                }) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Map<String, String> loginParams = new HashMap<String, String>();
+                                loginParams.put("username", username);
+                                loginParams.put("score", yourScore);
+                                return loginParams;
+                            }
+                        };
+                        myQueue.add(newStringRequest1);
                     }
                 }){
             @Override
@@ -92,6 +117,7 @@ public class WinningActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(logoutIntent);
+                finish();
             }
         });
     }

@@ -44,9 +44,21 @@ public class ImpFunctions {
                 smallBitmaps.add(modifiedBitmap);
             }
         }
-//        else if(gridSize==5){
-//
-//        }
+        else if(gridSize==5){
+            x=0;
+            y=0;
+            for(int i=0;i<25;i++){
+                Bitmap modifiedBitmap = Bitmap.createBitmap(bitmap,x,y,targetImageWidth,targetImageHeight);
+                if(i==4||i==9||i==14||i==19){
+                    x=0;
+                    y+=imageHeight/5;
+                }
+                else{
+                    x+=imageWidth/5;
+                }
+                smallBitmaps.add(modifiedBitmap);
+            }
+        }
         return smallBitmaps;
     }
 
@@ -95,6 +107,32 @@ public class ImpFunctions {
                     validate += visited[i];
                 }
                 if(validate!=16){
+                    int randomNum = ThreadLocalRandom.current().nextInt(low, high + 1);
+                    if(visited[randomNum]==0){
+                        visited[randomNum] =1;
+                        imgs[randomNum].setImageBitmap(bitmaps.get(pointer));
+                        finalPositions[pointer] = randomNum;
+                        pointer++;
+                    }
+
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        else if(gridSize==5){
+            pointer=0;
+            low=0;
+            high=24;
+            finalPositions = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            visited = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            while(true){
+                int validate=0;
+                for(int i=0;i<=24;i++){
+                    validate += visited[i];
+                }
+                if(validate!=25){
                     int randomNum = ThreadLocalRandom.current().nextInt(low, high + 1);
                     if(visited[randomNum]==0){
                         visited[randomNum] =1;

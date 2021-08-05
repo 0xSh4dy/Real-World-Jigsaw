@@ -328,6 +328,7 @@ public class FourxFragment extends Fragment {
 
                         }
                     }
+
                 }
 
                 @Override
@@ -432,6 +433,7 @@ public class FourxFragment extends Fragment {
                 @Override
                 public void onSwipeLeft() {
                     super.onSwipeLeft();
+                    if(tagInt>=2&&tagInt<=4 || tagInt>=6&&tagInt<=8 || tagInt>=10&&tagInt<=12 ||tagInt>=14&&tagInt<=16){
                     switch(tagInt){
                         case 2:
                             btm = ((BitmapDrawable)i2.getDrawable()).getBitmap();
@@ -522,6 +524,7 @@ public class FourxFragment extends Fragment {
                             getActivity().finish();
                         }
 
+                    }
                     }
                 }
             });

@@ -114,7 +114,7 @@ public class GameActivity extends AppCompatActivity {
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         ThreeXFragment threeXFragment = new ThreeXFragment();
                         FourxFragment fourxFragment = new FourxFragment();
-
+                        FivexFragment fivexFragment = new FivexFragment();
                         if(clickedBtn==3){
                         fragmentTransaction.add(R.id.fragmentCont1,threeXFragment,null);
                         threeXFragment.setArguments(bundle);
@@ -126,6 +126,11 @@ public class GameActivity extends AppCompatActivity {
                             fourxFragment.setArguments(bundle);
                             Toast.makeText(GameActivity.this, "4x4 world mode started!", Toast.LENGTH_SHORT).show();
 
+                        }
+                        else if(clickedBtn==5){
+                            fragmentTransaction.add(R.id.fragmentCont1,fivexFragment,null);
+                            fivexFragment.setArguments(bundle);
+                            Toast.makeText(GameActivity.this, "5x5 world mode started", Toast.LENGTH_SHORT).show();
                         }
                         fragmentTransaction.commit();
 
