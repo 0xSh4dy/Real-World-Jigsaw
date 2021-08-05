@@ -123,7 +123,10 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="69dp"
+            android:paddingLeft="2dp"
+            android:paddingTop="10dp"
             android:text="Make puzzle of live feed through the camera"
+            android:textAlignment="viewStart"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -131,6 +134,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="68dp"
+            android:paddingTop="10dp"
             android:text="Custom Puzzles"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -140,7 +144,8 @@
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:layout_marginEnd="16dp"
-            android:text="A special mode containing different filters"
+            android:paddingLeft="2dp"
+            android:text="A special mode containing different filters with camera"
             android:textColor="#FBF3F3"
             android:textSize="16sp" />
     </LinearLayout>

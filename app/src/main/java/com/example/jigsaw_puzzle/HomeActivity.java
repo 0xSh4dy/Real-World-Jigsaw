@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setTitle("The Real Jigsaw");
+        setTitle("Menu");
         Activity thisActivity = this;
         final String loginUrl = "https://jigsaw-real.herokuapp.com/login";
         leaderboard = new Intent(this,Leaderboard.class);

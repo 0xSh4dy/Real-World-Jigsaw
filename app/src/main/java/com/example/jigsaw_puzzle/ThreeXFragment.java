@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -143,6 +144,7 @@ public class ThreeXFragment extends Fragment {
 //        img1.setImageBitmap(bitmap);
         dividedBitmaps = impFunctions.splitBitmap(imageCapture,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
         impFunctions.shuffleImages(imageViews,3,dividedBitmaps);
+        chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
         for(ImageView img:imageViews){
 

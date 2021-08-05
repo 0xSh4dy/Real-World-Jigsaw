@@ -55,7 +55,11 @@ public class WinningActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         if (response.equals("Updated")) {
                             Toast.makeText(WinningActivity.this, "Successfully saved your score!", Toast.LENGTH_SHORT).show();
-                        } else {
+                        }
+                        else if(response.equals("Nohigh")){
+                            Toast.makeText(WinningActivity.this, "Score is less than your high score", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
                             Toast.makeText(WinningActivity.this, "Oops, there was some error", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -69,7 +73,10 @@ public class WinningActivity extends AppCompatActivity {
                                     public void onResponse(String response) {
                                         if (response.equals("Updated")) {
                                             Toast.makeText(WinningActivity.this, "Successfully saved your score!", Toast.LENGTH_SHORT).show();
-                                        } else {
+                                        }
+                                        else if(response.equals("Nohigh")){
+                                            Toast.makeText(WinningActivity.this, "Score is less than your high score", Toast.LENGTH_SHORT).show();
+                                        }else {
                                             Toast.makeText(WinningActivity.this, "Oops, there was some error", Toast.LENGTH_SHORT).show();
                                         }
                                     }

@@ -28,6 +28,7 @@ public class ChangePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+        setTitle("Reset Credentials");
         Button resetPass = findViewById(R.id.resetpass);
         EditText emailEt = findViewById(R.id.editTextTextEmailAddress);
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

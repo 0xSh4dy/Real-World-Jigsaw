@@ -14,9 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 
 import org.jetbrains.annotations.NotNull;
@@ -126,6 +128,10 @@ public class FourxFragment extends Fragment {
                 timeElapsed++;
             }
         },0,1000);
+        Chronometer chronometer = getActivity().findViewById(R.id.simpleChronometer);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+
+        chronometer.start();
         for(ImageView i:imageViews1){
             ArrayList<Bitmap> finalDividedBitmaps = dividedBitmaps;
             i.setOnTouchListener(new OnSwipeTouchListener(ctx){
