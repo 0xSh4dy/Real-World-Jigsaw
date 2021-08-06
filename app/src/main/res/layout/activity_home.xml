@@ -50,13 +50,16 @@
         android:layout_width="96dp"
         android:layout_height="133dp"
         android:layout_margin="8dp"
+        android:background="@drawable/custom_button"
         android:onClick="checkCameraPermission"
         android:text="World Mode"
         android:textColor="#08176C"
-        app:backgroundTint="#EFB506"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/customMode"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="97dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166" />
 
     <Button
         android:id="@+id/customMode"
