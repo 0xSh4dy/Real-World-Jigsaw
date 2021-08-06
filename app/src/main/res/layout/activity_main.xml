@@ -8,13 +8,13 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingStart="0dp"
-        android:paddingLeft="5dp"
-        android:paddingTop="2dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
         android:paddingEnd="0dp"
-        android:paddingBottom="2dp"
+        android:paddingBottom="0dp"
         android:scaleType="fitXY"
         android:src="@drawable/mainbg2"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,13 +42,14 @@
         android:id="@+id/responseTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
         android:textColor="@color/white"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/nameEditText1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gifImageView2" />
+        app:layout_constraintTop_toTopOf="@+id/gifImageView2"
+        app:layout_constraintVertical_bias="0.765" />
 
     <EditText
         android:id="@+id/nameEditText1"
@@ -64,11 +65,12 @@
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/emailEditText1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gifImageView2"
-        app:layout_constraintVertical_bias="0.562" />
+        app:layout_constraintBottom_toTopOf="@+id/passEditText1"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.806" />
 
     <EditText
         android:id="@+id/passEditText1"
@@ -84,11 +86,12 @@
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gifImageView2"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.392" />
 
     <EditText
         android:id="@+id/emailEditText1"
@@ -100,16 +103,16 @@
         android:ems="10"
         android:hint="Enter email"
         android:inputType="textEmailAddress"
-        android:paddingLeft="5dp"
+        android:paddingLeft="8dp"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/gifImageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/passEditText1"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.12" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView3"
@@ -125,11 +128,12 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
         android:onClick="Login"
         android:text="Login"
-        android:textColor="#061773"
-        app:backgroundTint="@color/teal_200"
-        app:layout_constraintBottom_toTopOf="@+id/registerTextView"
+        android:textColor="#E7EAFA"
+        app:backgroundTint="#033D7A "
+        app:layout_constraintBottom_toTopOf="@+id/forgotten"
         app:layout_constraintEnd_toEndOf="@+id/gifImageView2"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,19 +143,49 @@
         android:id="@+id/forgotten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgotten password? Click here to reset"
-        android:textColor="#F3E6E6"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        android:text="Forgot password? Click here to reset"
+        android:textColor="#FFC107"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText1" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText1"
+        app:layout_constraintVertical_bias="0.866" />
 
     <View
         android:id="@+id/view"
-        android:layout_width="291dp"
-        android:layout_height="335dp"
+        android:layout_width="294dp"
+        android:layout_height="366dp"
         android:background="@drawable/enhancer1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gifImageView2"
+        app:layout_constraintVertical_bias="0.358" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:textColor="#F3E1E1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/nameEditText1"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:text="The Real Jigsaw"
+        android:textColor="#F8F2F2"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/responseTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/responseTV" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
