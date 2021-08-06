@@ -1,14 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Farsan&family=Fira+Sans+Condensed:wght@300&family=Flavors&family=Risque&display=swap"
+        rel="stylesheet">
     <title>Scores</title>
+    <style>
+        body {
+            background-color: rgb(17, 133, 228);
+        }
+
+        tr {
+            font-family: 'Fira Sans Condensed', sans-serif;
+        }
+
+        th {
+            font-family: 'Farsan', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: greenyellow;
+            font-size: 35px;
+            border: 2px solid white;
+        }
+        table{
+            width: 100%;
+        }
+        td{
+            text-align: center;
+            font-size: 25px;
+            border: 2px solid blue;
+            color: orange;
+            font-weight: 700;
+        }
+    </style>
 </head>
+
 <body>
-    <% for(let i=0;i<4;i++){ %>
-        <h1>Hello</h1>
-        <%}%>
+    <table>
+        <thead>
+            <th>
+                Game
+            </th>
+            <th>
+                Mode
+            </th>
+            <th>
+                Score
+            </th>
+        </thead>
+        <% for(let i=1;i<nGameArray.length;i++){ %>
+            <tr>
+                <td>
+                    <%= nGameArray[i] %>
+                </td>
+
+                <td>
+                    <%= modeArray[i] %>
+                </td>
+                <td>
+                    <%= scoreArray[i] %>
+                </td>
+            </tr>
+            <%}%>
+    </table>
 </body>
+
 </html>

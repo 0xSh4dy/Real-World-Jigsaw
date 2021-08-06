@@ -114,9 +114,10 @@ app.post("/login", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
+    if(validateEmail(email)){
     JigsawUsers.findOne({ email: email }, (err, data) => {
         if (data === null) {
-            res.send("No account exists with that email");
+            res.send("No account");
         }
         else if (data !== null) {
             if (username != data.name) {
@@ -135,6 +136,10 @@ app.post("/login", (req, res) => {
             }
         }
     })
+}
+else{
+    res.send("Invalid email");
+}
 })
 app.get("/login", (req, res) => {
     res.send(user);
@@ -198,9 +203,7 @@ app.post("/scoreboard/users",(req,res)=>{
     if(mode===undefined && score===undefined){
     JigsawScores.find({},(ferr,fdat)=>{
         let userRoutes = [];
-        let modeArray = [];
-        let scoreArray = [];
-        let nGameArray = [];
+       
         for(let dat of fdat){
             let usrScrs = dat.scores;
             let usrScrsFull = [];
@@ -213,6 +216,9 @@ app.post("/scoreboard/users",(req,res)=>{
             })
         }
         app.get(`/scoreboard/users/${name}`,(myreq,myres)=>{
+            let modeArray = [];
+            let scoreArray = [];
+            let nGameArray = [];
             for(let getData of userRoutes ){
                 if(getData.uname===name){
                     let scr1 = getData.uscores;
@@ -221,7 +227,12 @@ app.post("/scoreboard/users",(req,res)=>{
                         scoreArray.push(scr2.score);
                         nGameArray.push(scr2.nGame);
                     }
-                    myres.render("scores");
+                    
+                    myres.render("scores",{
+                        modeArray:modeArray,
+                        scoreArray:scoreArray,
+                        nGameArray:nGameArray
+                    });
                 }   
             }    
         })
