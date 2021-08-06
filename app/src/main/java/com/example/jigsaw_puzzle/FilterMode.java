@@ -177,7 +177,8 @@ public class FilterMode extends AppCompatActivity {
                 timeElapsed++;
             }
         },0,1000);
-
+        startCapture.setVisibility(View.GONE);
+        startGame.setVisibility(View.GONE);
         for(Button btn:filters){
             btn.setVisibility(View.GONE);
         }
