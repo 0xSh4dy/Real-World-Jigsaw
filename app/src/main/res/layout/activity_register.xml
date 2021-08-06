@@ -23,7 +23,6 @@
         android:id="@+id/regUsername"
         android:layout_width="296dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="16dp"
         android:background="@color/design_default_color_primary_dark"
         android:ems="10"
         android:hint="Enter username"

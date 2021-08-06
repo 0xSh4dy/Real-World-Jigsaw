@@ -183,6 +183,7 @@ public class WinningActivity extends AppCompatActivity {
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playAgainIntent.putExtra("name",username);
                 startActivity(playAgainIntent);
             }
         });

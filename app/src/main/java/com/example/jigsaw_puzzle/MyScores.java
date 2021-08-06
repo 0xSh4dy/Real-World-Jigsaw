@@ -45,88 +45,22 @@ public class MyScores extends AppCompatActivity {
             Toast.makeText(this,"Error. No internet connection",Toast.LENGTH_LONG).show();
         }
         else{
-            RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest postName = new StringRequest(Request.Method.POST, postNameUrl,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Toast.makeText(MyScores.this, response, Toast.LENGTH_SHORT).show();
-                            scoreView.loadUrl(scoreUrl);
-                            scoreView.setWebViewClient(new WebViewClient(){
-                                @Override
-                                public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                                    super.onPageStarted(view, url, favicon);
-                                    loadingBg.setVisibility(View.VISIBLE);
-                                    mainBg.setVisibility(View.VISIBLE);
-                                }
+           scoreView.loadUrl(scoreUrl);
+           scoreView.setWebViewClient(new WebViewClient(){
+               @Override
+               public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                   super.onPageStarted(view, url, favicon);
+                   loadingBg.setVisibility(View.VISIBLE);
+                   mainBg.setVisibility(View.VISIBLE);
+               }
 
-                                @Override
-                                public void onPageFinished(WebView view, String url) {
-                                    super.onPageFinished(view, url);
-                                    loadingBg.setVisibility(View.GONE);
-                                    mainBg.setVisibility(View.GONE);
-                                }
-
-                            });
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            StringRequest postName1 = new StringRequest(Request.Method.POST, postNameUrl,
-                                    new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String response) {
-                                            scoreView.loadUrl(scoreUrl);
-                                            Toast.makeText(MyScores.this, response, Toast.LENGTH_SHORT).show();
-                                            scoreView.setWebViewClient(new WebViewClient(){
-                                                @Override
-                                                public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                                                    super.onPageStarted(view, url, favicon);
-                                                    loadingBg.setVisibility(View.VISIBLE);
-                                                    mainBg.setVisibility(View.VISIBLE);
-                                                }
-
-                                                @Override
-                                                public void onPageFinished(WebView view, String url) {
-                                                    super.onPageFinished(view, url);
-                                                    loadingBg.setVisibility(View.GONE);
-                                                    mainBg.setVisibility(View.GONE);
-                                                }
-
-                                            });
-                                        }
-                                    },
-                                    new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
-
-                                        }
-                                    }
-                            ){
-                                @Override
-                                protected Map<String,String> getParams(){
-                                    Map<String,String> loginParams = new HashMap<String,String>();
-                                    loginParams.put("name",username);
-
-                                    return loginParams;
-                                }
-                            };
-                            queue.add(postName1);
-                        }
-                    }
-            ){
-                @Override
-                protected Map<String,String> getParams(){
-                    Map<String,String> loginParams = new HashMap<String,String>();
-                    loginParams.put("name",username);
-
-                    return loginParams;
-                }
-            };
-            queue.add(postName);
-
-
+               @Override
+               public void onPageFinished(WebView view, String url) {
+                   super.onPageFinished(view, url);
+                   loadingBg.setVisibility(View.GONE);
+                   mainBg.setVisibility(View.GONE);
+               }
+           });
         }
     }
 }

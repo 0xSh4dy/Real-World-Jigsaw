@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         setTitle("Menu");
         Activity thisActivity = this;
         final String loginUrl = "https://jigsaw-real.herokuapp.com/login";
-        final String postNameUrl = "https://jigsaw-real.herokuapp.com/scoreboard/users";
+//        final String postNameUrl = "https://jigsaw-real.herokuapp.com/scoreboard/users";
         leaderboard = new Intent(this,Leaderboard.class);
         customMode = findViewById(R.id.customMode);
         myScores = findViewById(R.id.myScores);
@@ -113,59 +113,8 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(customIntent);
             }
         });
-        if(cm.getActiveNetworkInfo()!=null){
-            if(username.length()!=0){
-            RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest postName = new StringRequest(Request.Method.POST, postNameUrl,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            StringRequest postName1 = new StringRequest(Request.Method.POST, postNameUrl,
-                                    new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String response) {
-
-                                        }
-                                    },
-                                    new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
-
-                                        }
-                                    }
-                            ){
-                                @Override
-                                protected Map<String,String> getParams(){
-                                    Map<String,String> loginParams = new HashMap<String,String>();
-                                    loginParams.put("name",username);
-
-                                    return loginParams;
-                                }
-                            };
-                            queue.add(postName1);
-                        }
-                    }
-            ){
-              @Override
-              protected Map<String,String> getParams(){
-                  Map<String,String> loginParams = new HashMap<String,String>();
-                  loginParams.put("name",username);
-
-                  return loginParams;
-              }
-            };
-            queue.add(postName);
-
-        }
 
 
-        }
         specialBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

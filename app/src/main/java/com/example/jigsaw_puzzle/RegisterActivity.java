@@ -47,12 +47,10 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class RegisterActivity extends AppCompatActivity {
     public Button completeRegister;
-    final String base_url = "http://localhost:3500";
     EditText emailEditText;
     EditText passwordEditText;
     EditText unameEditText;
     TextView textView;
-    private boolean redirectToHome = false;
     private String responseData;
     ConnectivityManager connectivityManager;
     GifImageView loading1;
