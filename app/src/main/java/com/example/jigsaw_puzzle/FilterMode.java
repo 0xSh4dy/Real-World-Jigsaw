@@ -249,6 +249,7 @@ public class FilterMode extends AppCompatActivity {
                                                    String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
+                                                   winIntent.putExtra("mode","special");
                                                    startActivity(winIntent);
                                                    finish();
                                                }
@@ -311,6 +312,7 @@ public class FilterMode extends AppCompatActivity {
                                                    String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
+                                                   winIntent.putExtra("mode","special");
                                                    startActivity(winIntent);
                                                    finish();
                                                }
@@ -371,6 +373,7 @@ public class FilterMode extends AppCompatActivity {
                                                    String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
+                                                   winIntent.putExtra("mode","special");
                                                    startActivity(winIntent);
                                                    finish();
                                                }
@@ -431,6 +434,7 @@ public class FilterMode extends AppCompatActivity {
                                                    String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
+                                                   winIntent.putExtra("mode","special");
                                                    startActivity(winIntent);
                                                    finish();
                                                }

@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailEditText;
     private Button loginButton;
     private TextView ResponseTextView;
-    private boolean validCredentials;
     TextView registerTextView;
     private final String loginUrl = "https://jigsaw-real.herokuapp.com/login";
     @Override
@@ -99,13 +98,24 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 if (response.equals("Success")) {
+                                    homeIntent.putExtra("name",username);
                                     startActivity(homeIntent);
                                     finish();
-                                } else {
+                                }
+                                else if(response.equals("No account")){
+                                    ResponseTextView.setText("No account exists with that email");
+                                    gifImageViewMain.setVisibility(View.GONE);
+                                    loginButton.setVisibility(View.VISIBLE);
+                                    forgotten.setVisibility(View.VISIBLE);
+                                    registerTextView.setVisibility(View.VISIBLE);
+                                }
+                                else {
                                     ResponseTextView.setText(response);
                                     gifImageViewMain.setVisibility(View.GONE);
                                     loginButton.setVisibility(View.VISIBLE);
                                     forgotten.setVisibility(View.VISIBLE);
+                                    registerTextView.setVisibility(View.VISIBLE);
+
                                 }
                             }
                         },
@@ -121,13 +131,25 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onResponse(String response) {
                                                 if (response.equals("Success")) {
+                                                    homeIntent.putExtra("name",username);
                                                     startActivity(homeIntent);
                                                     finish();
-                                                } else {
+                                                }
+                                                else if(response.equals("No account")){
+                                                    ResponseTextView.setText("No account exists with that email");
+                                                    gifImageViewMain.setVisibility(View.GONE);
+                                                    loginButton.setVisibility(View.VISIBLE);
+                                                    forgotten.setVisibility(View.VISIBLE);
+                                                    registerTextView.setVisibility(View.VISIBLE);
+
+                                                }
+                                                else {
                                                     ResponseTextView.setText(response);
                                                     gifImageViewMain.setVisibility(View.GONE);
                                                     loginButton.setVisibility(View.VISIBLE);
                                                     forgotten.setVisibility(View.VISIBLE);
+                                                    registerTextView.setVisibility(View.VISIBLE);
+
                                                 }
                                             }
                                         },
@@ -138,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                                 gifImageViewMain.setVisibility(View.GONE);
                                 loginButton.setVisibility(View.VISIBLE);
                                 forgotten.setVisibility(View.VISIBLE);
+                                registerTextView.setVisibility(View.VISIBLE);
+
                                             }
                                         }){
                                     @Override

@@ -209,6 +209,7 @@ public class ThreeXFragment extends Fragment {
                                                    String uname = getActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
+                                                   winIntent.putExtra("mode","3x3");
                                                    startActivity(winIntent);
                                                    getActivity().finish();
                                                }
@@ -268,6 +269,7 @@ public class ThreeXFragment extends Fragment {
                                                    String uname = getActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
+                                                   winIntent.putExtra("mode","3x3");
                                                    startActivity(winIntent);
                                                    getActivity().finish();
                                                }
@@ -324,6 +326,7 @@ public class ThreeXFragment extends Fragment {
                                                    String uname = getActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
+                                                   winIntent.putExtra("mode","3x3");
                                                    startActivity(winIntent);
                                                    getActivity().finish();
                                                }
@@ -382,6 +385,7 @@ public class ThreeXFragment extends Fragment {
                                                    String uname = getActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
+                                                   winIntent.putExtra("mode","3x3");
                                                    startActivity(winIntent);
                                                    getActivity().finish();
                                                }

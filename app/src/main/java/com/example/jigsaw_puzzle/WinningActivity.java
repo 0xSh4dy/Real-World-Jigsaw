@@ -29,6 +29,7 @@ public class WinningActivity extends AppCompatActivity {
     Intent logoutIntent;
     Intent playAgainIntent;
     final String leaderBoardUrl = "https://jigsaw-real.herokuapp.com/scoreboard";
+    final String scoreUrl = "https://jigsaw-real.herokuapp.com/scoreboard/users";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +43,10 @@ public class WinningActivity extends AppCompatActivity {
         logoutIntent = new Intent(this,MainActivity.class);
         playAgainIntent = new Intent(this, HomeActivity.class);
         double score = getIntent().getDoubleExtra("score",0);
+        String mode = getIntent().getStringExtra("mode");
         score = Math.round(score*100)/100.0;
         String yourScore = String.valueOf(score);
+        double  scr = Double.parseDouble(yourScore);
         scoreTextView.setText(String.valueOf(score));
         String username = getIntent().getStringExtra("username");
         String text = "Hey, "+username+" .Your score is "+ score;
@@ -100,13 +103,82 @@ public class WinningActivity extends AppCompatActivity {
                 }){
             @Override
             protected Map<String,String> getParams(){
-                Map<String,String> loginParams = new HashMap<String,String>();
-                loginParams.put("username",username);
-                loginParams.put("score",yourScore);
-                return loginParams;
+                Map<String,String> scoreParams = new HashMap<String,String>();
+                scoreParams.put("username",username);
+                scoreParams.put("score",yourScore);
+                return scoreParams;
             }
         };
+
         myQueue.add(newStringRequest);
+
+
+
+        // A new string request
+        RequestQueue myQueue1 = Volley.newRequestQueue(getApplicationContext());
+        StringRequest postData = new StringRequest(Request.Method.POST, scoreUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equals("Saved")) {
+                            Toast.makeText(WinningActivity.this, "Saved scores!", Toast.LENGTH_SHORT).show();
+                        }
+                        else if(response.equals("Not updated")){
+                            Toast.makeText(WinningActivity.this, "Server side error while saving score", Toast.LENGTH_SHORT).show();
+                        }
+                        else if(response.equals("length 0")){
+                            Toast.makeText(WinningActivity.this, "zero len", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(WinningActivity.this, "Oops, there was some error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        StringRequest postData1 = new StringRequest(Request.Method.POST, scoreUrl,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        if (response.equals("Saved")) {
+                                            Toast.makeText(WinningActivity.this, "Saved scores", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else if(response.equals("Not updated")){
+                                            Toast.makeText(WinningActivity.this, "Server side error while saving score", Toast.LENGTH_SHORT).show();
+                                        }else {
+                                            Toast.makeText(WinningActivity.this, "Oops, there was some error", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(WinningActivity.this, "Oops, there was some error saving your scores", Toast.LENGTH_SHORT).show();
+                                    }
+                                }) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Map<String, String> scoreParams = new HashMap<String, String>();
+                                scoreParams.put("name", username);
+                                scoreParams.put("mode",mode);
+                                scoreParams.put("score", yourScore);
+                                return scoreParams;
+                            }
+                        };
+                        myQueue.add(postData1);
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String>  scoreParams = new HashMap<String,String>();
+                scoreParams.put("name",username);
+                scoreParams.put("mode",mode);
+                scoreParams.put("score",yourScore);
+                return scoreParams;
+            }
+        };
+        myQueue1.add(postData);
 
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override

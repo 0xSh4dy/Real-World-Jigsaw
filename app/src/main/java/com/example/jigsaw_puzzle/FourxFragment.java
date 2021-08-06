@@ -230,6 +230,7 @@ public class FourxFragment extends Fragment {
                                 String uname = getActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
+                                winIntent.putExtra("mode","4x4");
                                 startActivity(winIntent);
                                 getActivity().finish();
                             }
@@ -328,6 +329,7 @@ public class FourxFragment extends Fragment {
                                 String uname = getActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
+                                winIntent.putExtra("mode","4x4");
                                 startActivity(winIntent);
                                 getActivity().finish();
                             }
@@ -428,6 +430,7 @@ public class FourxFragment extends Fragment {
                             String uname = getActivity().getIntent().getStringExtra("username");
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
+                            winIntent.putExtra("mode","4x4");
                             startActivity(winIntent);
                             getActivity().finish();
                         }
@@ -526,6 +529,7 @@ public class FourxFragment extends Fragment {
                             String uname = getActivity().getIntent().getStringExtra("username");
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
+                            winIntent.putExtra("mode","4x4");
                             startActivity(winIntent);
                             getActivity().finish();
                         }

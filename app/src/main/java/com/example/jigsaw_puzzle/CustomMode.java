@@ -154,6 +154,7 @@ public class CustomMode extends AppCompatActivity {
                                                            String uname = getIntent().getStringExtra("username");
                                                            winIntent.putExtra("score",score);
                                                            winIntent.putExtra("username",uname);
+                                                           winIntent.putExtra("mode","custom");
                                                            startActivity(winIntent);
                                                            finish();
                                                        }
@@ -216,6 +217,7 @@ public class CustomMode extends AppCompatActivity {
                                                            String uname = getIntent().getStringExtra("username");
                                                            winIntent.putExtra("score",score);
                                                            winIntent.putExtra("username",uname);
+                                                           winIntent.putExtra("mode","custom");
                                                            startActivity(winIntent);
                                                            finish();
                                                        }
@@ -276,6 +278,7 @@ public class CustomMode extends AppCompatActivity {
                                                            String uname = getIntent().getStringExtra("username");
                                                            winIntent.putExtra("score",score);
                                                            winIntent.putExtra("username",uname);
+                                                           winIntent.putExtra("mode","custom");
                                                            startActivity(winIntent);
                                                            finish();
                                                        }
@@ -336,6 +339,7 @@ public class CustomMode extends AppCompatActivity {
                                                            String uname = getIntent().getStringExtra("username");
                                                            winIntent.putExtra("score",score);
                                                            winIntent.putExtra("username",uname);
+                                                           winIntent.putExtra("mode","custom");
                                                            startActivity(winIntent);
                                                            finish();
                                                        }

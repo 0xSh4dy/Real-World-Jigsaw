@@ -35,6 +35,8 @@ import com.android.volley.toolbox.Volley;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView nameTextView;
@@ -48,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
     Button specialBtn,logout1;
     ConnectivityManager cm;
     Intent leaderboard,logout;
+    Button myScores;
     Button lead;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
@@ -65,8 +68,10 @@ public class HomeActivity extends AppCompatActivity {
         setTitle("Menu");
         Activity thisActivity = this;
         final String loginUrl = "https://jigsaw-real.herokuapp.com/login";
+        final String postNameUrl = "https://jigsaw-real.herokuapp.com/scoreboard/users";
         leaderboard = new Intent(this,Leaderboard.class);
         customMode = findViewById(R.id.customMode);
+        myScores = findViewById(R.id.myScores);
         customIntent = new Intent(this,CustomMode.class);
         lead = findViewById(R.id.lead);
         nameTextView = findViewById(R.id.nameTextView);
@@ -77,11 +82,14 @@ public class HomeActivity extends AppCompatActivity {
         logout1 = findViewById(R.id.logout1);
         logout = new Intent(this,MainActivity.class);
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        final String username = getIntent().getStringExtra("name");
+        uname = username;
+        String un = "Welcome! "+username;
+        nameTextView.setText(un);
         lead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(leaderboard);
-                finish();
             }
         });
         logout1.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +99,14 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+        myScores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myScoresIntent = new Intent(getApplicationContext(),MyScores.class);
+                myScoresIntent.putExtra("username",username);
+                startActivity(myScoresIntent);
+            }
+        });
         customMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,27 +114,57 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         if(cm.getActiveNetworkInfo()!=null){
+            if(username.length()!=0){
             RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest request = new StringRequest(Request.Method.GET, loginUrl,
+            StringRequest postName = new StringRequest(Request.Method.POST, postNameUrl,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            uname = response;
-                            String greeting = "Welcome, " + uname;
-                            nameTextView.setText(greeting);
+
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            StringRequest postName1 = new StringRequest(Request.Method.POST, postNameUrl,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
 
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+
+                                        }
+                                    }
+                            ){
+                                @Override
+                                protected Map<String,String> getParams(){
+                                    Map<String,String> loginParams = new HashMap<String,String>();
+                                    loginParams.put("name",username);
+
+                                    return loginParams;
+                                }
+                            };
+                            queue.add(postName1);
                         }
                     }
-            );
-            queue.add(request);
+            ){
+              @Override
+              protected Map<String,String> getParams(){
+                  Map<String,String> loginParams = new HashMap<String,String>();
+                  loginParams.put("name",username);
+
+                  return loginParams;
+              }
+            };
+            queue.add(postName);
+
         }
-        else{
-            nameTextView.setText("No internet! Cannot find username");
+
+
         }
         specialBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -292,6 +292,7 @@ public class FivexFragment extends Fragment {
                                 String uname = getActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
+                                winIntent.putExtra("mode","5x5");
                                 startActivity(winIntent);
                                 getActivity().finish();
                             }
@@ -438,6 +439,7 @@ public class FivexFragment extends Fragment {
                                 String uname = getActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
+                                winIntent.putExtra("mode","5x5");
                                 startActivity(winIntent);
                                 getActivity().finish();
                             }
@@ -585,6 +587,7 @@ public class FivexFragment extends Fragment {
                                 String uname = getActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
+                                winIntent.putExtra("mode","5x5");
                                 startActivity(winIntent);
                                 getActivity().finish();
                             }
@@ -732,6 +735,7 @@ public class FivexFragment extends Fragment {
                             String uname = getActivity().getIntent().getStringExtra("username");
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
+                            winIntent.putExtra("mode","5x5");
                             startActivity(winIntent);
                             getActivity().finish();
                         }
