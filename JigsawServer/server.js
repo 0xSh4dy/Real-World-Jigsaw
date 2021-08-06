@@ -11,6 +11,7 @@ var user = "";
 var email1 = "";
 app.use(express.json());
 app.use(cors());
+app.set('view engine','ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("static"));
 const connection_url = 'mongodb+srv://admin:BoAoAuyCcujHi0Ln@cluster0.qni0g.mongodb.net/NarutoDB?retryWrites=true&w=majority';
@@ -20,9 +21,18 @@ const JigsawSchema = mongoose.Schema({
     password: String,
     email: String,
     highScore: Number
+});
+// This schema is for individual scores
+const ScoreSchema = mongoose.Schema({
+    name:String,
+    scores:[{
+        mode:String,
+        score:Number,
+        nGame:Number
+    }]
 })
 const JigsawUsers = mongoose.model("jigsawUser", JigsawSchema);
-
+const JigsawScores = mongoose.model("jigsawScore",ScoreSchema);
 // Email validation using Regex
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -50,10 +60,33 @@ app.post("/register", (req, res) => {
                                     email: email,
                                     highScore: 0
                                 })
-                                newUser.save((myerr, mydat) => {
-                                    if (myerr) { res.send("There was an error, please try again") }
-                                    else { res.send("Successfully registered") }
+                                const initiateScores = new JigsawScores({
+                                    name:username,
+                                    scores:{
+                                        mode:"You have not played any game",
+                                        score:0,
+                                        nGame:0
+                                    }
                                 })
+                                
+                                newUser.save((myerr, mydat) => {
+                                    if (myerr) {
+                                        res.send("There was an error, please try again") 
+                                }
+                                    else {
+                                        initiateScores.save((ierr,idata)=>{
+                                            if(ierr){
+                                                res.send("There was an error, please try again");
+                                            }
+                                            else{
+                                                res.send("Successfully registered");
+                                            }
+                                        })                                        
+                                 }
+                                })
+
+                                
+
                             }
                         })
                     }
@@ -68,7 +101,7 @@ app.post("/register", (req, res) => {
         })
     }
     else {
-        res.send("Invalid");
+        res.send("Invalid email");
     }
 
 })
@@ -130,6 +163,9 @@ app.post("/scoreboard", (req, res) => {
                     }
                 })
             }
+            else{
+                res.send("Nohigh");
+            }
         }
     })
 
@@ -155,6 +191,79 @@ app.get("/scoreboard", (req, res) => {
     })
 
 })
+app.post("/scoreboard/users",(req,res)=>{
+    let name = req.body.name;
+    let mode = req.body.mode;
+    let score = req.body.score;
+    if(mode===undefined && score===undefined){
+    JigsawScores.find({},(ferr,fdat)=>{
+        let userRoutes = [];
+        let modeArray = [];
+        let scoreArray = [];
+        let nGameArray = [];
+        for(let dat of fdat){
+            let usrScrs = dat.scores;
+            let usrScrsFull = [];
+            for(let scr of usrScrs){
+                usrScrsFull.push(scr);
+            }
+            userRoutes.push({
+                uname:dat.name,
+                uscores:usrScrsFull                
+            })
+        }
+        app.get(`/scoreboard/users/${name}`,(myreq,myres)=>{
+            for(let getData of userRoutes ){
+                if(getData.uname===name){
+                    let scr1 = getData.uscores;
+                    for (scr2 of scr1){
+                        modeArray.push(scr2.mode);
+                        scoreArray.push(scr2.score);
+                        nGameArray.push(scr2.nGame);
+                    }
+                    myres.render("scores");
+                }   
+            }    
+        })
+        
+
+    })
+    res.send("Sent");
+}
+else{
+    JigsawScores.find({name:name},(err,data)=>{
+        if(err){
+            res.send("Error");
+        }
+        else{
+            if(data.length===0){
+                res.send("Error");
+            }
+            else{
+                let nGame = data[0].scores.length;
+                let modifiedScores = {
+                mode:mode,
+                score:score,
+                nGame:nGame
+            }
+            JigsawScores.updateOne({name:name},{
+                $push:{scores:modifiedScores}
+            },(berr,bdat)=>{
+                if(berr){
+                    res.send("Error");
+                }
+                else{
+                    res.send("Saved");
+                }
+            })
+            }
+            
+        }
+    })
+}
+    
+})
+
 var hash = "hash";
 // Reset login details by using email
 app.post("/reset/em", (req, res) => {
