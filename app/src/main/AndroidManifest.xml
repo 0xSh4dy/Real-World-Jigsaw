@@ -15,33 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JigsawPuzzle">
         <activity android:name=".MyScores"/>
-        <activity android:name=".ChangePassword"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".FilterMode"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".Leaderboard"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".WinningActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".GameActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".FilterMode" />
+        <activity android:name=".Leaderboard" />
+        <activity android:name=".WinningActivity" />
+        <activity android:name=".GameActivity" />
         <activity
-            android:name=".CustomMode"
-            android:screenOrientation="portrait" />
+            android:name=".CustomMode" />
         <activity
-            android:name=".HomeActivity"
-            android:screenOrientation="portrait" />
+            android:name=".HomeActivity"/>
         <activity
-            android:name=".RegisterActivity"
-            android:screenOrientation="portrait" />
+            android:name=".RegisterActivity" />
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

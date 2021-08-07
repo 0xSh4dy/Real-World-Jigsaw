@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.regEmail);
         unameEditText = findViewById(R.id.regUsername);
         passwordEditText = findViewById(R.id.regPassword);
-        textView = findViewById(R.id.textView);
+        textView = findViewById(R.id.textView16);
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         loading1 = findViewById(R.id.loading1);
         loading1.setVisibility(View.INVISIBLE);

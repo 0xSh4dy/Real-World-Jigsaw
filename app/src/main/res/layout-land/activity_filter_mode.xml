@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="2sp"
+    tools:context="Filter">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/mainbg2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Chronometer
+        android:id="@+id/chronoFilter"
+        android:layout_width="87dp"
+        android:layout_height="0dp"
+        android:textColor="#FBF9F9"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="628dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gifImageView8"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <android.widget.Button
+        android:id="@+id/vigenette"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="dp"
+        android:layout_weight="1"
+        android:background="@drawable/vignette_button"
+        android:padding="2dp"
+        android:tag="1"
+        android:text="Vignette"
+        android:textColor="#E9EAF3"
+        app:layout_constraintBottom_toTopOf="@+id/divider22"
+        app:layout_constraintEnd_toStartOf="@+id/divider26"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/im6"
+        app:layout_constraintTop_toBottomOf="@+id/red"
+        app:layout_constraintVertical_bias="0.888" />
+
+    <android.widget.Button
+        android:id="@+id/red"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/red_button"
+        android:padding="2dp"
+        android:tag="2"
+        android:text="Red"
+        android:textColor="#DD5050 "
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/im6"
+        app:layout_constraintEnd_toStartOf="@+id/divider26"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/divider21"
+        app:layout_constraintVertical_bias="0.173" />
+
+    <android.widget.Button
+        android:id="@+id/green"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2sp"
+        android:layout_weight="1"
+        android:background="@drawable/green_button"
+        android:padding="2dp"
+        android:tag="3"
+        android:text="Green"
+        android:textColor="#94C857"
+        app:layout_constraintBottom_toTopOf="@+id/divider22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/divider26"
+        app:layout_constraintTop_toBottomOf="@+id/blue"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <android.widget.Button
+        android:id="@+id/Brightness"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/bright_button"
+        android:padding="2dp"
+        android:tag="5"
+        android:text="Brightness"
+        android:textColor="#F3F5FF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider26"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toEndOf="@+id/im9"
+        app:layout_constraintTop_toBottomOf="@+id/vigenette"
+        app:layout_constraintVertical_bias="0.119" />
+
+    <android.widget.Button
+        android:id="@+id/blue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2sp"
+        android:layout_weight="1"
+        android:background="@drawable/custom_input"
+        android:padding="2dp"
+        android:tag="4"
+        android:text="Blue"
+        android:textColor="#76B4E4"
+        app:layout_constraintBottom_toBottomOf="@+id/vigenette"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/divider26"
+        app:layout_constraintTop_toBottomOf="@+id/divider21"
+        app:layout_constraintVertical_bias="0.179" />
+
+    <android.widget.Button
+        android:id="@+id/Starlit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2sp"
+        android:layout_weight="1"
+        android:background="@drawable/starlit_button"
+        android:padding="2dp"
+        android:tag="6"
+        android:text="Starlit"
+        android:textColor="#DDCD9A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/divider26"
+        app:layout_constraintTop_toBottomOf="@+id/green"
+        app:layout_constraintVertical_bias="0.119" />
+
+    <android.widget.Button
+        android:id="@+id/startFilterGame"
+        android:layout_width="113dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bright_button"
+        android:text="Camera"
+        android:textColor="#1C0D37"
+        app:layout_constraintBottom_toTopOf="@+id/divider21"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/divider26"
+        app:layout_constraintVertical_bias="0.16" />
+
+    <android.widget.Button
+        android:id="@+id/startGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bright_button"
+        android:padding="4dp"
+        android:text="Start Game!"
+        android:textColor="#010F59"
+        app:layout_constraintBottom_toTopOf="@+id/divider21"
+        app:layout_constraintEnd_toStartOf="@+id/divider26"
+        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintStart_toEndOf="@+id/im3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.153" />
+
+    <ImageView
+        android:id="@+id/im1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="1"
+        app:layout_constraintBottom_toTopOf="@+id/divider21"
+        app:layout_constraintEnd_toStartOf="@+id/divider19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="2"
+        app:layout_constraintBottom_toTopOf="@+id/divider21"
+        app:layout_constraintEnd_toStartOf="@+id/divider20"
+        app:layout_constraintStart_toEndOf="@+id/divider19"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="3"
+        app:layout_constraintBottom_toTopOf="@+id/divider21"
+        app:layout_constraintEnd_toStartOf="@+id/divider25"
+        app:layout_constraintStart_toEndOf="@+id/divider20"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="4"
+        app:layout_constraintBottom_toTopOf="@+id/divider22"
+        app:layout_constraintEnd_toStartOf="@+id/divider19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider21"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="5"
+        app:layout_constraintBottom_toTopOf="@+id/divider22"
+        app:layout_constraintEnd_toStartOf="@+id/divider20"
+        app:layout_constraintStart_toEndOf="@+id/divider19"
+        app:layout_constraintTop_toBottomOf="@+id/divider21"
+        app:layout_constraintVertical_bias="0.389"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="6"
+        app:layout_constraintBottom_toTopOf="@+id/divider22"
+        app:layout_constraintEnd_toStartOf="@+id/divider25"
+        app:layout_constraintStart_toEndOf="@+id/divider20"
+        app:layout_constraintTop_toBottomOf="@+id/divider21"
+        app:layout_constraintVertical_bias="1.0"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider22"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="8"
+        app:layout_constraintBottom_toBottomOf="@+id/gifImageView8"
+        app:layout_constraintEnd_toStartOf="@+id/divider20"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toEndOf="@+id/divider19"
+        app:layout_constraintTop_toBottomOf="@+id/divider22"
+        app:layout_constraintVertical_bias="0.177"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/im9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:tag="9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider25"
+        app:layout_constraintStart_toEndOf="@+id/divider20"
+        app:layout_constraintTop_toBottomOf="@+id/divider22"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <View
+        android:id="@+id/divider19"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider20"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="@+id/gifImageView8"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <View
+        android:id="@+id/divider20"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/gifImageView8"
+        app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <View
+        android:id="@+id/divider21"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gifImageView8"
+        app:layout_constraintVertical_bias="0.369" />
+
+    <View
+        android:id="@+id/divider22"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider21" />
+
+    <TextView
+        android:id="@+id/movesTV1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Moves"
+        android:textColor="#F4EFEF"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="512dp"
+        tools:layout_editor_absoluteY="94dp" />
+
+    <View
+        android:id="@+id/divider25"
+        android:layout_width="1dp"
+        android:layout_height="409dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toEndOf="@+id/divider20"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider26"
+        android:layout_width="1dp"
+        android:layout_height="409dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/gifImageView8"
+        app:layout_constraintStart_toEndOf="@+id/divider25"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
