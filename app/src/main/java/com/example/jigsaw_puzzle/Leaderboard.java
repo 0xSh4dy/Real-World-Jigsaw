@@ -30,13 +30,7 @@ public class Leaderboard extends AppCompatActivity {
         reload = findViewById(R.id.reload);
         loading2 = findViewById(R.id.loading2);
         loadWebView();
-        reload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    loadWebView();
-
-            }
-        });
+        reload.setOnClickListener(v -> loadWebView());
 
     }
     @SuppressLint("SetJavaScriptEnabled")

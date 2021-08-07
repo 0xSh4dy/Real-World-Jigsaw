@@ -14,13 +14,8 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,20 +53,11 @@ public class MainActivity extends AppCompatActivity {
         ResponseTextView = findViewById(R.id.responseTV);
         homeIntent = new Intent(getApplicationContext(),HomeActivity.class);
         preferences = getSharedPreferences("userData,",MODE_PRIVATE);
-        forgotten.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent changePass = new Intent(getApplicationContext(),ChangePassword.class);
-                startActivity(changePass);
-            }
+        forgotten.setOnClickListener(v -> {
+            Intent changePass = new Intent(getApplicationContext(),ChangePassword.class);
+            startActivity(changePass);
         });
-        registerTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(registerIntent);
-
-            }
-        });
+        registerTextView.setOnClickListener(v -> startActivity(registerIntent));
     }
     public void Login(View view){
         String username = nameEditText.getText().toString();
@@ -94,92 +80,81 @@ public class MainActivity extends AppCompatActivity {
                 registerTextView.setVisibility(View.GONE);
                 forgotten.setVisibility(View.GONE);
                 StringRequest newStringRequest = new StringRequest(Request.Method.POST, loginUrl,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                if (response.equals("Success")) {
-                                    homeIntent.putExtra("name",username);
-                                    startActivity(homeIntent);
-                                    finish();
-                                }
-                                else if(response.equals("No account")){
-                                    ResponseTextView.setText("No account exists with that email");
-                                    gifImageViewMain.setVisibility(View.GONE);
-                                    loginButton.setVisibility(View.VISIBLE);
-                                    forgotten.setVisibility(View.VISIBLE);
-                                    registerTextView.setVisibility(View.VISIBLE);
-                                }
-                                else {
-                                    ResponseTextView.setText(response);
-                                    gifImageViewMain.setVisibility(View.GONE);
-                                    loginButton.setVisibility(View.VISIBLE);
-                                    forgotten.setVisibility(View.VISIBLE);
-                                    registerTextView.setVisibility(View.VISIBLE);
-
-                                }
+                        response -> {
+                            if (response.equals("Success")) {
+                                homeIntent.putExtra("name",username);
+                                startActivity(homeIntent);
+                                finish();
                             }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                gifImageViewMain.setVisibility(View.VISIBLE);
-                                loginButton.setVisibility(View.GONE);
-                                registerTextView.setVisibility(View.GONE);
-                                forgotten.setVisibility(View.GONE);
-                                StringRequest newStringRequest1 = new StringRequest(Request.Method.POST, loginUrl,
-                                        new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                if (response.equals("Success")) {
-                                                    homeIntent.putExtra("name",username);
-                                                    startActivity(homeIntent);
-                                                    finish();
-                                                }
-                                                else if(response.equals("No account")){
-                                                    ResponseTextView.setText("No account exists with that email");
-                                                    gifImageViewMain.setVisibility(View.GONE);
-                                                    loginButton.setVisibility(View.VISIBLE);
-                                                    forgotten.setVisibility(View.VISIBLE);
-                                                    registerTextView.setVisibility(View.VISIBLE);
-
-                                                }
-                                                else {
-                                                    ResponseTextView.setText(response);
-                                                    gifImageViewMain.setVisibility(View.GONE);
-                                                    loginButton.setVisibility(View.VISIBLE);
-                                                    forgotten.setVisibility(View.VISIBLE);
-                                                    registerTextView.setVisibility(View.VISIBLE);
-
-                                                }
-                                            }
-                                        },
-                                        new Response.ErrorListener() {
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(MainActivity.this, "Network error,please try again", Toast.LENGTH_LONG).show();
+                            else if(response.equals("No account")){
+                                String text = "No account exists with that email";
+                                ResponseTextView.setText(text);
+                                gifImageViewMain.setVisibility(View.GONE);
+                                loginButton.setVisibility(View.VISIBLE);
+                                forgotten.setVisibility(View.VISIBLE);
+                                registerTextView.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                ResponseTextView.setText(response);
                                 gifImageViewMain.setVisibility(View.GONE);
                                 loginButton.setVisibility(View.VISIBLE);
                                 forgotten.setVisibility(View.VISIBLE);
                                 registerTextView.setVisibility(View.VISIBLE);
 
-                                            }
-                                        }){
-                                    @Override
-                                    protected Map<String,String> getParams(){
-                                        Map<String,String> loginParams = new HashMap<String,String>();
-                                        loginParams.put("username",username);
-                                        loginParams.put("password",password);
-                                        loginParams.put("email",email);
-                                        return loginParams;
-                                    }
-                                };
-                                myQueue.add(newStringRequest1);
                             }
+                        },
+                        error -> {
+                            gifImageViewMain.setVisibility(View.VISIBLE);
+                            loginButton.setVisibility(View.GONE);
+                            registerTextView.setVisibility(View.GONE);
+                            forgotten.setVisibility(View.GONE);
+                            StringRequest newStringRequest1 = new StringRequest(Request.Method.POST, loginUrl,
+                                    response -> {
+                                        if (response.equals("Success")) {
+                                            homeIntent.putExtra("name",username);
+                                            startActivity(homeIntent);
+                                            finish();
+                                        }
+                                        else if(response.equals("No account")){
+                                            String text = "No account exists with that email";
+                                            ResponseTextView.setText(text);
+                                            gifImageViewMain.setVisibility(View.GONE);
+                                            loginButton.setVisibility(View.VISIBLE);
+                                            forgotten.setVisibility(View.VISIBLE);
+                                            registerTextView.setVisibility(View.VISIBLE);
 
+                                        }
+                                        else {
+                                            ResponseTextView.setText(response);
+                                            gifImageViewMain.setVisibility(View.GONE);
+                                            loginButton.setVisibility(View.VISIBLE);
+                                            forgotten.setVisibility(View.VISIBLE);
+                                            registerTextView.setVisibility(View.VISIBLE);
+
+                                        }
+                                    },
+                                    error1 -> {
+                        Toast.makeText(MainActivity.this, "Network error,please try again", Toast.LENGTH_LONG).show();
+                        gifImageViewMain.setVisibility(View.GONE);
+                        loginButton.setVisibility(View.VISIBLE);
+                        forgotten.setVisibility(View.VISIBLE);
+                        registerTextView.setVisibility(View.VISIBLE);
+
+                                    }){
+                                @Override
+                                protected Map<String,String> getParams(){
+                                    Map<String,String> loginParams = new HashMap<>();
+                                    loginParams.put("username",username);
+                                    loginParams.put("password",password);
+                                    loginParams.put("email",email);
+                                    return loginParams;
+                                }
+                            };
+                            myQueue.add(newStringRequest1);
                         }){
                   @Override
                   protected Map<String,String> getParams(){
-                      Map<String,String> loginParams = new HashMap<String,String>();
+                      Map<String,String> loginParams = new HashMap<>();
                       loginParams.put("username",username);
                       loginParams.put("password",password);
                       loginParams.put("email",email);
@@ -191,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
-            ResponseTextView.setText("No internet");
+            String text = "No internet";
+            ResponseTextView.setText(text);
         }
 
 

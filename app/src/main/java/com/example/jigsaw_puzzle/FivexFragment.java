@@ -15,12 +15,12 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.os.SystemClock;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -37,20 +37,16 @@ import java.util.TimerTask;
 
 public class FivexFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    Context ctx;
-    ImageView[]imageViewsAlt;
-    int timeElapsed=0;
-    int n_moves=0;
-    Bitmap btm;
-    ArrayList<Bitmap>dividedBitmaps;
+    private Context ctx;
+    private ImageView[]imageViewsAlt;
+    private int timeElapsed=0;
+    private int n_moves=0;
+    private TextView movesTV;
+    private Bitmap btm;
     public FivexFragment() {
         // Required empty public constructor
     }
@@ -83,8 +79,8 @@ public class FivexFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -99,36 +95,38 @@ public class FivexFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        movesTV = requireActivity().findViewById(R.id.movesTV2);
         assert getArguments() != null;
         Intent winIntent = new Intent(ctx,WinningActivity.class);
         byte[] byteArray = getArguments().getByteArray("image");
         ImageView i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,i21,i22,i23,i24,i25;
-        ArrayList<Bitmap> dividedBitmaps = new ArrayList<>();
-        i1 = (ImageView)getView().findViewById(R.id.i51);
-        i2 = (ImageView)getView().findViewById(R.id.i52);
-        i3 = (ImageView)getView().findViewById(R.id.i53);
-        i4 = (ImageView)getView().findViewById(R.id.i54);
-        i5 = (ImageView)getView().findViewById(R.id.i55);
-        i6 = (ImageView)getView().findViewById(R.id.i56);
-        i7 = (ImageView)getView().findViewById(R.id.i57);
-        i8 = (ImageView)getView().findViewById(R.id.i58);
-        i9 = (ImageView)getView().findViewById(R.id.i59);
-        i10 = (ImageView)getView().findViewById(R.id.i60);
-        i11 = (ImageView)getView().findViewById(R.id.i61);
-        i12 = (ImageView)getView().findViewById(R.id.i62);
-        i13 = (ImageView)getView().findViewById(R.id.i63);
-        i14 = (ImageView)getView().findViewById(R.id.i64);
-        i15 = (ImageView)getView().findViewById(R.id.i65);
-        i16 = (ImageView)getView().findViewById(R.id.i66);
-        i17 = (ImageView)getView().findViewById(R.id.i67);
-        i18 = (ImageView)getView().findViewById(R.id.i68);
-        i19 = (ImageView)getView().findViewById(R.id.i69);
-        i20 = (ImageView)getView().findViewById(R.id.i70);
-        i21 = (ImageView)getView().findViewById(R.id.i71);
-        i22 = (ImageView)getView().findViewById(R.id.i72);
-        i23 = (ImageView)getView().findViewById(R.id.i73);
-        i24 = (ImageView)getView().findViewById(R.id.i74);
-        i25 = (ImageView)getView().findViewById(R.id.i75);
+        ArrayList<Bitmap> dividedBitmaps;
+        i1 = requireView().findViewById(R.id.i51);
+        i2 = requireView().findViewById(R.id.i52);
+        i3 = requireView().findViewById(R.id.i53);
+        i4 = requireView().findViewById(R.id.i54);
+        i5 = requireView().findViewById(R.id.i55);
+        i6 = requireView().findViewById(R.id.i56);
+        i7 = requireView().findViewById(R.id.i57);
+        i8 = requireView().findViewById(R.id.i58);
+        i9 = requireView().findViewById(R.id.i59);
+        i10 = requireView().findViewById(R.id.i60);
+        i11 = requireView().findViewById(R.id.i61);
+        i12 = requireView().findViewById(R.id.i62);
+        i13 = requireView().findViewById(R.id.i63);
+        i14 = requireView().findViewById(R.id.i64);
+        i15 = requireView().findViewById(R.id.i65);
+        i16 = requireView().findViewById(R.id.i66);
+        i17 = requireView().findViewById(R.id.i67);
+        i18 = requireView().findViewById(R.id.i68);
+        i19 = requireView().findViewById(R.id.i69);
+        i20 = requireView().findViewById(R.id.i70);
+        i21 = requireView().findViewById(R.id.i71);
+        i22 = requireView().findViewById(R.id.i72);
+        i23 = requireView().findViewById(R.id.i73);
+        i24 = requireView().findViewById(R.id.i74);
+        i25 = requireView().findViewById(R.id.i75);
         ImageView[] imageViews1 = new ImageView[]{i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16,i17,i18,i19,i20,i21,i22,i23,i24,i25};
         imageViewsAlt = imageViews1;
         Bitmap imageCapture = BitmapFactory.decodeByteArray(byteArray,0, byteArray.length);
@@ -143,15 +141,13 @@ public class FivexFragment extends Fragment {
                 timeElapsed++;
             }
         },0,1000);
-        Chronometer chronometer = getActivity().findViewById(R.id.simpleChronometer);
+        Chronometer chronometer = requireActivity().findViewById(R.id.simpleChronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
         for(ImageView i:imageViews1){
-            ArrayList<Bitmap> finalDividedBitmaps = dividedBitmaps;
             i.setOnTouchListener(new OnSwipeTouchListener(ctx){
-                String tag = i.getTag().toString() ;
-                int tagInt = Integer.parseInt(tag) ;
-                int exchangeTag;
+                final String tag = i.getTag().toString() ;
+                final int tagInt = Integer.parseInt(tag) ;
                 Bitmap bm2;
 
                 @Override
@@ -281,20 +277,22 @@ public class FivexFragment extends Fragment {
                                 break;
                         }
                         n_moves++;
+                        String txt = "Moves: "+n_moves;
+                        movesTV.setText(txt);
                         int victory = 0;
                         for(int j=0;j<25;j++){
                             Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-                            if(bms == finalDividedBitmaps.get(j)){
+                            if(bms == dividedBitmaps.get(j)){
                                 victory++;
                             }
                             if(victory==25){
                                 double score = 25*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = getActivity().getIntent().getStringExtra("username");
+                                String uname = requireActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
                                 startActivity(winIntent);
-                                getActivity().finish();
+                                requireActivity().finish();
                             }
 
                         }
@@ -428,20 +426,22 @@ public class FivexFragment extends Fragment {
                                 break;
                         }
                         n_moves++;
+                        String txt = "Moves: "+n_moves;
+                        movesTV.setText(txt);
                         int victory = 0;
                         for(int j=0;j<25;j++){
                             Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-                            if(bms == finalDividedBitmaps.get(j)){
+                            if(bms == dividedBitmaps.get(j)){
                                 victory++;
                             }
                             if(victory==25){
                                 double score = 25*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = getActivity().getIntent().getStringExtra("username");
+                                String uname = requireActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
                                 startActivity(winIntent);
-                                getActivity().finish();
+                                requireActivity().finish();
                             }
 
                         }
@@ -576,20 +576,22 @@ public class FivexFragment extends Fragment {
                                 break;
                         }
                         n_moves++;
+                        String txt = "Moves: "+n_moves;
+                        movesTV.setText(txt);
                         int victory = 0;
                         for(int j=0;j<25;j++){
                             Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-                            if(bms == finalDividedBitmaps.get(j)){
+                            if(bms == dividedBitmaps.get(j)){
                                 victory++;
                             }
                             if(victory==25){
                                 double score = 25*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = getActivity().getIntent().getStringExtra("username");
+                                String uname = requireActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
                                 startActivity(winIntent);
-                                getActivity().finish();
+                                requireActivity().finish();
                             }
 
                         }
@@ -724,15 +726,17 @@ public class FivexFragment extends Fragment {
 
                     }
                     n_moves++;
+                    String txt = "Moves: "+n_moves;
+                    movesTV.setText(txt);
                     int victory = 0;
                     for(int j=0;j<25;j++){
                         Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-                        if(bms == finalDividedBitmaps.get(j)){
+                        if(bms == dividedBitmaps.get(j)){
                             victory++;
                         }
                         if(victory==25){
                             double score = 25*10000/((timeElapsed+n_moves) *2.5);
-                            String uname = getActivity().getIntent().getStringExtra("username");
+                            String uname = requireActivity().getIntent().getStringExtra("username");
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","5x5");

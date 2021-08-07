@@ -19,27 +19,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/leaderboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="141dp"
+        android:layout_height="181dp"
+        android:background="@drawable/custom_input"
         android:text="Leaderboard"
-        android:textColor="#070E33"
-        app:backgroundTint="#EAAF00"
+        android:textColor="#2196F3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.487" />
+        app:layout_constraintTop_toTopOf="@+id/gifImageView6" />
 
     <TextView
         android:id="@+id/scoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="75dp"
+        android:background="@drawable/bright_button"
+        android:padding="7dp"
         android:text="TextView"
-        android:textColor="#F1E9E9"
-        android:textSize="16sp"
+        android:textColor="#071E59"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/gifImageView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -47,31 +47,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/playAgain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="127dp"
+        android:background="@drawable/custom_input"
+        android:padding="2dp"
         android:text="Play Again?  "
-        android:textColor="#070E33"
-        app:backgroundTint="#EAAF00"
-        app:layout_constraintBottom_toTopOf="@+id/leaderboard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:textColor="#29B4F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/leaderboard"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gifImageView6"
-        app:layout_constraintVertical_bias="0.808" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="    Logout       "
-        android:textColor="#070E33"
-        app:backgroundTint="#EAAF00"
-        app:layout_constraintBottom_toBottomOf="@+id/gifImageView6"
+        android:layout_width="119dp"
+        android:layout_height="121dp"
+        android:background="@drawable/custom_input"
+        android:text="Logout"
+        android:textColor="#2BCBDF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboard"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintStart_toEndOf="@+id/leaderboard"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

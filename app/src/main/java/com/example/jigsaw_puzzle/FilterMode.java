@@ -53,6 +53,7 @@ public class FilterMode extends AppCompatActivity {
     Bitmap bmp;
     int n_moves=0;
     int timeElapsed=0;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,71 +86,59 @@ public class FilterMode extends AppCompatActivity {
         imageViews = new ImageView[]{im1,im2,im3,im4,im5,im6,im7,im8,im9};
         imageViewsAlt = imageViews;
         for(Button btn:filters){
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String tag = v.getTag().toString();
-                    copyImage = photoCapture;
-                    switch(tag){
-                        case "1":
-                            Filter vignetteFilter = new Filter();
-                            vignetteFilter.addSubFilter(new VignetteSubFilter(getApplicationContext(),100));
-                            Bitmap otp = vignetteFilter.processFilter(photoCapture);
-                            imageView.setImageBitmap(otp);
-                            finalImage = otp;
-                            break;
-                        case "2":
-                            Filter redFilter = new Filter();
-                            redFilter.addSubFilter(new ColorOverlaySubFilter(100,0.28f,0,0));
-                            Bitmap outputImage = redFilter.processFilter(photoCapture);
-                            imageView.setImageBitmap(outputImage);
-                            finalImage = outputImage;
-                            break;
-                        case "3":
-                            Filter greenFilter = new Filter();
-                            greenFilter.addSubFilter(new ColorOverlaySubFilter(100,0,0.28f,0));
-                            Bitmap outputImage1 = greenFilter.processFilter(photoCapture);
-                            imageView.setImageBitmap(outputImage1);
-                            finalImage = outputImage1;
-                            break;
-                        case "4":
-                            Filter blueFilter = SampleFilters.getBlueMessFilter();
-                            Bitmap outputImage2  = blueFilter.processFilter(photoCapture);
-                            imageView.setImageBitmap(outputImage2);
-                            finalImage = outputImage2;
-                            break;
-                        case "5":
-                            Filter nightFilter = SampleFilters.getNightWhisperFilter();
-                            Bitmap outputImage3 = nightFilter.processFilter(photoCapture);
-                            imageView.setImageBitmap(outputImage3);
-                            finalImage = outputImage3;
-                            break;
-                        case "6":
-                            Filter starFilter = SampleFilters.getStarLitFilter();
-                            Bitmap outputImage4 = starFilter.processFilter(photoCapture);
-                            imageView.setImageBitmap(outputImage4);
-                            finalImage = outputImage4;
-                    }
+            btn.setOnClickListener(v -> {
+                String tag = v.getTag().toString();
+                copyImage = photoCapture;
+                switch(tag){
+                    case "1":
+                        Filter vignetteFilter = new Filter();
+                        vignetteFilter.addSubFilter(new VignetteSubFilter(getApplicationContext(),100));
+                        Bitmap otp = vignetteFilter.processFilter(photoCapture);
+                        imageView.setImageBitmap(otp);
+                        finalImage = otp;
+                        break;
+                    case "2":
+                        Filter redFilter = new Filter();
+                        redFilter.addSubFilter(new ColorOverlaySubFilter(100,0.28f,0,0));
+                        Bitmap outputImage = redFilter.processFilter(photoCapture);
+                        imageView.setImageBitmap(outputImage);
+                        finalImage = outputImage;
+                        break;
+                    case "3":
+                        Filter greenFilter = new Filter();
+                        greenFilter.addSubFilter(new ColorOverlaySubFilter(100,0,0.28f,0));
+                        Bitmap outputImage1 = greenFilter.processFilter(photoCapture);
+                        imageView.setImageBitmap(outputImage1);
+                        finalImage = outputImage1;
+                        break;
+                    case "4":
+                        Filter blueFilter = SampleFilters.getBlueMessFilter();
+                        Bitmap outputImage2  = blueFilter.processFilter(photoCapture);
+                        imageView.setImageBitmap(outputImage2);
+                        finalImage = outputImage2;
+                        break;
+                    case "5":
+                        Filter nightFilter = SampleFilters.getNightWhisperFilter();
+                        Bitmap outputImage3 = nightFilter.processFilter(photoCapture);
+                        imageView.setImageBitmap(outputImage3);
+                        finalImage = outputImage3;
+                        break;
+                    case "6":
+                        Filter starFilter = SampleFilters.getStarLitFilter();
+                        Bitmap outputImage4 = starFilter.processFilter(photoCapture);
+                        imageView.setImageBitmap(outputImage4);
+                        finalImage = outputImage4;
                 }
-
             });
         }
 
-        startCapture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCamera();
-                startGame.setVisibility(View.VISIBLE);
-                startCapture.setText("Again?");
-            }
+        startCapture.setOnClickListener(v -> {
+            openCamera();
+            startGame.setVisibility(View.VISIBLE);
+            String txt = "Again?";
+            startCapture.setText(txt);
         });
-        startGame.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View v) {
-                startTheGame();
-            }
-        });
+        startGame.setOnClickListener(v -> startTheGame());
     }
     ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),

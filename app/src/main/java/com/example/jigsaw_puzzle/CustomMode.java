@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ThreadLocalRandom;
 @SuppressLint("ClickableViewAccessibility")
 
 public class CustomMode extends AppCompatActivity {
@@ -357,13 +355,10 @@ public class CustomMode extends AppCompatActivity {
 
 
         });
-        changeBg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i = (i+1)%5;
-                appliedBitmap = arr.get(i);
-                customImage.setImageBitmap(arr.get(i));
-            }
+        changeBg.setOnClickListener(v -> {
+            i = (i+1)%5;
+            appliedBitmap = arr.get(i);
+            customImage.setImageBitmap(arr.get(i));
         });
     }
 }

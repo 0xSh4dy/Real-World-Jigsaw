@@ -9,19 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import pl.droidsonroids.gif.GifImageView;
 
 public class MyScores extends AppCompatActivity {
@@ -29,7 +17,6 @@ public class MyScores extends AppCompatActivity {
     GifImageView loadingBg;
     GifImageView mainBg;
     ConnectivityManager cm;
-    final String postNameUrl = "https://jigsaw-real.herokuapp.com/scoreboard/users";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

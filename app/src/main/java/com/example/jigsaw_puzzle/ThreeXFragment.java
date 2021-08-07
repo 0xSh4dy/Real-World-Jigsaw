@@ -15,25 +15,17 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.tabs.TabLayout;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +35,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @SuppressLint("ClickableViewAccessibility")
 
 public class ThreeXFragment extends Fragment {
-        Context context;
+        Context ctx;
         int timeElapsed;
         int n_moves=0;
         TextView movesTV;
@@ -52,9 +44,6 @@ public class ThreeXFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     public ThreeXFragment() {
         // Required empty public constructor
     }
@@ -80,15 +69,16 @@ public class ThreeXFragment extends Fragment {
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
-        context = context;
+        ctx = context;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            // TODO: Rename and change types of parameters
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -109,31 +99,26 @@ public class ThreeXFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Intent winIntent = new Intent(getActivity(),WinningActivity.class);
         ImageView img1,img2,img3,img4,img5,img6,img7,img8,img9;
-        movesTV = getActivity().findViewById(R.id.movesTV2);
-        Chronometer chronometer = getActivity().findViewById(R.id.simpleChronometer);
-        int score;
+        movesTV = requireActivity().findViewById(R.id.movesTV2);
+        Chronometer chronometer = requireActivity().findViewById(R.id.simpleChronometer);
         timeElapsed=0;
         ArrayList<Bitmap> dividedBitmaps = null;
         assert getArguments() != null;
-        img1 = (ImageView) getView().findViewById(R.id.imageView1);
-        img2 = (ImageView) getView().findViewById(R.id.imageView2);
-        img3 = (ImageView) getView().findViewById(R.id.imageView3);
-        img4 = (ImageView) getView().findViewById(R.id.imageView4);
-        img5 = (ImageView) getView().findViewById(R.id.imageView5);
-        img6 = (ImageView) getView().findViewById(R.id.imageView6);
-        img7 = (ImageView) getView().findViewById(R.id.imageView7);
-        img8 = (ImageView) getView().findViewById(R.id.imageView8);
-        img9 = (ImageView) getView().findViewById(R.id.imageView9);
+        img1 = requireView().findViewById(R.id.imageView1);
+        img2 = requireView().findViewById(R.id.imageView2);
+        img3 = requireView().findViewById(R.id.imageView3);
+        img4 = requireView().findViewById(R.id.imageView4);
+        img5 = requireView().findViewById(R.id.imageView5);
+        img6 = requireView().findViewById(R.id.imageView6);
+        img7 = requireView().findViewById(R.id.imageView7);
+        img8 = requireView().findViewById(R.id.imageView8);
+        img9 = requireView().findViewById(R.id.imageView9);
         ImageView [] imageViews = {img1,img2,img3,img4,img5,img6,img7,img8,img9};
-        ImageView[] imageViewsAlt = imageViews;
 
         byte[] byteArray = getArguments().getByteArray("image");
         Bitmap imageCapture = BitmapFactory.decodeByteArray(byteArray,0, byteArray.length);
         final int imageHeight = imageCapture.getHeight();
         final int imageWidth = imageCapture.getWidth();
-        final int targetImageHeight = img1.getHeight();
-        final int targetImageWidth = img1.getWidth();
-        boolean won;
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -150,10 +135,10 @@ public class ThreeXFragment extends Fragment {
         for(ImageView img:imageViews){
 
             ArrayList<Bitmap> finalDividedBitmaps = dividedBitmaps;
-            img.setOnTouchListener(new OnSwipeTouchListener(context){
+            img.setOnTouchListener(new OnSwipeTouchListener(ctx){
 
-                                       String tag = img.getTag().toString() ;
-                                       int tagInt = Integer.parseInt(tag) ;
+                                       final String tag = img.getTag().toString() ;
+                                       final int tagInt = Integer.parseInt(tag) ;
                                        Bitmap bmNew;
                                        int exchangeTag;
                                        Bitmap bm;
@@ -203,18 +188,18 @@ public class ThreeXFragment extends Fragment {
                                            movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
-                                               Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                                               Bitmap bms = ((BitmapDrawable) imageViews[j].getDrawable()).getBitmap();
                                                if(bms == finalDividedBitmaps.get(j)){
                                                    victory++;
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = getActivity().getIntent().getStringExtra("username");
+                                                   String uname = requireActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","3x3");
                                                    startActivity(winIntent);
-                                                   getActivity().finish();
+                                                   requireActivity().finish();
                                                }
 
                                            }
@@ -261,7 +246,7 @@ public class ThreeXFragment extends Fragment {
                                            n_moves++;
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
-                                               Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                                               Bitmap bms = ((BitmapDrawable) imageViews[j].getDrawable()).getBitmap();
                                                if(bms == finalDividedBitmaps.get(j)){
                                                    victory++;
 
@@ -269,12 +254,12 @@ public class ThreeXFragment extends Fragment {
                                                if(victory==9) {
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
 
-                                                   String uname = getActivity().getIntent().getStringExtra("username");
+                                                   String uname = requireActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","3x3");
                                                    startActivity(winIntent);
-                                                   getActivity().finish();
+                                                   requireActivity().finish();
                                                }
                                            }
                                        }
@@ -322,18 +307,18 @@ public class ThreeXFragment extends Fragment {
                                            movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
-                                               Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                                               Bitmap bms = ((BitmapDrawable) imageViews[j].getDrawable()).getBitmap();
                                                if(bms == finalDividedBitmaps.get(j)){
                                                    victory++;
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = getActivity().getIntent().getStringExtra("username");
+                                                   String uname = requireActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","3x3");
                                                    startActivity(winIntent);
-                                                   getActivity().finish();
+                                                   requireActivity().finish();
                                                }
 
                                            }
@@ -383,18 +368,18 @@ public class ThreeXFragment extends Fragment {
                                            movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
-                                               Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
+                                               Bitmap bms = ((BitmapDrawable) imageViews[j].getDrawable()).getBitmap();
                                                if(bms == finalDividedBitmaps.get(j)){
                                                    victory++;
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = getActivity().getIntent().getStringExtra("username");
+                                                   String uname =requireActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","3x3");
                                                    startActivity(winIntent);
-                                                   getActivity().finish();
+                                                   requireActivity().finish();
                                                }
 
                                            }

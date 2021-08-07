@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ImpFunctions {
     public ArrayList<Bitmap> splitBitmap(Bitmap bitmap, int gridSize, int targetImageHeight, int targetImageWidth, int imageWidth, int imageHeight ){
-        ArrayList<Bitmap> smallBitmaps = new ArrayList<Bitmap>();
+        ArrayList<Bitmap> smallBitmaps = new ArrayList<>();
         int x;
         int y;
         if(gridSize==3){
@@ -66,14 +66,11 @@ public class ImpFunctions {
     public void shuffleImages(ImageView []imgs, int gridSize,ArrayList<Bitmap> bitmaps){
         int pointer;
         int []visited;
-        int []finalPositions = new int[0];
-        int len = imgs.length;
         int low,high;
         if(gridSize==3){
             pointer=0;
             low=0;
             high=8;
-            finalPositions = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
             visited = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         while(true){
             int validate=0;
@@ -85,7 +82,6 @@ public class ImpFunctions {
             if(visited[randomNum]==0){
                 visited[randomNum] =1;
                 imgs[randomNum].setImageBitmap(bitmaps.get(pointer));
-                finalPositions[pointer] = randomNum;
                 pointer++;
             }
 
@@ -99,7 +95,6 @@ public class ImpFunctions {
             pointer=0;
             low=0;
             high=15;
-            finalPositions = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             visited = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             while(true){
                 int validate=0;
@@ -111,7 +106,6 @@ public class ImpFunctions {
                     if(visited[randomNum]==0){
                         visited[randomNum] =1;
                         imgs[randomNum].setImageBitmap(bitmaps.get(pointer));
-                        finalPositions[pointer] = randomNum;
                         pointer++;
                     }
 
@@ -125,7 +119,6 @@ public class ImpFunctions {
             pointer=0;
             low=0;
             high=24;
-            finalPositions = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             visited = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             while(true){
                 int validate=0;
@@ -137,7 +130,6 @@ public class ImpFunctions {
                     if(visited[randomNum]==0){
                         visited[randomNum] =1;
                         imgs[randomNum].setImageBitmap(bitmaps.get(pointer));
-                        finalPositions[pointer] = randomNum;
                         pointer++;
                     }
 

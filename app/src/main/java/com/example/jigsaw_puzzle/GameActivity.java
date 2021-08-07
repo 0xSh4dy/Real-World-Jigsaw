@@ -5,32 +5,19 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
-import android.widget.GridLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     private Intent cameraCapture;
@@ -47,45 +34,35 @@ public class GameActivity extends AppCompatActivity {
         Button fourXButton = findViewById(R.id.fourX);
         Button fiveXButton = findViewById(R.id.fiveX);
         fragmentManager= getSupportFragmentManager();
-        CardView cardView;
 
         String mode = getIntent().getStringExtra("mode");
         timeElapsed=0;
-        threeXButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickedBtn=3;
-                if(mode.equals("CameraMode")){
-                    threeXButton.setVisibility(View.GONE);
-                    fourXButton.setVisibility(View.GONE);
-                    fiveXButton.setVisibility(View.GONE);
-                    OpenCamera();
+        threeXButton.setOnClickListener(v -> {
+            clickedBtn=3;
+            if(mode.equals("CameraMode")){
+                threeXButton.setVisibility(View.GONE);
+                fourXButton.setVisibility(View.GONE);
+                fiveXButton.setVisibility(View.GONE);
+                OpenCamera();
 
-                }
             }
         });
-        fourXButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickedBtn=4;
-                if(mode.equals("CameraMode")){
-                    threeXButton.setVisibility(View.GONE);
-                    fourXButton.setVisibility(View.GONE);
-                    fiveXButton.setVisibility(View.GONE);
-                OpenCamera();
-                }
+        fourXButton.setOnClickListener(v -> {
+            clickedBtn=4;
+            if(mode.equals("CameraMode")){
+                threeXButton.setVisibility(View.GONE);
+                fourXButton.setVisibility(View.GONE);
+                fiveXButton.setVisibility(View.GONE);
+            OpenCamera();
             }
         });
-        fiveXButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickedBtn=5;
-                if(mode.equals("CameraMode")){
-                    threeXButton.setVisibility(View.GONE);
-                    fourXButton.setVisibility(View.GONE);
-                    fiveXButton.setVisibility(View.GONE);
-                OpenCamera();
-                }
+        fiveXButton.setOnClickListener(v -> {
+            clickedBtn=5;
+            if(mode.equals("CameraMode")){
+                threeXButton.setVisibility(View.GONE);
+                fourXButton.setVisibility(View.GONE);
+                fiveXButton.setVisibility(View.GONE);
+            OpenCamera();
             }
         });
 

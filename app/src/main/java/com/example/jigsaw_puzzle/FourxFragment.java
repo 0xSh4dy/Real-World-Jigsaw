@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -39,13 +40,12 @@ public class FourxFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
     private Context ctx;
     private ImageView[]imageViewsAlt;
     private Bitmap btm;
-    int timeElapsed=0;
-    int n_moves = 0;
+    private int timeElapsed=0;
+    private int n_moves = 0;
+    private TextView movesTV;
     public FourxFragment() {
         // Required empty public constructor
     }
@@ -78,8 +78,8 @@ public class FourxFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -94,27 +94,29 @@ public class FourxFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        movesTV = requireActivity().findViewById(R.id.movesTV2);
         Intent winIntent = new Intent(getActivity(),WinningActivity.class);
         ImageView i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16;
-        ArrayList<Bitmap>dividedBitmaps = new ArrayList<>();
-        i1 = (ImageView)getView().findViewById(R.id.i1);
-        i2 = (ImageView)getView().findViewById(R.id.i2);
-        i3 = (ImageView)getView().findViewById(R.id.i3);
-        i4 = (ImageView)getView().findViewById(R.id.i4);
-        i5 = (ImageView)getView().findViewById(R.id.i5);
-        i6 = (ImageView)getView().findViewById(R.id.i6);
-        i7 = (ImageView)getView().findViewById(R.id.i7);
-        i8 = (ImageView)getView().findViewById(R.id.i8);
-        i9 = (ImageView)getView().findViewById(R.id.i9);
-        i10 = (ImageView)getView().findViewById(R.id.i10);
-        i11 = (ImageView)getView().findViewById(R.id.i11);
-        i12 = (ImageView)getView().findViewById(R.id.i12);
-        i13 = (ImageView)getView().findViewById(R.id.i13);
-        i14 = (ImageView)getView().findViewById(R.id.i14);
-        i15 = (ImageView)getView().findViewById(R.id.i15);
-        i16 = (ImageView)getView().findViewById(R.id.i16);
+        ArrayList<Bitmap>dividedBitmaps;
+        i1 = requireView().findViewById(R.id.i1);
+        i2 = requireView().findViewById(R.id.i2);
+        i3 = requireView().findViewById(R.id.i3);
+        i4 = requireView().findViewById(R.id.i4);
+        i5 = requireView().findViewById(R.id.i5);
+        i6 = requireView().findViewById(R.id.i6);
+        i7 = requireView().findViewById(R.id.i7);
+        i8 = requireView().findViewById(R.id.i8);
+        i9 = requireView().findViewById(R.id.i9);
+        i10 = requireView().findViewById(R.id.i10);
+        i11 = requireView().findViewById(R.id.i11);
+        i12 = requireView().findViewById(R.id.i12);
+        i13 = requireView().findViewById(R.id.i13);
+        i14 = requireView().findViewById(R.id.i14);
+        i15 = requireView().findViewById(R.id.i15);
+        i16 = requireView().findViewById(R.id.i16);
         ImageView[] imageViews1 = new ImageView[]{i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16};
         imageViewsAlt = imageViews1;
+        assert getArguments() != null;
         byte[] byteArray = getArguments().getByteArray("image");
         Bitmap imageCapture = BitmapFactory.decodeByteArray(byteArray,0, byteArray.length);
         final int imageHeight = imageCapture.getHeight();
@@ -128,16 +130,14 @@ public class FourxFragment extends Fragment {
                 timeElapsed++;
             }
         },0,1000);
-        Chronometer chronometer = getActivity().findViewById(R.id.simpleChronometer);
+        Chronometer chronometer = requireActivity().findViewById(R.id.simpleChronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
 
         chronometer.start();
         for(ImageView i:imageViews1){
-            ArrayList<Bitmap> finalDividedBitmaps = dividedBitmaps;
             i.setOnTouchListener(new OnSwipeTouchListener(ctx){
-                String tag = i.getTag().toString() ;
-                int tagInt = Integer.parseInt(tag) ;
-                int exchangeTag;
+                final String tag = i.getTag().toString() ;
+                final int tagInt = Integer.parseInt(tag) ;
                 Bitmap bm2;
 
                 @Override
@@ -219,20 +219,22 @@ public class FourxFragment extends Fragment {
                                 break;
                         }
                         n_moves++;
+                        String txt = "Moves: "+n_moves;
+                        movesTV.setText(txt);
                         int victory = 0;
                         for(int j=0;j<16;j++){
                             Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-                            if(bms == finalDividedBitmaps.get(j)){
+                            if(bms == dividedBitmaps.get(j)){
                                 victory++;
                             }
                             if(victory==16){
                                 double score = 10*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = getActivity().getIntent().getStringExtra("username");
+                                String uname = requireActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","4x4");
                                 startActivity(winIntent);
-                                getActivity().finish();
+                                requireActivity().finish();
                             }
 
                         }
@@ -318,20 +320,22 @@ public class FourxFragment extends Fragment {
                                 break;
                         }
                         n_moves++;
+                        String txt = "Moves: "+n_moves;
+                        movesTV.setText(txt);
                         int victory = 0;
                         for(int j=0;j<16;j++){
                             Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-                            if(bms == finalDividedBitmaps.get(j)){
+                            if(bms == dividedBitmaps.get(j)){
                                 victory++;
                             }
                             if(victory==16){
                                 double score = 10*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = getActivity().getIntent().getStringExtra("username");
+                                String uname = requireActivity().getIntent().getStringExtra("username");
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","4x4");
                                 startActivity(winIntent);
-                                getActivity().finish();
+                                requireActivity().finish();
                             }
 
                         }
@@ -419,20 +423,22 @@ public class FourxFragment extends Fragment {
 
                     }
                     n_moves++;
+                    String txt = "Moves: "+n_moves;
+                    movesTV.setText(txt);
                     int victory = 0;
                     for(int j=0;j<16;j++){
                         Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-                        if(bms == finalDividedBitmaps.get(j)){
+                        if(bms == dividedBitmaps.get(j)){
                             victory++;
                         }
                         if(victory==16){
                             double score = 10*10000/((timeElapsed+n_moves) *2.5);
-                            String uname = getActivity().getIntent().getStringExtra("username");
+                            String uname = requireActivity().getIntent().getStringExtra("username");
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","4x4");
                             startActivity(winIntent);
-                            getActivity().finish();
+                            requireActivity().finish();
                         }
 
                     }
@@ -518,20 +524,22 @@ public class FourxFragment extends Fragment {
                             break;
                     }
                     n_moves++;
+                    String txt = "Moves: "+n_moves;
+                    movesTV.setText(txt);
                     int victory = 0;
                     for(int j=0;j<16;j++){
                         Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
-                        if(bms == finalDividedBitmaps.get(j)){
+                        if(bms == dividedBitmaps.get(j)){
                             victory++;
                         }
                         if(victory==16){
                             double score = 10*10000/((timeElapsed+n_moves) *2.5);
-                            String uname = getActivity().getIntent().getStringExtra("username");
+                            String uname = requireActivity().getIntent().getStringExtra("username");
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","4x4");
                             startActivity(winIntent);
-                            getActivity().finish();
+                            requireActivity().finish();
                         }
 
                     }
