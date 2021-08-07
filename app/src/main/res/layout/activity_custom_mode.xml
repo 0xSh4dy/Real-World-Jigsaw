@@ -7,18 +7,6 @@
     android:tag="3"
     tools:context=".CustomMode">
 
-    <Chronometer
-        android:id="@+id/countUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#F8F1F1"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageCustom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
-
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView10"
         android:layout_width="match_parent"
@@ -26,6 +14,17 @@
         android:scaleType="fitXY"
         android:src="@drawable/mainbg2"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Chronometer
+        android:id="@+id/chron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/preview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,6 +49,7 @@
         android:text="Preview"
         android:textColor="#FFFAFA"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageCustom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -252,7 +252,7 @@
         android:id="@+id/countMoves"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Moves:0"
         android:textColor="#FBEFEF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/ic1"

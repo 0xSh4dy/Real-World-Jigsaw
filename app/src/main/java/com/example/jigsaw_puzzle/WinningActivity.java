@@ -37,7 +37,6 @@ public class WinningActivity extends AppCompatActivity {
         scoreTextView = findViewById(R.id.scoreTextView);
         leaderboardIntent = new Intent(this,Leaderboard.class);
         homeIntent = new Intent(this,HomeActivity.class);
-        playAgainIntent = new Intent(this, HomeActivity.class);
         double score = getIntent().getDoubleExtra("score",0);
         String mode = getIntent().getStringExtra("mode");
         score = Math.round(score*100)/100.0;
@@ -150,11 +149,33 @@ public class WinningActivity extends AppCompatActivity {
         myQueue1.add(postData);
 
         playAgain.setOnClickListener(v -> {
-            playAgainIntent.putExtra("name",username);
-            startActivity(playAgainIntent);
+            switch (mode) {
+                case "3x3":
+                case "4x4":
+                case "5x5":
+                    playAgainIntent = new Intent(getApplicationContext(), GameActivity.class);
+                    playAgainIntent.putExtra("name", username);
+                    playAgainIntent.putExtra("mode","CameraMode");
+                    startActivity(playAgainIntent);
+                    break;
+                case "custom":
+                    playAgainIntent = new Intent(getApplicationContext(), CustomMode.class);
+                    playAgainIntent.putExtra("name", username);
+                    playAgainIntent.putExtra("mode","CameraMode");
+                    startActivity(playAgainIntent);
+                    break;
+                case "special":
+                    playAgainIntent = new Intent(getApplicationContext(), FilterMode.class);
+                    playAgainIntent.putExtra("name", username);
+                    playAgainIntent.putExtra("mode","CameraMode");
+                    startActivity(playAgainIntent);
+                    break;
+            }
+
         });
         leaderboard.setOnClickListener(v -> startActivity(leaderboardIntent));
         redirectToMenu.setOnClickListener(v -> {
+            homeIntent.putExtra("name",username);
             startActivity(homeIntent);
             finish();
         });

@@ -3,6 +3,7 @@ package com.example.jigsaw_puzzle;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -101,6 +102,8 @@ public class ThreeXFragment extends Fragment {
         ImageView img1,img2,img3,img4,img5,img6,img7,img8,img9;
         movesTV = requireActivity().findViewById(R.id.movesTV2);
         Chronometer chronometer = requireActivity().findViewById(R.id.simpleChronometer);
+        chronometer.setVisibility(View.VISIBLE);
+        movesTV.setVisibility(View.VISIBLE);
         timeElapsed=0;
         ArrayList<Bitmap> dividedBitmaps = null;
         assert getArguments() != null;
@@ -125,7 +128,8 @@ public class ThreeXFragment extends Fragment {
                 timeElapsed++;
             }
         },0,1000);
-
+        SharedPreferences preferences = this.ctx.getSharedPreferences("auth",Context.MODE_PRIVATE);
+        String uname = preferences.getString("username","");
         ImpFunctions impFunctions = new ImpFunctions();
 //        img1.setImageBitmap(bitmap);
         dividedBitmaps = impFunctions.splitBitmap(imageCapture,3,imageHeight/3,imageWidth/3,imageWidth,imageHeight);
@@ -194,7 +198,6 @@ public class ThreeXFragment extends Fragment {
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = requireActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","3x3");
@@ -254,7 +257,6 @@ public class ThreeXFragment extends Fragment {
                                                if(victory==9) {
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
 
-                                                   String uname = requireActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","3x3");
@@ -313,7 +315,7 @@ public class ThreeXFragment extends Fragment {
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = requireActivity().getIntent().getStringExtra("username");
+
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","3x3");
@@ -374,7 +376,6 @@ public class ThreeXFragment extends Fragment {
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname =requireActivity().getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","3x3");

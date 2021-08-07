@@ -2,6 +2,7 @@ package com.example.jigsaw_puzzle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -24,9 +25,10 @@ import pl.droidsonroids.gif.GifImageView;
 public class MainActivity extends AppCompatActivity {
     Intent registerIntent ;
     Intent homeIntent;
-    SharedPreferences preferences;
     GifImageView gifImageViewMain;
     ConnectivityManager cm;
+    SharedPreferences preferences;
+    SharedPreferences pref1;
     private TextView forgotten;
     private EditText nameEditText;
     private EditText passwordEditText;
@@ -52,7 +54,14 @@ public class MainActivity extends AppCompatActivity {
         loginButton=findViewById(R.id.loginButton);
         ResponseTextView = findViewById(R.id.responseTV);
         homeIntent = new Intent(getApplicationContext(),HomeActivity.class);
-        preferences = getSharedPreferences("userData,",MODE_PRIVATE);
+        pref1 = this.getSharedPreferences("auth",MODE_PRIVATE);
+        String loggedIn = pref1.getString("loggedIn","no");
+        if(loggedIn.equals("yes")){
+            String n = pref1.getString("username","");
+            homeIntent.putExtra("name",n);
+            startActivity(homeIntent);
+            finish();
+        }
         forgotten.setOnClickListener(v -> {
             Intent changePass = new Intent(getApplicationContext(),ChangePassword.class);
             startActivity(changePass);
@@ -82,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
                 StringRequest newStringRequest = new StringRequest(Request.Method.POST, loginUrl,
                         response -> {
                             if (response.equals("Success")) {
+                                preferences = this.getSharedPreferences("auth",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("username",username);
+                                editor.putString("loggedIn","yes");
+                                editor.apply();
                                 homeIntent.putExtra("name",username);
                                 startActivity(homeIntent);
                                 finish();
@@ -111,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
                             StringRequest newStringRequest1 = new StringRequest(Request.Method.POST, loginUrl,
                                     response -> {
                                         if (response.equals("Success")) {
+                                            preferences = this.getSharedPreferences("auth",MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = preferences.edit();
+                                            editor.putString("username",username);
+                                            editor.putString("loggedIn","yes");
+                                            editor.apply();
                                             homeIntent.putExtra("name",username);
                                             startActivity(homeIntent);
                                             finish();

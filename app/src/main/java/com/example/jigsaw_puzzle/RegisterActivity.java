@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,6 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 finish();
                             }
                             else{
+                                Toast.makeText(this,response,Toast.LENGTH_LONG).show();
                                 completeRegister.setVisibility(View.VISIBLE);
                                 loading1.setVisibility(View.INVISIBLE);
                             }
@@ -102,7 +104,12 @@ public class RegisterActivity extends AppCompatActivity {
                                             loading1.setVisibility(View.INVISIBLE);
                                         }
 
-                                    }, error1 -> Toast.makeText(RegisterActivity.this, "Network error!", Toast.LENGTH_SHORT).show()) {
+                                    }, error1 -> {
+                                        Toast.makeText(RegisterActivity.this, "Network error!", Toast.LENGTH_SHORT).show();
+                                        loading1.setVisibility(View.INVISIBLE);
+                                        completeRegister.setVisibility(View.VISIBLE);
+                                            })
+                            {
                                 @Override
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<>();

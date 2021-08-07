@@ -3,6 +3,7 @@ package com.example.jigsaw_puzzle;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -116,6 +117,8 @@ public class FourxFragment extends Fragment {
         i16 = requireView().findViewById(R.id.i16);
         ImageView[] imageViews1 = new ImageView[]{i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16};
         imageViewsAlt = imageViews1;
+        SharedPreferences preferences = this.ctx.getSharedPreferences("auth",Context.MODE_PRIVATE);
+        String uname = preferences.getString("username","");
         assert getArguments() != null;
         byte[] byteArray = getArguments().getByteArray("image");
         Bitmap imageCapture = BitmapFactory.decodeByteArray(byteArray,0, byteArray.length);
@@ -131,6 +134,8 @@ public class FourxFragment extends Fragment {
             }
         },0,1000);
         Chronometer chronometer = requireActivity().findViewById(R.id.simpleChronometer);
+        chronometer.setVisibility(View.VISIBLE);
+        movesTV.setVisibility(View.VISIBLE);
         chronometer.setBase(SystemClock.elapsedRealtime());
 
         chronometer.start();
@@ -228,8 +233,7 @@ public class FourxFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==16){
-                                double score = 10*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = requireActivity().getIntent().getStringExtra("username");
+                                double score = 7*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","4x4");
@@ -329,8 +333,7 @@ public class FourxFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==16){
-                                double score = 10*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = requireActivity().getIntent().getStringExtra("username");
+                                double score = 7*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","4x4");
@@ -432,8 +435,7 @@ public class FourxFragment extends Fragment {
                             victory++;
                         }
                         if(victory==16){
-                            double score = 10*10000/((timeElapsed+n_moves) *2.5);
-                            String uname = requireActivity().getIntent().getStringExtra("username");
+                            double score = 7*10000/((timeElapsed+n_moves) *2.5);
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","4x4");
@@ -533,8 +535,7 @@ public class FourxFragment extends Fragment {
                             victory++;
                         }
                         if(victory==16){
-                            double score = 10*10000/((timeElapsed+n_moves) *2.5);
-                            String uname = requireActivity().getIntent().getStringExtra("username");
+                            double score = 7*10000/((timeElapsed+n_moves) *2.5);
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","4x4");

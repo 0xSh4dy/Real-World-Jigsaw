@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -24,6 +26,8 @@ public class GameActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     int timeElapsed;
     int clickedBtn;
+    TextView movesTV2;
+    Chronometer chronometer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +38,10 @@ public class GameActivity extends AppCompatActivity {
         Button fourXButton = findViewById(R.id.fourX);
         Button fiveXButton = findViewById(R.id.fiveX);
         fragmentManager= getSupportFragmentManager();
-
+        movesTV2 = findViewById(R.id.movesTV2);
+        chronometer = findViewById(R.id.simpleChronometer);
+        movesTV2.setVisibility(View.INVISIBLE);
+        chronometer.setVisibility(View.INVISIBLE);
         String mode = getIntent().getStringExtra("mode");
         timeElapsed=0;
         threeXButton.setOnClickListener(v -> {

@@ -153,11 +153,7 @@ public class FilterMode extends AppCompatActivity {
                         originalImage = photoCapture;
                         finalImage = photoCapture;
                         // Convert the captured bitmap into a byte array to send it to the fragment
-//                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                        photoCapture.compress(Bitmap.CompressFormat.PNG,100,stream);
-//                        byte[] byteArray = stream.toByteArray();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putByteArray("image",byteArray);
+
                         imageView.setImageBitmap(photoCapture);
 
 
@@ -458,4 +454,5 @@ public class FilterMode extends AppCompatActivity {
 
         }
     }
+
 }

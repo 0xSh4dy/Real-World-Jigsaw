@@ -43,7 +43,6 @@
         android:layout_height="158dp"
         android:layout_marginStart="4dp"
         android:background="@drawable/home_buttons"
-        android:onClick="checkCameraPermission"
         android:paddingLeft="2dp"
         android:paddingRight="2dp"
         android:paddingBottom="70dp"

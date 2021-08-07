@@ -3,6 +3,7 @@ package com.example.jigsaw_puzzle;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -133,6 +134,8 @@ public class FivexFragment extends Fragment {
         final int imageWidth = imageCapture.getWidth();
         final int imageHeight = imageCapture.getHeight();
         ImpFunctions imf = new ImpFunctions();
+        SharedPreferences preferences = this.ctx.getSharedPreferences("auth",Context.MODE_PRIVATE);
+        String uname = preferences.getString("username","");
         dividedBitmaps = imf.splitBitmap(imageCapture,5,imageHeight/5,imageWidth/5,imageWidth,imageHeight);
         imf.shuffleImages(imageViews1,5,dividedBitmaps);
         new Timer().scheduleAtFixedRate(new TimerTask() {
@@ -142,6 +145,8 @@ public class FivexFragment extends Fragment {
             }
         },0,1000);
         Chronometer chronometer = requireActivity().findViewById(R.id.simpleChronometer);
+        chronometer.setVisibility(View.VISIBLE);
+        movesTV.setVisibility(View.VISIBLE);
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
         for(ImageView i:imageViews1){
@@ -286,8 +291,7 @@ public class FivexFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==25){
-                                double score = 25*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = requireActivity().getIntent().getStringExtra("username");
+                                double score = 15*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
@@ -435,8 +439,7 @@ public class FivexFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==25){
-                                double score = 25*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = requireActivity().getIntent().getStringExtra("username");
+                                double score = 15*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
@@ -585,8 +588,7 @@ public class FivexFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==25){
-                                double score = 25*10000/((timeElapsed+n_moves) *2.5);
-                                String uname = requireActivity().getIntent().getStringExtra("username");
+                                double score = 15*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
@@ -735,13 +737,12 @@ public class FivexFragment extends Fragment {
                             victory++;
                         }
                         if(victory==25){
-                            double score = 25*10000/((timeElapsed+n_moves) *2.5);
-                            String uname = requireActivity().getIntent().getStringExtra("username");
+                            double score = 15*10000/((timeElapsed+n_moves) *2.5);
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","5x5");
                             startActivity(winIntent);
-                            getActivity().finish();
+                            requireActivity().finish();
                         }
 
                     }

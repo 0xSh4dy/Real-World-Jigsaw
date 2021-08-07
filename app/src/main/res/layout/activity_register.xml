@@ -97,18 +97,19 @@
         app:layout_constraintTop_toBottomOf="@+id/regEmail" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView16"
+        android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:background="@drawable/response_tv"
-        android:textColor="#FFEBEB"
-        android:textSize="24sp"
+        android:padding="7dp"
+        android:text="Sign in and registration is necessary to save your scores and display it on the leaderboard"
+        android:textColor="#FDC009"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686" />
+        app:layout_constraintVertical_bias="0.549" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/loading1"
@@ -129,10 +130,9 @@
         android:background="@drawable/enhancer1"
         app:layout_constraintBottom_toBottomOf="@+id/gifImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintVertical_bias="0.406" />
 
     <TextView
         android:id="@+id/textView2"

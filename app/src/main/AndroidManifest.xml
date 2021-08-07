@@ -16,12 +16,20 @@
         android:theme="@style/Theme.JigsawPuzzle">
         <activity android:name=".MyScores"/>
         <activity android:name=".ChangePassword" />
-        <activity android:name=".FilterMode" />
+        <activity android:name=".FilterMode"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".Leaderboard" />
         <activity android:name=".WinningActivity" />
-        <activity android:name=".GameActivity" />
+        <activity android:name=".GameActivity"
+            android:screenOrientation="portrait"
+
+            />
         <activity
-            android:name=".CustomMode" />
+            android:name=".CustomMode"
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".HomeActivity"/>
         <activity

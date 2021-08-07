@@ -8,10 +8,10 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +29,14 @@ public class HomeActivity extends AppCompatActivity {
     Intent leaderboard,logout;
     Button myScores;
     Button lead;
+    // To find out whether World mode has been clicked or Special mode.
+    int pressed;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-            Toast.makeText(this, "You need to give access to camera in order to access this mode", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You need to give access to camera in order to access this mode", Toast.LENGTH_SHORT).show();
+
         }
 
     }
@@ -56,12 +59,19 @@ public class HomeActivity extends AppCompatActivity {
         logout1 = findViewById(R.id.logout1);
         logout = new Intent(this,MainActivity.class);
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        final String username = getIntent().getStringExtra("name");
+//        final String username = getIntent().getStringExtra("name");
+        SharedPreferences preferences = this.getSharedPreferences("auth",MODE_PRIVATE);
+        final String username = preferences.getString("username","");
         uname = username;
         String un = "Welcome! "+username;
         nameTextView.setText(un);
         lead.setOnClickListener(v -> startActivity(leaderboard));
         logout1.setOnClickListener(v -> {
+            SharedPreferences pref = this.getSharedPreferences("auth",MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.remove("loggedIn");
+            editor.remove("username");
+            editor.apply();
             startActivity(logout);
             finish();
         });
@@ -74,22 +84,25 @@ public class HomeActivity extends AppCompatActivity {
             customIntent.putExtra("username",uname);
             startActivity(customIntent);
         });
-
+        cameraButton.setOnClickListener(v->{
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                GameActivity.putExtra("mode", "CameraMode");
+                GameActivity.putExtra("username",uname);
+                startActivity(GameActivity);
+            }
+            else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+            }
+            });
         specialBtn.setOnClickListener(v -> {
-            specialMode.putExtra("username",uname);
-            startActivity(specialMode);
-        });
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                specialMode.putExtra("username",uname);
+                startActivity(specialMode);
+            }
+            else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+            }
+            });
     }
 
-    public void checkCameraPermission(View view) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
-        } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            GameActivity.putExtra("mode", "CameraMode");
-            GameActivity.putExtra("username",uname);
-            startActivity(GameActivity);
-        }
-
-
-    }
 }

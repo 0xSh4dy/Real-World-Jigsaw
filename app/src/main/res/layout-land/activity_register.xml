@@ -14,7 +14,7 @@
         android:src="@drawable/mainbg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -157,12 +157,13 @@
         android:background="@drawable/bright_button"
         android:padding="7dp"
         android:text="Sign in and registration is necessary to save your scores and display it on the leaderboard"
-        android:textColor="#E91E63"
+        android:textColor="#FDE510"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.059" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
