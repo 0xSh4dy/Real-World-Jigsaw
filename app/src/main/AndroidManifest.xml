@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JigsawPuzzle">
         <activity android:name=".MyScores"/>
-        <activity android:name=".ChangePassword" />
         <activity android:name=".FilterMode"
             android:screenOrientation="portrait"
             />

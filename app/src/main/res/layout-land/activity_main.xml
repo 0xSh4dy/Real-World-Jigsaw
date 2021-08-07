@@ -133,25 +133,11 @@
         android:onClick="Login"
         android:text="Login"
         android:textColor="#F49406"
-        app:layout_constraintBottom_toTopOf="@+id/forgotten"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/gifImageView2"
         app:layout_constraintHorizontal_bias="0.205"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText1"
-        app:layout_constraintVertical_bias="0.446" />
-
-    <TextView
-        android:id="@+id/forgotten"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot password? Click here to reset"
-        android:textColor="#75CBED"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText1"
-        app:layout_constraintVertical_bias="0.791" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText1" />
 
     <View
         android:id="@+id/view"

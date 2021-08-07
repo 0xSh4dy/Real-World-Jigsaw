@@ -2,7 +2,6 @@ package com.example.jigsaw_puzzle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     ConnectivityManager cm;
     SharedPreferences preferences;
     SharedPreferences pref1;
-    private TextView forgotten;
     private EditText nameEditText;
     private EditText passwordEditText;
     private EditText emailEditText;
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("The Real Jigsaw");
-        forgotten = findViewById(R.id.forgotten);
         registerIntent= new Intent(getApplicationContext(),RegisterActivity.class);
         registerTextView = findViewById(R.id.registerTextView);
         gifImageViewMain = findViewById(R.id.gifImageView3);
@@ -62,10 +59,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(homeIntent);
             finish();
         }
-        forgotten.setOnClickListener(v -> {
-            Intent changePass = new Intent(getApplicationContext(),ChangePassword.class);
-            startActivity(changePass);
-        });
+
         registerTextView.setOnClickListener(v -> startActivity(registerIntent));
     }
     public void Login(View view){
@@ -87,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 gifImageViewMain.setVisibility(View.VISIBLE);
                 loginButton.setVisibility(View.GONE);
                 registerTextView.setVisibility(View.GONE);
-                forgotten.setVisibility(View.GONE);
                 StringRequest newStringRequest = new StringRequest(Request.Method.POST, loginUrl,
                         response -> {
                             if (response.equals("Success")) {
@@ -105,14 +98,12 @@ public class MainActivity extends AppCompatActivity {
                                 ResponseTextView.setText(text);
                                 gifImageViewMain.setVisibility(View.GONE);
                                 loginButton.setVisibility(View.VISIBLE);
-                                forgotten.setVisibility(View.VISIBLE);
                                 registerTextView.setVisibility(View.VISIBLE);
                             }
                             else {
                                 ResponseTextView.setText(response);
                                 gifImageViewMain.setVisibility(View.GONE);
                                 loginButton.setVisibility(View.VISIBLE);
-                                forgotten.setVisibility(View.VISIBLE);
                                 registerTextView.setVisibility(View.VISIBLE);
 
                             }
@@ -121,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
                             gifImageViewMain.setVisibility(View.VISIBLE);
                             loginButton.setVisibility(View.GONE);
                             registerTextView.setVisibility(View.GONE);
-                            forgotten.setVisibility(View.GONE);
                             StringRequest newStringRequest1 = new StringRequest(Request.Method.POST, loginUrl,
                                     response -> {
                                         if (response.equals("Success")) {
@@ -139,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                                             ResponseTextView.setText(text);
                                             gifImageViewMain.setVisibility(View.GONE);
                                             loginButton.setVisibility(View.VISIBLE);
-                                            forgotten.setVisibility(View.VISIBLE);
                                             registerTextView.setVisibility(View.VISIBLE);
 
                                         }
@@ -147,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                                             ResponseTextView.setText(response);
                                             gifImageViewMain.setVisibility(View.GONE);
                                             loginButton.setVisibility(View.VISIBLE);
-                                            forgotten.setVisibility(View.VISIBLE);
                                             registerTextView.setVisibility(View.VISIBLE);
 
                                         }
@@ -156,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Network error,please try again", Toast.LENGTH_LONG).show();
                         gifImageViewMain.setVisibility(View.GONE);
                         loginButton.setVisibility(View.VISIBLE);
-                        forgotten.setVisibility(View.VISIBLE);
                         registerTextView.setVisibility(View.VISIBLE);
 
                                     }){
