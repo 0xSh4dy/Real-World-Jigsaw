@@ -54,14 +54,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/startCustom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/bright_button"
         android:text="Start"
-        android:textColor="#061C97"
-        app:backgroundTint="#FF9800"
+        android:textColor="#CDDC39"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.201"
@@ -69,14 +69,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.035" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/Change"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/bright_button"
         android:text="Change"
-        android:textColor="#081A7A"
-        app:backgroundTint="#FF9800"
+        android:textColor="#F3E675"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.623"

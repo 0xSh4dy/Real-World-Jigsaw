@@ -70,7 +70,10 @@ public class HomeActivity extends AppCompatActivity {
             myScoresIntent.putExtra("username",username);
             startActivity(myScoresIntent);
         });
-        customMode.setOnClickListener(v -> startActivity(customIntent));
+        customMode.setOnClickListener(v -> {
+            customIntent.putExtra("username",uname);
+            startActivity(customIntent);
+        });
 
         specialBtn.setOnClickListener(v -> {
             specialMode.putExtra("username",uname);

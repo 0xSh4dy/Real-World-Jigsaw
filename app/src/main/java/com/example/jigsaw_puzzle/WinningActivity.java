@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -21,9 +20,9 @@ public class WinningActivity extends AppCompatActivity {
     TextView scoreTextView;
     Button playAgain;
     Button leaderboard;
-    Button logout;
+    Button redirectToMenu;
     Intent leaderboardIntent;
-    Intent logoutIntent;
+    Intent homeIntent;
     Intent playAgainIntent;
     final String leaderBoardUrl = "https://jigsaw-real.herokuapp.com/scoreboard";
     final String scoreUrl = "https://jigsaw-real.herokuapp.com/scoreboard/users";
@@ -34,10 +33,10 @@ public class WinningActivity extends AppCompatActivity {
         setTitle("The Real Jigsaw");
         playAgain = findViewById(R.id.playAgain);
         leaderboard = findViewById(R.id.leaderboard);
-        logout = findViewById(R.id.logout);
+        redirectToMenu = findViewById(R.id.redirectHome);
         scoreTextView = findViewById(R.id.scoreTextView);
         leaderboardIntent = new Intent(this,Leaderboard.class);
-        logoutIntent = new Intent(this,MainActivity.class);
+        homeIntent = new Intent(this,HomeActivity.class);
         playAgainIntent = new Intent(this, HomeActivity.class);
         double score = getIntent().getDoubleExtra("score",0);
         String mode = getIntent().getStringExtra("mode");
@@ -155,8 +154,8 @@ public class WinningActivity extends AppCompatActivity {
             startActivity(playAgainIntent);
         });
         leaderboard.setOnClickListener(v -> startActivity(leaderboardIntent));
-        logout.setOnClickListener(v -> {
-            startActivity(logoutIntent);
+        redirectToMenu.setOnClickListener(v -> {
+            startActivity(homeIntent);
             finish();
         });
     }

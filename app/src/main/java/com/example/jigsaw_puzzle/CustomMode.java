@@ -10,11 +10,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -31,6 +33,7 @@ public class CustomMode extends AppCompatActivity {
     Bitmap appliedBitmap;
     Bitmap bmp;
     TextView countMoves;
+    String uname;
     ArrayList<Bitmap> finalDividedBitmaps;
     int n_moves=0;
     ImageView ic1,ic2,ic3,ic4,ic5,ic6,ic7,ic8,ic9;
@@ -49,6 +52,7 @@ public class CustomMode extends AppCompatActivity {
         preview = findViewById(R.id.preview);
         countMoves = findViewById(R.id.countMoves);
         countMoves.setVisibility(View.INVISIBLE);
+        uname = getIntent().getStringExtra("username");
         ic1 = findViewById(R.id.ic1);
         ic2 = findViewById(R.id.ic2);
         ic3 = findViewById(R.id.ic3);
@@ -149,7 +153,6 @@ public class CustomMode extends AppCompatActivity {
                                                        }
                                                        if(victory==9){
                                                            double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                           String uname = getIntent().getStringExtra("username");
                                                            winIntent.putExtra("score",score);
                                                            winIntent.putExtra("username",uname);
                                                            winIntent.putExtra("mode","custom");
@@ -212,7 +215,6 @@ public class CustomMode extends AppCompatActivity {
                                                        }
                                                        if(victory==9){
                                                            double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                           String uname = getIntent().getStringExtra("username");
                                                            winIntent.putExtra("score",score);
                                                            winIntent.putExtra("username",uname);
                                                            winIntent.putExtra("mode","custom");
@@ -273,7 +275,6 @@ public class CustomMode extends AppCompatActivity {
                                                        }
                                                        if(victory==9){
                                                            double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                           String uname = getIntent().getStringExtra("username");
                                                            winIntent.putExtra("score",score);
                                                            winIntent.putExtra("username",uname);
                                                            winIntent.putExtra("mode","custom");
@@ -334,7 +335,6 @@ public class CustomMode extends AppCompatActivity {
                                                        }
                                                        if(victory==9){
                                                            double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                           String uname = getIntent().getStringExtra("username");
                                                            winIntent.putExtra("score",score);
                                                            winIntent.putExtra("username",uname);
                                                            winIntent.putExtra("mode","custom");

@@ -61,11 +61,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.Button
-        android:id="@+id/logout"
+        android:id="@+id/redirectHome"
         android:layout_width="119dp"
         android:layout_height="121dp"
         android:background="@drawable/custom_input"
-        android:text="Logout"
+        android:text="Main Menu"
         android:textColor="#2BCBDF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
