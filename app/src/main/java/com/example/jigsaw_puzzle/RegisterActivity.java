@@ -103,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                             passwordEditText.setText("");
                             unameEditText.setText("");
                             if(response.equals("Successfully registered")){
+                                Toast.makeText(RegisterActivity.this, "Successfully registered. Sign in to play the game", Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                                 finish();
                             }
@@ -116,6 +117,46 @@ public class RegisterActivity extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    StringRequest stringRequest1 = new StringRequest(Request.Method.POST, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    textView.setText(response);
+                                    emailEditText.setText("");
+                                    passwordEditText.setText("");
+                                    unameEditText.setText("");
+                                    if(response.equals("Successfully registered")){
+                                        Toast.makeText(RegisterActivity.this, "Successfully registered. Sign in to play the game", Toast.LENGTH_LONG).show();
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else{
+                                        responseData = response;
+                                        completeRegister.setVisibility(View.VISIBLE);
+                                        loading1.setVisibility(View.INVISIBLE);
+                                    }
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(RegisterActivity.this, "Network error!", Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("username", uName);
+                            params.put("password", uPass);
+                            params.put("email",uEmail);
+
+                            return params;
+                        }
+                    };
+
+                    queue.add(stringRequest1);
+
+
                 }
             }) {
                 @Override

@@ -35,7 +35,6 @@ import java.util.TimerTask;
 public class GameActivity extends AppCompatActivity {
     private Intent cameraCapture;
     private FragmentManager fragmentManager;
-    private TextView timeTextView;
     int timeElapsed;
     int clickedBtn;
     @Override
@@ -48,8 +47,6 @@ public class GameActivity extends AppCompatActivity {
         Button fourXButton = findViewById(R.id.fourX);
         Button fiveXButton = findViewById(R.id.fiveX);
         fragmentManager= getSupportFragmentManager();
-        timeTextView = findViewById(R.id.timeTextView);
-        timeTextView.setVisibility(View.GONE);
         CardView cardView;
 
         String mode = getIntent().getStringExtra("mode");
@@ -63,7 +60,6 @@ public class GameActivity extends AppCompatActivity {
                     fourXButton.setVisibility(View.GONE);
                     fiveXButton.setVisibility(View.GONE);
                     OpenCamera();
-                    timeTextView.setVisibility(View.VISIBLE);
 
                 }
             }

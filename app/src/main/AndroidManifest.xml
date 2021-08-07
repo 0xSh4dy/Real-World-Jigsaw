@@ -14,13 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JigsawPuzzle">
-        <activity android:name=".MyScores"></activity>
-        <activity android:name=".ChangePassword" />
-        <activity android:name=".FilterMode" />
-        <activity android:name=".Leaderboard" />
-        <activity android:name=".WinningActivity" />
-        <activity android:name=".GameActivity" />
-        <activity android:name=".CameraCapture" />
+        <activity android:name=".MyScores"/>
+        <activity android:name=".ChangePassword"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".FilterMode"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".Leaderboard"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".WinningActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".GameActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".CustomMode"
             android:screenOrientation="portrait" />

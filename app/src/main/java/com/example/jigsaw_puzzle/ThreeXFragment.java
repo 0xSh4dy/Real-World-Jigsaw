@@ -46,6 +46,7 @@ public class ThreeXFragment extends Fragment {
         Context context;
         int timeElapsed;
         int n_moves=0;
+        TextView movesTV;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -108,7 +109,7 @@ public class ThreeXFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Intent winIntent = new Intent(getActivity(),WinningActivity.class);
         ImageView img1,img2,img3,img4,img5,img6,img7,img8,img9;
-
+        movesTV = getActivity().findViewById(R.id.movesTV2);
         Chronometer chronometer = getActivity().findViewById(R.id.simpleChronometer);
         int score;
         timeElapsed=0;
@@ -198,6 +199,8 @@ public class ThreeXFragment extends Fragment {
                                                }
                                            }
                                            n_moves++;
+                                           String txt = "Moves: "+n_moves;
+                                           movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -315,6 +318,8 @@ public class ThreeXFragment extends Fragment {
                                                }
                                            }
                                            n_moves++;
+                                           String txt = "Moves: "+n_moves;
+                                           movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -374,6 +379,8 @@ public class ThreeXFragment extends Fragment {
 
                                            }
                                            n_moves++;
+                                           String txt = "Moves: "+n_moves;
+                                           movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();

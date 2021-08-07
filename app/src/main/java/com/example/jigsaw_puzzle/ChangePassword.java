@@ -49,7 +49,7 @@ public class ChangePassword extends AppCompatActivity {
                                     @Override
                                     public void onResponse(String response) {
                                         if (response.equals("Done")) {
-                                            textView.setText("Reset mail has been sent to your email. Check your spam folder");
+                                            textView.setText("An email containing the reset link has been sent. Check your spam folder");
 
                                         }
                                         else if(response.equals("Invalid")){

@@ -14,10 +14,14 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.zomato.photofilters.SampleFilters;
 import com.zomato.photofilters.imageprocessors.Filter;
 import com.zomato.photofilters.imageprocessors.subfilters.ColorOverlaySubFilter;
@@ -44,6 +48,8 @@ public class FilterMode extends AppCompatActivity {
     ImageView[]imageViews;
     ImageView[]imageViewsAlt;
     ArrayList<Bitmap>smallBitmaps;
+    Chronometer chronometer;
+    TextView movesTV;
     Bitmap bmp;
     int n_moves=0;
     int timeElapsed=0;
@@ -55,9 +61,12 @@ public class FilterMode extends AppCompatActivity {
         vignette = findViewById(R.id.vigenette);
         imageView = findViewById(R.id.imageView);
         startGame = findViewById(R.id.startGame);
+        movesTV = findViewById(R.id.movesTV1);
         startCapture = findViewById(R.id.startFilterGame);
         brightness = findViewById(R.id.Brightness);
         starlit = findViewById(R.id.Starlit);
+        chronometer = findViewById(R.id.chronoFilter);
+        movesTV.setVisibility(View.INVISIBLE);
         red = findViewById(R.id.red);
         green = findViewById(R.id.green);
         blue = findViewById(R.id.blue);
@@ -171,6 +180,7 @@ public class FilterMode extends AppCompatActivity {
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startTheGame(){
+        movesTV.setVisibility(View.VISIBLE);
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -179,6 +189,8 @@ public class FilterMode extends AppCompatActivity {
         },0,1000);
         startCapture.setVisibility(View.GONE);
         startGame.setVisibility(View.GONE);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
         for(Button btn:filters){
             btn.setVisibility(View.GONE);
         }
@@ -239,6 +251,8 @@ public class FilterMode extends AppCompatActivity {
                                                }
                                            }
                                            n_moves++;
+                                           String txt = "Moves: "+n_moves;
+                                           movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -302,6 +316,8 @@ public class FilterMode extends AppCompatActivity {
                                                }
                                            }
                                            n_moves++;
+                                           String txt = "Moves: "+n_moves;
+                                           movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -363,6 +379,8 @@ public class FilterMode extends AppCompatActivity {
                                                    break;
                                            }
                                            n_moves++;
+                                           String txt = "Moves: "+n_moves;
+                                           movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -424,6 +442,8 @@ public class FilterMode extends AppCompatActivity {
                                                    break;
                                            }
                                            n_moves++;
+                                           String txt = "Moves: "+n_moves;
+                                           movesTV.setText(txt);
                                            int victory = 0;
                                            for(int j=0;j<9;j++){
                                                Bitmap bms = ((BitmapDrawable)imageViewsAlt[j].getDrawable()).getBitmap();
@@ -442,7 +462,6 @@ public class FilterMode extends AppCompatActivity {
 
                                            }
                                        }
-
                                    }
 
             );
