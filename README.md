@@ -7,6 +7,56 @@ The users may see the list of all puzzles played by them and the corresponding s
 
 ### Demo
 
+<div>
+    <p>SignIn and Register activities</p>
+<img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-073613_The%20Real%20Jigsaw.jpg" alt="image" width="200"/>
+<img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-073620_The%20Real%20Jigsaw.jpg" alt="image" width="200">
+</div>
+
+<div>
+    <div>
+        <p>The Home Activity</p>
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-073738_The%20Real%20Jigsaw.jpg" alt="image" width="170"/>
+    </div>
+    <div>
+        <p>Special Mode with various filters</p>
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-081307_The%20Real%20Jigsaw.jpg" alt="Image" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-081321_The%20Real%20Jigsaw.jpg" alt="Image" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-081340_The%20Real%20Jigsaw%20(1).jpg" alt="Image" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-075837_The%20Real%20Jigsaw.jpg" alt="Image" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-080530_The%20Real%20Jigsaw.jpg" alt="Image" width="170"/>
+    </div>
+    <div>
+        <p>Custom Mode</p>
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-075645_The%20Real%20Jigsaw.jpg" alt="Image" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-111313_The%20Real%20Jigsaw.jpg" alt="Image" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-075635_The%20Real%20Jigsaw.jpg" alt="Image" width="170"/>
+    </div>
+    <div>
+        <p>World Mode in various grid sizes</p>
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-112504_Camera.jpg" alt="Images" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-112317_The%20Real%20Jigsaw.jpg" alt="Images" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-112230_The%20Real%20Jigsaw.jpg" alt="Images" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-112344_The%20Real%20Jigsaw.jpg" alt="Images" width="170"/>
+    </div>
+    <div>
+        <p>Leaderboard, My Scores and Winning Activity</p>
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-102128_The%20Real%20Jigsaw.jpg" alt="Images" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-100122_The%20Real%20Jigsaw.jpg" alt="Images" width="170"/>
+        &nbsp;&nbsp;
+        <img src="https://github.com/r4ksh1t0011/Real-World-Jigsaw/blob/images/Screenshot_20210808-075503_The%20Real%20Jigsaw.jpg" alt="Images" width="170"/>
+    </div>
+</div>
 
 ### About the Server
 Node.js has been used to build the web server for saving data like their username, password, email for the app. Password has been stored safely after applying a strong hashing algorithm. MongoDB is used to perform the database operations.
