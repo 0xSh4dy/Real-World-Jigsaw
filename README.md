@@ -63,7 +63,7 @@ Node.js has been used to build the web server for saving data like their usernam
 
 
 ### Setup and Installation
-pass
+Download the [APK](https://drive.google.com/file/d/19Zn3Nj5-IAB-k93MfFtIoGYtDshRyNxb/view?usp=sharing) and install it
 
 If you want to install the app through Android Studio, follow the following instructions:
 Clone the repository:
