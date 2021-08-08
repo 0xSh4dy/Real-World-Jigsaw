@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
@@ -176,6 +177,8 @@ public class FilterMode extends AppCompatActivity {
         startGame.setVisibility(View.GONE);
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
+        SharedPreferences preferences = this.getSharedPreferences("auth",MODE_PRIVATE);
+        String uname = preferences.getString("username","");
         for(Button btn:filters){
             btn.setVisibility(View.GONE);
         }
@@ -246,7 +249,6 @@ public class FilterMode extends AppCompatActivity {
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","special");
@@ -311,7 +313,6 @@ public class FilterMode extends AppCompatActivity {
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","special");
@@ -374,7 +375,6 @@ public class FilterMode extends AppCompatActivity {
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","special");
@@ -437,7 +437,6 @@ public class FilterMode extends AppCompatActivity {
                                                }
                                                if(victory==9){
                                                    double score = 3*10000/((timeElapsed+n_moves) *2.5);
-                                                   String uname = getIntent().getStringExtra("username");
                                                    winIntent.putExtra("score",score);
                                                    winIntent.putExtra("username",uname);
                                                    winIntent.putExtra("mode","special");

@@ -291,7 +291,7 @@ public class FivexFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==25){
-                                double score = 15*10000/((timeElapsed+n_moves) *2.5);
+                                double score = 10*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
@@ -439,7 +439,7 @@ public class FivexFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==25){
-                                double score = 15*10000/((timeElapsed+n_moves) *2.5);
+                                double score = 10*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
@@ -588,7 +588,7 @@ public class FivexFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==25){
-                                double score = 15*10000/((timeElapsed+n_moves) *2.5);
+                                double score = 10*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","5x5");
@@ -737,7 +737,7 @@ public class FivexFragment extends Fragment {
                             victory++;
                         }
                         if(victory==25){
-                            double score = 15*10000/((timeElapsed+n_moves) *2.5);
+                            double score = 10*10000/((timeElapsed+n_moves) *2.5);
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","5x5");

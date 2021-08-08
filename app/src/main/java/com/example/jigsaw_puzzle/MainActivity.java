@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                                 SharedPreferences.Editor editor = preferences.edit();
                                 editor.putString("username",username);
                                 editor.putString("loggedIn","yes");
+                                editor.remove("loggedOut");
                                 editor.apply();
                                 homeIntent.putExtra("name",username);
                                 startActivity(homeIntent);
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                                             SharedPreferences.Editor editor = preferences.edit();
                                             editor.putString("username",username);
                                             editor.putString("loggedIn","yes");
+                                            editor.remove("loggedOut");
                                             editor.apply();
                                             homeIntent.putExtra("name",username);
                                             startActivity(homeIntent);

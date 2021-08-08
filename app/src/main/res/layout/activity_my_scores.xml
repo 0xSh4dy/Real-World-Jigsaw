@@ -25,7 +25,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11" >
+
+    </WebView>
 
     <TextView
         android:id="@+id/textView11"
@@ -43,28 +45,22 @@
         app:layout_constraintVertical_bias="0.019" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/loadingScores"
-        android:layout_width="0dp"
-        android:layout_height="236dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/mainbg2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gifImageView12"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/loadingScores2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/loading"
         android:scaleType="fitXY"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/loadingScores"
+        android:src="@drawable/loading"
+        app:layout_constraintBottom_toBottomOf="@+id/gifImageView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/divider29" />
+
+    <View
+        android:id="@+id/divider29"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/gifImageView12"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

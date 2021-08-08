@@ -3,6 +3,7 @@ package com.example.jigsaw_puzzle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,7 +43,8 @@ public class WinningActivity extends AppCompatActivity {
         score = Math.round(score*100)/100.0;
         String yourScore = String.valueOf(score);
         scoreTextView.setText(String.valueOf(score));
-        String username = getIntent().getStringExtra("username");
+        SharedPreferences preferences = this.getSharedPreferences("auth",MODE_PRIVATE);
+        String username = preferences.getString("username","");
         String text = "Hey, "+username+" .Your score is "+ score;
         scoreTextView.setText(text);
         RequestQueue myQueue = Volley.newRequestQueue(getApplicationContext());
@@ -157,18 +159,21 @@ public class WinningActivity extends AppCompatActivity {
                     playAgainIntent.putExtra("name", username);
                     playAgainIntent.putExtra("mode","CameraMode");
                     startActivity(playAgainIntent);
+                    finish();
                     break;
                 case "custom":
                     playAgainIntent = new Intent(getApplicationContext(), CustomMode.class);
                     playAgainIntent.putExtra("name", username);
                     playAgainIntent.putExtra("mode","CameraMode");
                     startActivity(playAgainIntent);
+                    finish();
                     break;
                 case "special":
                     playAgainIntent = new Intent(getApplicationContext(), FilterMode.class);
                     playAgainIntent.putExtra("name", username);
                     playAgainIntent.putExtra("mode","CameraMode");
                     startActivity(playAgainIntent);
+                    finish();
                     break;
             }
 

@@ -233,7 +233,7 @@ public class FourxFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==16){
-                                double score = 7*10000/((timeElapsed+n_moves) *2.5);
+                                double score = 5*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","4x4");
@@ -333,7 +333,7 @@ public class FourxFragment extends Fragment {
                                 victory++;
                             }
                             if(victory==16){
-                                double score = 7*10000/((timeElapsed+n_moves) *2.5);
+                                double score = 5*10000/((timeElapsed+n_moves) *2.5);
                                 winIntent.putExtra("score",score);
                                 winIntent.putExtra("username",uname);
                                 winIntent.putExtra("mode","4x4");
@@ -435,7 +435,7 @@ public class FourxFragment extends Fragment {
                             victory++;
                         }
                         if(victory==16){
-                            double score = 7*10000/((timeElapsed+n_moves) *2.5);
+                            double score = 5*10000/((timeElapsed+n_moves) *2.5);
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","4x4");
@@ -535,7 +535,7 @@ public class FourxFragment extends Fragment {
                             victory++;
                         }
                         if(victory==16){
-                            double score = 7*10000/((timeElapsed+n_moves) *2.5);
+                            double score = 5*10000/((timeElapsed+n_moves) *2.5);
                             winIntent.putExtra("score",score);
                             winIntent.putExtra("username",uname);
                             winIntent.putExtra("mode","4x4");

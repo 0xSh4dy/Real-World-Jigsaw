@@ -3,6 +3,7 @@ package com.example.jigsaw_puzzle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import pl.droidsonroids.gif.GifImageView;
 public class MyScores extends AppCompatActivity {
     WebView scoreView;
     GifImageView loadingBg;
-    GifImageView mainBg;
     ConnectivityManager cm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,9 @@ public class MyScores extends AppCompatActivity {
         cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         scoreView = findViewById(R.id.scoreView);
         loadingBg = findViewById(R.id.loadingScores2);
-        mainBg = findViewById(R.id.loadingScores);
-        final String username = getIntent().getStringExtra("username");
+        scoreView.setVisibility(View.INVISIBLE);
+        SharedPreferences preferences = this.getSharedPreferences("auth",MODE_PRIVATE);
+        final String username = preferences.getString("username","");
         final String scoreUrl = "https://jigsaw-real.herokuapp.com/scoreboard/users/"+username;
         if(cm.getActiveNetworkInfo()==null){
             Toast.makeText(this,"Error. No internet connection",Toast.LENGTH_LONG).show();
@@ -38,14 +39,13 @@ public class MyScores extends AppCompatActivity {
                public void onPageStarted(WebView view, String url, Bitmap favicon) {
                    super.onPageStarted(view, url, favicon);
                    loadingBg.setVisibility(View.VISIBLE);
-                   mainBg.setVisibility(View.VISIBLE);
                }
 
                @Override
                public void onPageFinished(WebView view, String url) {
                    super.onPageFinished(view, url);
                    loadingBg.setVisibility(View.GONE);
-                   mainBg.setVisibility(View.GONE);
+                   scoreView.setVisibility(View.VISIBLE);
                }
            });
         }

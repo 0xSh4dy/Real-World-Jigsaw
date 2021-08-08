@@ -46,6 +46,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setTitle("Menu");
+        SharedPreferences preferences = this.getSharedPreferences("auth",MODE_PRIVATE);
+        final String username = preferences.getString("username","");
+        final String  loggedOut = preferences.getString("loggedOut","");
         leaderboard = new Intent(this,Leaderboard.class);
         customMode = findViewById(R.id.customMode);
         myScores = findViewById(R.id.myScores);
@@ -59,9 +62,10 @@ public class HomeActivity extends AppCompatActivity {
         logout1 = findViewById(R.id.logout1);
         logout = new Intent(this,MainActivity.class);
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-//        final String username = getIntent().getStringExtra("name");
-        SharedPreferences preferences = this.getSharedPreferences("auth",MODE_PRIVATE);
-        final String username = preferences.getString("username","");
+        if(loggedOut.equals("yes")){
+            startActivity(logout);
+        }
+
         uname = username;
         String un = "Welcome! "+username;
         nameTextView.setText(un);
@@ -71,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = pref.edit();
             editor.remove("loggedIn");
             editor.remove("username");
+            editor.putString("loggedOut","yes");
             editor.apply();
             startActivity(logout);
             finish();
